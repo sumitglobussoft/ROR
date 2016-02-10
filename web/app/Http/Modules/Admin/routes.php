@@ -36,7 +36,7 @@ Route::group(array('module' => 'Admin', 'namespace' => 'Admin\Controllers'), fun
 
 
 
-//IF  YOU NEED TO USE GET POST, USE THIS FORMAT AS IN BELOW BLOCK COMMENT
+
             /* Route::get('admin/dashboard', function () {
               return view("Admin/Views/dashboard");
               }); */
