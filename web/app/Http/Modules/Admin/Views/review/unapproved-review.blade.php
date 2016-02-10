@@ -268,7 +268,7 @@
                     $('#originalreport').html(response.report_text);
                     $('.editReview').show();
                 }
-            }); //End of  ajax
+            }); 
             
         });
         $('.edit-toggle').on('click', function () {
