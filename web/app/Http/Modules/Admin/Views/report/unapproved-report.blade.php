@@ -39,6 +39,7 @@
                                         <th>Change Status</th>
                                         <th>Edit/Delete</th>
                                         <th>Actions</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -89,6 +90,9 @@
                                         </td>
                                         <td>
                                              <a href="/admin/review/{{$data->report_id}}" class="btn btn-info "> <i class="fa">View Reviews</i> </a>
+                                        </td>
+                                        <td>
+                                         <a href="/admin/viewreport/{{$data->report_id}}" class="btn btn-info "> <i class="fa">View Details</i> </a>
                                         </td>
                                     </tr>
                                     <?php $index++; ?>

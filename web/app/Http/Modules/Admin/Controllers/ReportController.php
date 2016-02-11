@@ -190,6 +190,14 @@ class ReportController extends Controller {
         return redirect('/admin/filereport');
         die;
     }
+
+    public function removeSession(Request $data) {
+        if(Session::has('report')){
+            Session::forget('report');
+        }
+     return redirect('/admin/filereport');
+    }
+
      public function fileReport(Request $data) {
           if(Session::has('report.user_id')){
             $userid = Session::get('report.user_id');
@@ -197,8 +205,6 @@ class ReportController extends Controller {
           else{
             $userid = Auth::user()->id;
           }
-
-        
         if ($data->isMethod('post')) {
             $steponecompanyname = $data->input('steponecompanyname');
             $steponeakaname = $data->input('steponeakaname');
@@ -248,7 +254,16 @@ class ReportController extends Controller {
             if ($step == 2) {
                 $objCategory = new category();
                 $category = $objCategory->getActiveCategory();
-                if (Session::has('report.stepone')) {
+                 if (Session::has('report.stepone') && Session::has('report.steptwo')) {
+                    $steponesession = Session::get('report.stepone');
+                    $steptwosession = Session::get('report.steptwo');
+                    $objCategory = new category();
+                    $subcategory = $objCategory->getActiveSubCategory($steptwosession['category']);
+                    if(!$subcategory)
+                        $subcategory=array();
+                    return view('Admin/Views/report/filereport', ['sessiondata' => $steponesession,'sessiontwodata' => $steptwosession, 'category' => $category,'subcategory'=>$subcategory]);
+                }
+                else if (Session::has('report.stepone')) {
                     $steponesession = Session::get('report.stepone');
                     return view('Admin/Views/report/filereport', ['sessiondata' => $steponesession, 'category' => $category]);
                 } else {
@@ -264,9 +279,9 @@ class ReportController extends Controller {
                 else if (Session::has('report.stepone') && Session::has('report.steptwo')) {
                     return view('Admin/Views/report/filereport', ['userdata' => $reportuser]);
                 }
-//                else if (Session::has('report.stepone.0')) {
-//                    return redirect('/admin/filereport?step=2');
-//                } 
+               else if (Session::has('report.stepone')) {
+                   return redirect('/admin/filereport?step=2');
+               } 
                 else {
                     return redirect('/admin/filereport');
                 }
@@ -281,6 +296,21 @@ class ReportController extends Controller {
                     $reportresponse = $objReport->getReportFilesById($reportid);
                     return view('Admin/Views/report/filereport', ['reportfiledata' => $reportresponse]);
                 }
+                else if(Session::has('report.stepthree')){
+                    $stepthreesession = Session::get('report.stepthree');
+                   return view('Admin/Views/report/filereport', ['userdata' => $reportuser,'stepthreesession'=>$stepthreesession]); 
+                }
+                else if (Session::has('report.stepone') && Session::has('report.steptwo')) {
+                    return view('Admin/Views/report/filereport', ['userdata' => $reportuser]);
+                }
+               else if (Session::has('report.stepone')) {
+                   return redirect('/admin/filereport?step=2');
+               } 
+                else {
+                    return redirect('/admin/filereport');
+                }
+
+
             } else if ($step == 5) {
                 if (Session::has('report.stepone') && Session::has('report.steptwo') && Session::has('report.stepthree')) {
                     if (Session::has('report.id')) {
@@ -290,9 +320,27 @@ class ReportController extends Controller {
                     }
                     return view('Admin/Views/report/filereport');
                 }
+                else if(Session::has('report.stepthree')){
+                    $stepthreesession = Session::get('report.stepthree');
+                   return view('Admin/Views/report/filereport', ['userdata' => $reportuser,'stepthreesession'=>$stepthreesession]); 
+                }
+                else if (Session::has('report.stepone') && Session::has('report.steptwo')) {
+                    return view('Admin/Views/report/filereport', ['userdata' => $reportuser]);
+                }
+               else if (Session::has('report.stepone')) {
+                   return redirect('/admin/filereport?step=2');
+               } 
+                else {
+                    return redirect('/admin/filereport');
+                }
             } else {
                 // This is for edit report getting from session.
                 if (Session::has('report.stepone') && Session::has('report.id')) {
+                    $steponedata = Session::get('report.stepone');
+                    return view('Admin/Views/report/filereport', ['steponedata' => $steponedata]);
+                }
+                else if(Session::has('report.stepone'))
+                {
                     $steponedata = Session::get('report.stepone');
                     return view('Admin/Views/report/filereport', ['steponedata' => $steponedata]);
                 }
@@ -729,6 +777,19 @@ class ReportController extends Controller {
             Session::put('report.user_id', $userid);
 
             return redirect('/admin/filereport');
+
+            
+    }
+
+     public function viewReport($reportid,Request $data) {
+                    $objReport = new report();
+                    $report = $objReport->getReportDetailsById($reportid);
+                    $reportarray = (array) $report;
+                    $file = $objReport->getReportFileDetailsById($reportid);
+                    $filearray = (array) $file;
+                    $reportarray['files'] = $filearray;
+                    // echo "<pre>";print_r($reportarray);die;
+                   return view('Admin/Views/report/viewreport', ['report_data' => $reportarray]);
 
             
     }

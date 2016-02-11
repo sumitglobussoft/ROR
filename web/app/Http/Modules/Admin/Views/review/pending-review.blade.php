@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-group form-input-group m-t-30 m-b-5 col-md-10">
                                 <label>Original Report</label>
-                            <span id="originalreport"></span>
+                            <span id="originalreport" class="originalreport"></span>
                             </div>
                             <div class="form-group form-input-group m-t-30 m-b-5 col-md-10">
                                 <label>Review Status</label>

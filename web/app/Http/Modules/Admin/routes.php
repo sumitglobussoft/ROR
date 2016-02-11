@@ -67,7 +67,9 @@ Route::group(array('module' => 'Admin', 'namespace' => 'Admin\Controllers'), fun
                         Route::resource('/admin/reportstepfive', 'ReportController@reportStepFive');
                         Route::resource('/admin/deletereport', 'ReportController@deleteReport');
                         Route::get('/admin/storesession/{reportid}', 'ReportController@storeSession');
+                        Route::resource('/admin/removesession', 'ReportController@removeSession');
                         Route::get('/admin/addreportuser/{userid}', 'ReportController@addReportUser');
+                        Route::get('/admin/viewreport/{reportid}', 'ReportController@viewReport');
 
 
 
@@ -96,10 +98,10 @@ Route::group(array('module' => 'Admin', 'namespace' => 'Admin\Controllers'), fun
                         Route::resource('/admin/business-ajax-handler', 'UsersController@businessAjaxhandler');
 
                         Route::get('/admin/review/{reportid}', 'ReviewController@review');
-                         Route::resource('/admin/list-review', 'ReviewController@listReview');
-                         Route::resource('/admin/pending-review', 'ReviewController@pendingReview');
-                         Route::resource('/admin/approved-review', 'ReviewController@approvedReview');
-                         Route::resource('/admin/unapproved-review', 'ReviewController@unapprovedReview');
+                        Route::resource('/admin/list-review', 'ReviewController@listReview');
+                        Route::resource('/admin/pending-review', 'ReviewController@pendingReview');
+                        Route::resource('/admin/approved-review', 'ReviewController@approvedReview');
+                        Route::resource('/admin/unapproved-review', 'ReviewController@unapprovedReview');
                         Route::post('/admin/addreview', 'ReviewController@addReview');
                         Route::post('/admin/updatereview', 'ReviewController@updateReview');
                         Route::post('/admin/deletereview', 'ReviewController@deleteReview');
