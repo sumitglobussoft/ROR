@@ -254,6 +254,17 @@
                                                 <a href="/admin/addreportuser/<?php echo $userDetails->user_id ?>" data-id="<?php echo $userDetails->user_id ?>" id="" class="btn btn-danger addreport"> Add Report</a>
 
                                             </td>
+                                            <td class="text-center">
+                                                {{--<button type="button" onclick="window.location='{{ url("admin/add_business")}}'" class="btn btn-primary " href="javascript:;">--}}
+                                                {{--<i class="fa fa-plus"></i>--}}
+                                                {{--Add Business--}}
+                                                {{--</button>--}}
+
+
+                                                <?php  echo "<a href='/admin/add_business/$userDetails->user_id' class='label label-warning'> Add Business </a>";?>
+
+
+                                            </td>
 
                                         </tr>
 

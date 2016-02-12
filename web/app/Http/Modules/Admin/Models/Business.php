@@ -77,6 +77,8 @@ class Business extends Model implements AuthenticatableContract,
 
             $result = DB::table($this->table)
                 ->where('business_id', $Business_id)
+//                ->join('subcategory', 'subcategory.category_id', '=', 'category.category_id')
+////                ->where('subcategory.category_id', $categoryid)
                 ->get();
             return $result;
         } else {
@@ -91,11 +93,10 @@ class Business extends Model implements AuthenticatableContract,
             $updateBusinessData = func_get_arg(0);
             $Business_id = func_get_arg(1);
 
-            try {
+//            $category_id =func_get_arg(2);
+         try {
                 $updatedResult = DB::table($this->table)
                     ->where('business_id', $Business_id)
-                    ->join('category', $this->table . '.category_id', '=', 'category.category_id')
-                    ->join('subcategory', $this->table . '.category_id', '=', 'subcategory.category_id')
                     ->update($updateBusinessData);
                 // ->insertGetId($data);
 //                print_r($updatedResult);
@@ -135,11 +136,73 @@ class Business extends Model implements AuthenticatableContract,
     {
 
         if (func_num_args() > 0) {
-            $where = func_get_arg(0);
+            $selectedColumns = func_get_arg(0);
             $result = DB::table($this->table)
-                ->join('category', $this->table . '.category_id', '=', 'category.category_id')
-                ->join('subcategory', $this->table . '.category_id', '=', 'subcategory.category_id')
-//                    ->where('subcategory.category_id', $categoryid)
+                ->leftjoin('category',  'business.category_id', '=', 'category.category_id')
+                ->leftjoin('subcategory', 'business.subcategory_id', '=', 'subcategory.subcategory_id')
+                ->leftjoin('user_meta', 'business.user_id', '=' ,'user_meta.user_id')
+                ->select($selectedColumns)
+                ->get();
+
+            return $result;
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+
+    }
+
+
+    public function getPendingBusiness($where,$selectedColumns=['*'])
+    {
+
+        if (func_num_args() > 0) {
+            $selectedColumns = func_get_arg(0);
+            $result = DB::table($this->table)
+                ->leftjoin('category',  'business.category_id', '=', 'category.category_id')
+                ->leftjoin('subcategory', 'business.subcategory_id', '=', 'subcategory.subcategory_id')
+                ->leftjoin('user_meta', 'business.user_id', '=' ,'user_meta.user_id')
+                ->where('business.status', 0)
+                ->select($selectedColumns)
+                ->get();
+
+            return $result;
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+
+      }
+
+
+    public function getApprovedBusiness($where,$selectedColumns=['*'])
+    {
+
+        if (func_num_args() > 0) {
+            $selectedColumns = func_get_arg(0);
+            $result = DB::table($this->table)
+                ->leftjoin('category',  'business.category_id', '=', 'category.category_id')
+                ->leftjoin('subcategory', 'business.subcategory_id', '=', 'subcategory.subcategory_id')
+                ->leftjoin('user_meta', 'business.user_id', '=' ,'user_meta.user_id')
+                ->where('business.status', 1)
+                ->select($selectedColumns)
+                ->get();
+
+            return $result;
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+
+    }
+
+    public function getUnapprovedBusiness($where,$selectedColumns=['*'])
+    {
+
+        if (func_num_args() > 0) {
+            $selectedColumns = func_get_arg(0);
+            $result = DB::table($this->table)
+                ->leftjoin('category',  'business.category_id', '=', 'category.category_id')
+                ->leftjoin('subcategory', 'business.subcategory_id', '=', 'subcategory.subcategory_id')
+                ->leftjoin('user_meta', 'business.user_id', '=' ,'user_meta.user_id')
+                ->where('business.status', 2)
                 ->select($selectedColumns)
                 ->get();
 

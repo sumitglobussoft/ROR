@@ -81,25 +81,33 @@ Route::group(array('module' => 'Admin', 'namespace' => 'Admin\Controllers'), fun
                         Route::resource('/admin/users', 'UsersController@users');
                         Route::resource('/admin/businessuser', 'UsersController@business');
                         Route::resource('/admin/profile', 'UsersController@adminprofile');
+                        Route::resource('/admin/users-ajax-handler', 'UsersController@usersAjaxhandler');
+                        Route::resource('/admin/business-ajax-handler', 'UsersController@businessAjaxhandler');
+                        Route::resource('/admin/managebusiness-ajax-handler', 'UsersController@managebusinessAjaxhandler');
 
                         Route::resource('/admin/rebuttal', 'RebuttalController@rebuttalguidelines');
                         Route::resource('/admin/rebuttal/step2', 'RebuttalController@writeyourreport');
                         Route::resource('/admin/rebuttal/step3', 'RebuttalController@reviewandsubmit');
 //        Route::resource('/admin/rebuttal-ajax-handler', 'RebuttalController@writeyourreport');
 
-                        Route::resource('/admin/managebusiness', 'BusinessController@businessData');
+                        Route::get('/admin/add_business/{user_id}', 'BusinessController@AddBusinessInfoById');
+                        Route::get('/admin/add_business/{id}', 'BusinessController@AddBusinessData');
+                        Route::resource('/admin/businessbyid-ajax-handler', 'BusinessController@businessbyidAjaxhandler');
+                        Route::resource('/admin/manage_business', 'BusinessController@allbusinessDetails');
+                        Route::resource('/admin/pending_business', 'BusinessController@pendingBusiness');
+                        Route::resource('/admin/approved_business', 'BusinessController@approvedBusiness');
+                        Route::resource('/admin/unapproved_business', 'BusinessController@unapprovedBusiness');
                         Route::resource('/admin/businessmanage-ajax-handler', 'BusinessController@businessAjaxhandler');
 
 
 
-                        Route::resource('/admin/users-ajax-handler', 'UsersController@usersAjaxhandler');
-                        Route::resource('/admin/business-ajax-handler', 'UsersController@businessAjaxhandler');
+
 
                         Route::get('/admin/review/{reportid}', 'ReviewController@review');
-                         Route::resource('/admin/list-review', 'ReviewController@listReview');
-                         Route::resource('/admin/pending-review', 'ReviewController@pendingReview');
-                         Route::resource('/admin/approved-review', 'ReviewController@approvedReview');
-                         Route::resource('/admin/unapproved-review', 'ReviewController@unapprovedReview');
+                        Route::resource('/admin/list-review', 'ReviewController@listReview');
+                        Route::resource('/admin/pending-review', 'ReviewController@pendingReview');
+                        Route::resource('/admin/approved-review', 'ReviewController@approvedReview');
+                        Route::resource('/admin/unapproved-review', 'ReviewController@unapprovedReview');
                         Route::post('/admin/addreview', 'ReviewController@addReview');
                         Route::post('/admin/updatereview', 'ReviewController@updateReview');
                         Route::post('/admin/deletereview', 'ReviewController@deleteReview');

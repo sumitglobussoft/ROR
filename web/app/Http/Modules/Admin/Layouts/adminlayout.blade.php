@@ -199,7 +199,7 @@
                                 <ul>
                                     <li><a href="/admin/users" class="animsition-link">Report user Details</a></li>
 
-                                    <li><a href="/admin/businessuser" class="animsition-link">Business user Details</a></li>
+                                    {{--<li><a href="/admin/businessuser" class="animsition-link">Business user Details</a></li>--}}
                                     <!--								<li class="has-submenu">
                                                                                                             <a href="#submenu2" data-toggle="collapse" aria-expanded="false">Sample 3 <i class="fa fa-angle-down pull-right"></i></a>
                                                                                                             <div class="sub-menu collapse tertiary list-style-dashed" id="submenu2">
@@ -280,7 +280,11 @@
                             </a>
                             <div class="sub-menu collapse secondary list-style-circle" id="business">
                                 <ul>
-                                    <li><a href="/admin/managebusiness" class="animsition-link">Business Details</a></li>
+                                    <li><a href="/admin/add_business/{{Auth::user()->id}}" class="animsition-link">Add Business</a></li>
+                                    <li><a href="/admin/manage_business" class="animsition-link">All Business Details</a></li>
+                                    <li><a href="/admin/pending_business" class="animsition-link">Pendings Business</a></li>
+                                    <li><a href="/admin/approved_business" class="animsition-link">Approved Business</a></li>
+                                    <li><a href="/admin/unapproved_business" class="animsition-link">UnApproved Business</a></li>
 
 
                                 </ul>
