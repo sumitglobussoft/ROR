@@ -67,7 +67,9 @@ Route::group(array('module' => 'Admin', 'namespace' => 'Admin\Controllers'), fun
                         Route::resource('/admin/reportstepfive', 'ReportController@reportStepFive');
                         Route::resource('/admin/deletereport', 'ReportController@deleteReport');
                         Route::get('/admin/storesession/{reportid}', 'ReportController@storeSession');
+                        Route::resource('/admin/removesession', 'ReportController@removeSession');
                         Route::get('/admin/addreportuser/{userid}', 'ReportController@addReportUser');
+                        Route::get('/admin/viewreport/{reportid}', 'ReportController@viewReport');
 
 
 

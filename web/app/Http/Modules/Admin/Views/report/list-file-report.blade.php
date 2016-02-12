@@ -39,6 +39,7 @@
                                         <th>Change Status</th>
                                         <th>Edit/Delete</th>
                                         <th>Actions</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,11 +84,13 @@
                                         <td class="btn-group text-center">
                                             <a href="javascript:;" data-toggle="modal" id="{{$data->report_id}}"  class="btn btn-info edit-report padd-10"> <i class="fa fa-pencil"></i> </a>
                                             <a href="javascript:;" data-toggle="modal" id="{{$data->report_id}}"   class="btn btn-danger delete-report padd-10"> <i class="fa fa-trash"></i> </a>
-                                            <!--<a href="/admin/subcategory/{{$data->category_id}}" data-toggle="modal" id="{{$data->category_id}}" data-category="{{$data->category_name}}" data-status ="{{$data->status}}" class="btn btn-info"> <i class="fa">View Sub-Category </i> </a>-->
-                                           
+                                           <!--  <a href="/admin/subcategory/{{$data->category_id}}" data-toggle="modal" id="{{$data->category_id}}" data-category="{{$data->category_name}}" data-status ="{{$data->status}}" class="btn btn-info"> <i class="fa">View Sub-Category </i> </a> -->
                                         </td>
                                         <td>
-                                             <a href="/admin/review/{{$data->report_id}}" class="btn btn-info "> <i class="fa">View Reviews</i> </a>
+                                         <a href="/admin/review/{{$data->report_id}}" class="btn btn-info "> <i class="fa">View Reviews</i> </a>
+                                        </td>
+                                        <td>
+                                         <a href="/admin/viewreport/{{$data->report_id}}" class="btn btn-info "> <i class="fa">View Details</i> </a>
                                         </td>
                                     </tr>
                                     <?php $index++; ?>
@@ -207,10 +210,7 @@
             }
         
             $("#changereportid").val(reportid);
-            $("#statusModal").modal("show");
- 
-            //            document.location = "/admin/filereport?step=5";
-        
+            $("#statusModal").modal("show");        
         });
         $('.delete-report').on('click', function () {
             var reportid=$(this).attr("id");

@@ -224,7 +224,7 @@
                             </a>
                             <div class="sub-menu collapse secondary list-style-circle" id="report">
                                 <ul>
-                                    <li><a href="/admin/filereport" class="animsition-link">Add Report</a></li>
+                                    <li><a href="/admin/removesession" class="animsition-link">Add Report</a></li>
                                     <li><a href="/admin/listfilereport" class="animsition-link">List All Reports</a></li>
                                     <li><a href="/admin/pending-report" class="animsition-link">Pending Reports</a></li>
                                     <li><a href="/admin/approved-report" class="animsition-link">Approved Reports</a></li>

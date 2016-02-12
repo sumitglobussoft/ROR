@@ -424,7 +424,52 @@ class Report extends Model {
             return 0;
         }
     }
-
+   public function getReportDetailsById() {
+           if (func_num_args() > 0) {
+            $reportid = func_get_arg(0);
+        try {
+           
+        $result = DB::table("report")
+                ->leftjoin('subcategory', 'subcategory.subcategory_id', '=', 'report.subcategory_id')
+                ->leftjoin('category', 'category.category_id', '=', 'report.category_id')
+                ->where('report_id', $reportid)
+                ->select('subcategory.subcategory_name','category.category_name','report.*')
+                ->first();
+        } catch (QueryException $e) {
+            echo $e;
+            return 0;
+        }
+        if ($result)
+            return $result;
+        else
+            return 0;
+           }
+            else
+            return 0;
+           
+    }
+     public function getReportFileDetailsById() {
+           if (func_num_args() > 0) {
+            $reportid = func_get_arg(0);
+        try {
+           
+        $result = DB::table("report_file")
+                ->where('report_id', $reportid)
+                ->select()
+                ->get();
+        } catch (QueryException $e) {
+            echo $e;
+            return 0;
+        }
+        if ($result)
+            return $result;
+        else
+            return 0;
+           }
+            else
+            return 0;
+           
+    }
 
 
 
