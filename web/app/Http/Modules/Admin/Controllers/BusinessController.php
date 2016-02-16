@@ -32,24 +32,33 @@ class BusinessController extends Controller
      *
      */
 
-    public function businessData()
+    public function allbusinessDetails()
     {
+
 
         $objBusinessModel = Business::getInstance();
         $where['rawQuery'] = 1;
-        $selectedColumns=['business.*','category.category_name','subcategory.subcategory_name'];
-        $allBusiness = $objBusinessModel->getAllDetails($where,$selectedColumns);
-        $objCategory =new Category();
-        $categoryData =$objCategory->getActiveCategory();
+        $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name','user_meta.full_name','user_meta.primary_phone'];
+        $allBusiness = $objBusinessModel->getAllDetails($selectedColumns);
+//        echo '<pre>';
+//        print_r($allBusiness);
+//        die;
 
 
-    return view('Admin.Views.business.business', ['allBusiness' => $allBusiness],['categoryData' =>$categoryData]);
-  }
+
+        $objCategory = new Category();
+        $categoryData = $objCategory->getActiveCategory();
+//        echo '<pre>';
+//        print_r($allBusiness);
+//        die;
+
+        return view('Admin.Views.business.manage_business', ['allBusiness' => $allBusiness], ['categoryData' => $categoryData]);
+    }
 
 
     public function businessAjaxhandler(Request $request)
     {
-       $inputData = $request->input();
+        $inputData = $request->input();
         $method = $inputData['method'];
 
         switch ($method) {
@@ -59,7 +68,7 @@ class BusinessController extends Controller
                 $rules = array(
                     'business_name' => 'required|max:255',
                     'category' => 'required|max:255',
-                    'sub_category' => 'required|max:255',
+                    'add_sub_category' => 'required|max:255',
                     'description' => 'required|max:255',
                     'address' => 'required',
                     'phone' => 'required',
@@ -70,13 +79,15 @@ class BusinessController extends Controller
                 if ($validator->fails()) {
                     echo json_encode(['status' => 'error', 'msg' => $validator->messages()], true);
                 } else {
+
+
                     $data = $request->session()->all();
                     $user_id = $data['ror_admin']['id'];
 
                     $BusinessDataInfo['user_id'] = $user_id;
                     $BusinessDataInfo['business_name'] = $request->input('business_name');
                     $BusinessDataInfo['category_id'] = $request->input('category');
-                    $BusinessDataInfo['subcategory_id'] = $request->input('sub_category');
+                    $BusinessDataInfo['subcategory_id'] = $request->input('add_sub_category');
 //                    print_r($BusinessDataInfo);
 //                    die;
                     $BusinessDataInfo['description'] = $request->input('description');
@@ -113,24 +124,46 @@ class BusinessController extends Controller
                 break;
 
             case 'updateBusinessInfo':
-                $BusinessId = $request->input('business_id');
-                $updateBusinessData['business_name'] = $request->input('business_name');
-                $updateBusinessData['category_id'] = $request->input('category_id');
-                $updateBusinessData['subcategory_id'] = $request->input('subcategory_id');
-                $updateBusinessData['description'] = $request->input('description');
-                $updateBusinessData['address'] = $request->input('address');
-                $updateBusinessData['phone'] = $request->input('phone');
-                $updateBusinessData['web_address'] = $request->input('web_address');
-                $updateBusinessData['status'] = $request->input('status01');
-                print_r($updateBusinessData);
-                die;
 
-                $objUpdateBusinessInfo = Business::getInstance();
-                $UpdateDataResult = $objUpdateBusinessInfo->UpdateBusinessdata($updateBusinessData, $BusinessId);
-                if ($UpdateDataResult) {
-                    echo 1;
-                    die;
-                }
+
+//                $rules = array(
+//                    'business_name' => 'required|max:255',
+//                    'category' => 'required|max:255',
+//                    'sub_category' => 'required|max:255',
+//                    'description' => 'required|max:255',
+//                    'address' => 'required',
+//                    'phone' => 'required',
+//                    'web_address' => 'required',
+//                    'status01' => 'required',
+//                );
+//
+//                $validator = Validator::make($request->all(), $rules);
+//                if ($validator->fails()) {
+//                    echo json_encode(['status' => 'error', 'msg' => $validator->messages()], true);
+//                }
+//              else {
+
+                  $BusinessId = $request->input('business_id');
+
+                  $updateBusinessData['business_name'] = $request->input('business_name');
+                  $updateBusinessData['category_id'] = $request->input('category_id');
+                  $updateBusinessData['subcategory_id'] = $request->input('subcategory_id');
+                  $updateBusinessData['description'] = $request->input('description');
+                  $updateBusinessData['address'] = $request->input('address');
+                  $updateBusinessData['phone'] = $request->input('phone');
+                  $updateBusinessData['web_address'] = $request->input('web_address');
+                  $updateBusinessData['status'] = $request->input('status01');
+//                print_r($updateBusinessData);
+//                die;
+
+                  $objUpdateBusinessInfo = Business::getInstance();
+                  $UpdateDataResult = $objUpdateBusinessInfo->UpdateBusinessdata($updateBusinessData, $BusinessId);
+                  if ($UpdateDataResult) {
+                      echo 1;
+                      die;
+                  }
+//              }
+
 
                 break;
 
@@ -138,9 +171,9 @@ class BusinessController extends Controller
 
                 $BusinessId = $request->input('business_id');
 
-                $objDeleteBusinessInfo= Business::getInstance();
+                $objDeleteBusinessInfo = Business::getInstance();
                 $DeletedBusinessResponse = $objDeleteBusinessInfo->DeleteBusinessInfo($BusinessId);
-                if($DeletedBusinessResponse){
+                if ($DeletedBusinessResponse) {
                     echo 1;
                     die;
 
@@ -148,14 +181,20 @@ class BusinessController extends Controller
 
                 break;
 
-            case 'Category';
-            $category_id = $request->input('catgory_id');
+            case 'Category':
+                $category_id = $request->input('catgory_id');
 
-            $objSubCategory =new Category();
-            $SubCategoryData =$objSubCategory->getActiveSubCategoryById($category_id);
-//            print_r($SubCategoryData);die;
-            echo json_encode($SubCategoryData);
+                $objSubCategory = new Category();
+                $SubCategoryData = $objSubCategory->getActiveSubCategoryById($category_id);
+//                print_r($SubCategoryData);
+//                die;
+                echo json_encode($SubCategoryData);
+                break;
 
+//            case 'EditCategory':
+//                $category_id = $request->input('catgory_id');
+//                print_r($category_id);
+//                die;
 
 
                 break;
@@ -163,11 +202,125 @@ class BusinessController extends Controller
                 break;
 
         }
+    }
+
+      public function pendingBusiness()
+     {
+
+         $objCategory = new Category();
+         $categoryData = $objCategory->getActiveCategory();
+
+
+         $objPendingBusinessModel = Business::getInstance();
+         $where['rawQuery'] = 1;
+         $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name','user_meta.full_name','user_meta.primary_phone'];
+         $allpendingBusiness = $objPendingBusinessModel->getPendingBusiness($selectedColumns);
+
+
+         return view('Admin.Views.business.pending_business',['allpendingBusiness' =>$allpendingBusiness],['categoryData' =>$categoryData]);
+   }
+
+
+
+        public function approvedBusiness()
+        {
+
+          $objCategory = new Category();
+            $categoryData = $objCategory->getActiveCategory();
+
+
+        $objApprovedBusinessModel = Business::getInstance();
+        $where['rawQuery'] = 1;
+        $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name','user_meta.full_name','user_meta.primary_phone'];
+        $allApprovedBusiness = $objApprovedBusinessModel->getApprovedBusiness($selectedColumns);
+
+
+        return view('Admin.Views.business.approved_business',['allApprovedBusiness' =>$allApprovedBusiness],['categoryData' =>$categoryData]);
+
+   }
+
+
+
+     public function unapprovedBusiness()
+     {
+         $objCategory = new Category();
+         $categoryData = $objCategory->getActiveCategory();
+
+
+        $objUnapprovedBusiness = Business::getInstance();
+        $where['rawQuery'] = 1;
+        $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name','user_meta.full_name','user_meta.primary_phone'];
+        $allunapprovedBusiness = $objUnapprovedBusiness->getUnapprovedBusiness($selectedColumns);
+
+
+        return view('Admin.Views.business.unapproved_business',['allunapprovedBusiness' =>$allunapprovedBusiness],['categoryData'=>$categoryData]);
+
 
     }
 
+    public function AddBusinessInfoById(Request $request,$user_id){
 
+        $objCategory = new Category();
+        $categoryData = $objCategory->getActiveCategory();
+
+
+
+
+     return view('Admin.Views.business.add_business',['user_id' => $user_id],['categoryData'=>$categoryData]);
+
+     }
+
+
+     public function businessbyidAjaxhandler(Request $request)
+    {
+
+
+        $inputData = $request->input();
+        $method = $inputData['method'];
+
+        switch ($method) {
+
+            case 'AddBusinessById':
+
+                $BusinessDataInfo['user_id'] = $request->input('user_id');
+                $BusinessDataInfo['business_name'] = $request->input('business_name');
+                $BusinessDataInfo['category_id'] = $request->input('category');
+                $BusinessDataInfo['subcategory_id'] = $request->input('add_sub_category');
+                $BusinessDataInfo['description'] = $request->input('description');
+                $BusinessDataInfo['address'] = $request->input('address');
+                $BusinessDataInfo['phone'] = $request->input('phone');
+                $BusinessDataInfo['web_address'] = $request->input('web_address');
+                $BusinessDataInfo['status'] = $request->input('status');
+//                print_r($BusinessDataInfo);
+//                die;
+
+                $objAddBusiness = Business::getInstance();
+                $AddedBusiness = $objAddBusiness->InsertBusinessData($BusinessDataInfo);
+                if($AddedBusiness){
+                     echo 1;
+                    die;
+                }
+
+
+        }
+
+        }
+
+            public function AddBusinessData()
+            {
+
+
+
+
+
+            }
 
 }
+
+
+
+
+
+
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Modules\Admin\Controllers;
 
 //include public_path() . "/../vendor/mandrill/src/Mandrill.php";
 
+
 use App\Http\Modules\Admin\Models\User;
 use App\Http\Modules\Admin\Models\Usersmeta;
 use Illuminate\Http\Request;
@@ -33,7 +34,6 @@ class UsersController extends Controller
         $objUsersModel = User::getInstance();
         $where['rawQuery'] = 1;
         $Allusers = $objUsersModel->getAllUsers($where);
-
         return view('Admin.Views.users.users', ['Allusers' => $Allusers]);
 
     }

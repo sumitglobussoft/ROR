@@ -3,6 +3,7 @@
 namespace App\Http\Modules\Admin\Controllers;
 
 
+use App\Users;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -185,7 +186,7 @@ else
                     'password.required' => 'Invalid password']
             );
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
-                $objModelUsers = User::getInstance();
+                $objModelUsers = Users::getInstance();
               
 //                User::getInstance();
                 $userDetails = $objModelUsers->getUserById(Auth::id()); //THIS IS TO GET THE MODEL OBJECT
