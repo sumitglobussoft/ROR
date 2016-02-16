@@ -152,6 +152,11 @@ class ReportController extends Controller {
                     $objReview = new review();
                     $result = $objReview->getReviewDetailsById($reviewid);
                     echo json_encode($result);die;
+
+                   case "getreports":
+                    $objReport = new report();
+                    $result=$objReport->getAllReports();
+                     echo json_encode($result);die;
                 default :
                     break;
             }

@@ -66,9 +66,9 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::group(array('module' => 'Home', 'namespace' => 'Home\Controllers'), function () {
 
-    Route::resource('/', 'HomeController@home');
-    Route::resource('/home-ajax-handler', 'HomeController@homeAjaxHandler');
-    Route::resource('/logout', 'HomeController@logout');
+//    Route::resource('/', 'HomeController@home');
+//    Route::resource('/home-ajax-handler', 'HomeController@homeAjaxHandler');
+//    Route::resource('/logout', 'HomeController@logout');
 
 });
 

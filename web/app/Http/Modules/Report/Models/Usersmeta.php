@@ -1,5 +1,5 @@
 <?php
-namespace FlashSale\Http\Modules\Admin\Models;
+namespace App\Http\Modules\Admin\Models;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +10,7 @@ use Mockery\CountValidator\Exception;
 class Usersmeta extends Model
 {
 
-    protected $table = 'usersmeta';
+    protected $table = 'user_meta';
     protected $fillable = ['user_id', 'addressline1', 'addressline2', 'city', 'state', 'country', 'zipcode', 'phone'];
     private static $_instance = null;
 
@@ -21,66 +21,86 @@ class Usersmeta extends Model
         return self::$_instance;
     }
 
-//    public function getAvaiableUserMetaDetails($where){
-//
-//        try{
-//            $result = Usersmeta::whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
-////                ->whereRaw($status['rawQuery'], isset($status['bindParams']) ? $status['bindParams'] : array())
-//                ->select()
-//                ->get();
-//
-//            return $result;
-//
-//        }catch (QueryException $e){
-//            echo $e;
-//        }
-//
-//    }
 
-    public function getAvaiableUserMetaDetails()
-    {
 
-        try {
-            $result = Usersmeta::join('users', function ($join) {
-                $join->on('usersmeta.user_id', '=', 'users.id');
-            })
-//                ->leftJoin('location', function ($join) {
-//                    $join->on('location.location_id', '=', 'usersmeta.city');
-//                })
-//                ->join('location', function ($join) {
-//                    $join->on('location.location_id', '=', 'usersmeta.state');
-//                })
-                ->join('location', function ($join) {
-                    $join->on('location.location_id', '=', 'usersmeta.country');
-                })
-                ->select()
-                ->get();
-            return $result;
-        } catch (QueryException $e) {
-            echo $e;
+    public function InsertUserMetaData(){
+
+        if (func_num_args() > 0) {
+            $data = func_get_arg(0);
+//           print_r($data);
+//           die;
+            try {
+                $result = DB::table($this->table)->insert($data);
+                return $result;
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
         }
 
     }
 
-    public function getUserMetaInfoByUserId($where,$selectedColumns = ['*'])
+    public function updateMetaUserData()
     {
+        if (func_num_args() > 0) {
+            $data = func_get_arg(0);
 
-        try {
-            $result = DB::table($this->table)
-                ->whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
-                ->join('users', function ($join) {
-                    $join->on('usersmeta.user_id', '=', 'users.id');
-                })
-                ->join('location','location.location_id', '=', 'usersmeta.country')
-                ->select($selectedColumns)
-                ->get();
-            return $result;
-        } catch (QueryException $e) {
-            echo $e;
+            $userid = func_get_arg(1);
+            try {
+                $updatedResult = DB::table($this->table)
+                    ->where('user_id' ,$userid)
+                    ->update($data);
+
+                return $updatedResult;
+
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
         }
-
-
     }
 
+
+    public function deleteUserMetaDetail()
+    {
+
+        if (func_num_args() > 0) {
+            $userid = func_get_arg(0);
+            try {
+                $delete = DB::table($this->table)
+                    ->where('user_id' ,$userid)
+                    ->delete();
+                return $delete;
+
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
+
+
+    public function updateAdminMetaUserData()
+    {
+        if (func_num_args() > 0) {
+            $data = func_get_arg(0);
+            $userid = func_get_arg(1);
+            try {
+                $updatedResult = DB::table($this->table)
+                    ->where('user_id',$userid)
+                    ->update($data);
+
+                return $updatedResult;
+
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
 
 }

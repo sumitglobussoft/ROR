@@ -186,7 +186,7 @@
                 <div class="sidenav-inner">
                     <ul class="side-nav magic-nav">
                         <li class="first-link active">
-                            <a href="index.html" class="animsition-link">
+                            <a href="/admin/dashboard" class="animsition-link">
                                 <i class="icon-stats-dots"></i> <span class="nav-text">Dashboard</span>
                             </a>
                         </li>
@@ -240,7 +240,7 @@
                             </a>
                             <div class="sub-menu collapse secondary list-style-circle" id="review">
                                 <ul>
-                                    <li><a href="/admin/listfilereport" class="animsition-link">Add Review</a></li>
+                                    <li><a href="javascript:;" id="addReview">Add Review</a></li>
                                     <li><a href="/admin/list-review" class="animsition-link">List All Reviews</a></li>
                                     <li><a href="/admin/pending-review" class="animsition-link">Pending Reviews</a></li>
                                     <li><a href="/admin/approved-review" class="animsition-link">Approved Reviews</a></li>
@@ -296,6 +296,45 @@
             @yield('content')
 
         </div>
+            <!-- Modal -->
+<div id="category_details" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Select Report</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="text-right">
+                                    <!-- <a class="btn btn-primary" data-toggle="modal" href="#addModal"> <i class="fa fa-plus"></i> Add User </a> -->
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped font-12" id="datatable-report">
+                                        <thead>
+                                            <tr>
+                                                <th>Report ID</th>
+                                                <th>Created By</th>
+                                                <th>Report Title</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="reportbody">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
         @yield('modalcontent')
         <!-- /.wrapper -->
         @include('Admin/Layouts/admincommonfooterscripts')

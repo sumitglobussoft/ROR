@@ -251,7 +251,7 @@
                                                         class="fa fa-pencil"></i> </button>
                                                 <button data-id="<?php echo $userDetails->user_id ?>" id="" data-toggle="modal" class="btn btn-danger deleteuser"> <i
                                                         class="fa fa-trash"></i> </button>
-                                                <a href="/admin/addreportuser/<?php echo $userDetails->user_id ?>" data-id="<?php echo $userDetails->user_id ?>" id="" class="btn btn-danger addreport"> Add Report</a>
+                                                <a href="/admin/addreportuser/<?php echo $userDetails->user_id ?>" data-id="<?php echo $userDetails->user_id ?>" id="" class="btn btn-info addreport"> Add Report</a>
 
                                             </td>
 

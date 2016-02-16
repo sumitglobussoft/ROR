@@ -137,9 +137,9 @@
                                                 <label class="col-xs-3 control-label">Web Address :</label>
                                                 <div class="col-xs-5">
                                                     @if(isset($steponedata))
-                                                    <input type="url" class="form-control" id="steponewebaddress" name="steponewebaddress" value="{{$steponedata['webaddress']}}" required />
+                                                    <input type="url" class="form-control" id="steponewebaddress" name="steponewebaddress" value="{{$steponedata['webaddress']}}" placeholder="" />
                                                      @else
-                                                     <input type="url" class="form-control" id="steponewebaddress" name="steponewebaddress" required />
+                                                     <input type="url" class="form-control" id="steponewebaddress" name="steponewebaddress" />
                                                       @endif
                                                 </div>
                                             </div>

@@ -68,7 +68,16 @@ class Authenticate
 //                    return redirect('/');
 //                }
 //            }
+            else if ($parentmodule == "user") {
+                if (Session::has('ror_user')  || Session::has('ror_admin')) { //ALSO USE " || Session::has('fs_supplier')" in if condition if SUPPLIER CAN ACT AS A BUYER/CUSTOMER  //$userRole = 1,2
+                    $userRoleFlag = true;
+                }
+                if (!$userRoleFlag) {
+                    return redirect('/');
+                }
+            }
             else if ($parentmodule == "report") {
+                die("report");
                 if (Session::has('ror_report')  || Session::has('ror_admin')) { //ALSO USE " || Session::has('fs_supplier')" in if condition if SUPPLIER CAN ACT AS A BUYER/CUSTOMER  //$userRole = 1,2
                     $userRoleFlag = true;
                 }

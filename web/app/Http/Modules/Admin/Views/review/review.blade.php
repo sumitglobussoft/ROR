@@ -78,7 +78,7 @@
                             <span id="addoriginalreport" class="originalreport"><?php echo $reporttext; ?></span>
                             </div>
                             <div class="form-group form-input-group m-t-30 m-b-5 col-md-10">
-                            <label>Review Text</label>
+                            <label>Review Status</label>
                                 <select class="form-control input-lg font-14" name="reviewstatus" id="reviewstatus">
                                     <option disabled> Status </option>
                                     <option value="2"> UnApproved </option>
@@ -165,7 +165,6 @@
                                     No Category Data!!
                                     @endif
                                     @endif
-
                                 </tbody>
                             </table>
                         </div>
@@ -294,6 +293,7 @@
             $('.editReview').hide();
             $('.addReview').hide();
         });
+
         $('.delete-review').on('click', function () {
             var reviewid=$(this).attr("id");
             var reportid=$(this).attr("report-id");
@@ -301,6 +301,8 @@
             $('#deletereportid').val(reportid);   
             $('#deleteModal').modal('show');           
         });
+
+        
     });
 </script>
 @endsection
