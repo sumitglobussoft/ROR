@@ -276,6 +276,202 @@ class User extends Model implements AuthenticatableContract,
         }
 
     }
+    
+        public function getReportUserInfo() {
+             if (func_num_args() > 0) {
+            $userid = func_get_arg(0);
+        try {
+            $result = DB::table("user_meta")
+                    ->select('display_name','state','city','address','country','zipcode')
+                    ->where('user_id',$userid)
+                    ->first();
+        } catch (QueryException $e) {
+            echo $e;
+            return 0;
+        }
+        if ($result)
+            return $result;
+        else
+            return 0;
+    }
+        else{
+            return 0;
+        }
+        }
+
+    public function getAllUsers($where, $selectedColumns = ['*'])
+    {
+        if (func_num_args() > 0) {
+            $userid = func_get_arg(0);
+//            print_r($where);
+//            die;
+
+            $result = DB::table('users')
+                ->join('user_meta', 'user_meta.user_id', '=', 'users.id')
+//                       ->where('users.id',$userid)
+                ->get();
+
+            return $result;
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
+    public function getAdminDetails($where, $selectedColumns = ['*'])
+    {
+        if (func_num_args() > 0) {
+            $userid = func_get_arg(0);
+//            print_r($where);
+//            die;
+
+            $result = DB::table('users')
+                ->join('user_meta', 'user_meta.user_id', '=', 'users.id')
+                ->where('users.id',$userid)
+                ->first();
+
+            return $result;
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
+
+    public function InsertUserDetails()
+    {
+        if (func_num_args() > 0) {
+            $data = func_get_arg(0);
+//            print_r($data);
+//            die;
+
+            try {
+                $result = DB::table($this->table)
+                    ->insertGetId($data);
+                return $result;
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
+
+    public function getUserId($where, $selectedColumns = ['*']){
+
+        $result = DB::table($this->table)
+            ->whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
+            ->select($selectedColumns)
+            ->get();
+        return $result;
+
+    }
+
+
+    public function getAllUsersDetails($where, $selectedColumns = ['*'])
+    {
+        if (func_num_args() > 0) {
+            $where = func_get_arg(0);
+
+            $result = DB::table($this->table)
+                ->join('user_meta', 'user_meta.user_id', '=', 'users.id')
+                ->get();
+
+            return $result;
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
+
+    public function getAllUsersDetailsForEdit(){
+
+        if (func_num_args() > 0) {
+            $where = func_get_arg(0);
+            $result = DB::table($this->table)
+                ->where('id', $where)
+                ->join('user_meta', 'user_meta.user_id', '=', 'users.id')
+                ->get();
+
+            return $result;
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+
+
+    }
+
+    public function UpdateUserDetails()
+    {
+        if (func_num_args() > 0) {
+            $data = func_get_arg(0);
+            $userid = func_get_arg(1);
+
+            try {
+                $updatedResult = DB::table($this->table)
+                    ->where('id' ,$userid)
+                    ->update($data);
+                // ->insertGetId($data);
+                return $updatedResult;
+
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
+
+
+    public function deleteUserDetail()
+    {
+
+        if (func_num_args() > 0) {
+            $userid = func_get_arg(0);
+            try {
+                $delete = DB::table($this->table)
+                    ->where('id' ,$userid)
+                    ->delete();
+                return $delete;
+
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
+//
+//    public function getAdminId($where, $selectedColumns = ['*']){
+//
+//        $result = DB::table($this->table)
+//            ->whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
+//            ->select($selectedColumns)
+//            ->get();
+//        return $result;
+//
+//
+//    }
+
+
+
+    public function updateAdminMetaUserData()
+    {
+        if (func_num_args() > 0) {
+            $data = func_get_arg(0);
+
+            $userid = func_get_arg(1);
+
+
+            try {
+                $updatedResult = DB::table($this->table)
+                    ->where('id' ,$userid)
+                    ->update($data);
+                // ->insertGetId($data);
+                return $updatedResult;
+
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
 
 
 }

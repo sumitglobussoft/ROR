@@ -366,10 +366,6 @@ else
         }
     }
     
-    public function adminLogout()
-    {
-        Session::forget('ror_admin');
-        return redirect('/admin/login');
-    }
+
 
 }

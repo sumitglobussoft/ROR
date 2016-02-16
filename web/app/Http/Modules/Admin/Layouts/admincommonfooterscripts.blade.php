@@ -16,3 +16,8 @@
 
 	<!-- custom JS -->
 	<script src="/assets/js/custom.js"></script>
+	     <script>
+    $(function () {
+        // $('#datatable-report').DataTable();
+    });
+    </script>
