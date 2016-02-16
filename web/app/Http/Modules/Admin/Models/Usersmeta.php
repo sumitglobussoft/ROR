@@ -41,7 +41,7 @@ class Usersmeta extends Model
 
     }
 
-    public function updateMetaUserData()
+    public function updateUserMetaData()
     {
         if (func_num_args() > 0) {
             $data = func_get_arg(0);

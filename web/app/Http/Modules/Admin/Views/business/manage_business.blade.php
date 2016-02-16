@@ -313,6 +313,7 @@
                                     <th>Business Phone</th>
                                     <th>Web Address</th>
                                     <th>Status</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -331,7 +332,7 @@
                                     <td><?php echo $BusinessDetails->address;?></td>
                                     <td><?php echo $BusinessDetails->phone;?></td>
                                     <td><?php echo $BusinessDetails->web_address;?></td>
-                                    <td>
+
                                     <td class="text-center">
                                         @if($BusinessDetails->status==0)
                                             <label class="label label-warning">Pending</label>
@@ -342,8 +343,7 @@
                                         @if($BusinessDetails->status==2)
                                             <label class="label label-danger">UnApproved</label>
                                         @endif
-                                    </td>
-                                    </td>
+                                   </td>
 
 
                                     {{--<td class="text-center">--}}
@@ -653,6 +653,25 @@
     //
 
 
+</script>
+<script>
+    $(document).ready(function () {
+        $('#datatable').DataTable();
+
+        $('.edit-user').on('click', function () {
+            $('.editUser').show();
+        });
+        $('.edit-toggle').on('click', function () {
+            $('.editUser').hide();
+        });
+        $('.add-user').on('click', function () {
+
+            $('.addUser').show();
+        });
+        $('.add-toggle').on('click', function () {
+            $('.addUser').hide();
+        });
+    });
 </script>
 
 

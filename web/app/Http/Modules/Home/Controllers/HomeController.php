@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function home()
     {
-        return redirect('/admin/login');
+//        return redirect('/admin/login');
         die('1');
         //echo "<pre>";print_r(Session::get('fs_user'));die;
 //        Session::put('fs_user', "hhfgh");

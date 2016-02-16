@@ -447,9 +447,9 @@
 
                     if (response == 1) {
 
-                        alert('Business added');
+                        location.reload();
                         $('#userjoin').modal('hide');
-//                        $('#joinUserForm').modal('hide');
+
                     }
 
 
@@ -495,7 +495,7 @@
                 beforeSend: function () {
                 },
                 success: function (response) {
-                    window.location.href = 'http://localhost.ripoffreport.com/admin/unapproved_business';
+                    location.reload();
                 },
 
             });
@@ -542,7 +542,7 @@
 
                     if (response == 1) {
 
-                        window.location.href = 'http://localhost.ripoffreport.com/admin/unapproved_business';
+                        location.reload();
 
                     }
 
@@ -654,6 +654,25 @@
 
 
 
+</script>
+<script>
+    $(document).ready(function () {
+        $('#datatable').DataTable();
+
+        $('.edit-user').on('click', function () {
+            $('.editUser').show();
+        });
+        $('.edit-toggle').on('click', function () {
+            $('.editUser').hide();
+        });
+        $('.add-user').on('click', function () {
+
+            $('.addUser').show();
+        });
+        $('.add-toggle').on('click', function () {
+            $('.addUser').hide();
+        });
+    });
 </script>
 
 

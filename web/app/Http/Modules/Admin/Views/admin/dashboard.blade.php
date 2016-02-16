@@ -1,3 +1,4 @@
+<?php // print_r($totalReport); die('fu');?>
 @extends('Admin/Layouts/adminlayout')
 
 @section('title', 'Dashboard')
@@ -15,7 +16,7 @@
 							<div class="col-sm-3">
 								<div class="panel">
 									<div class="panel-body p-20">
-										<div class="text-dark h4 no-m font-header">3,189</div>
+										<div class="text-dark h4 no-m font-header" ><?php echo $totalUsers; ?></div>
 										<div class="font-12">Total New Member</div>
 										<div class="sparkbar m-t-5"></div>
 									</div>
@@ -25,8 +26,8 @@
 							<div class="col-sm-3">
 								<div class="panel">
 									<div class="panel-body p-20">
-										<div class="text-dark h4 no-m font-header">1,172</div>
-										<div class="font-12">Total Sales</div>
+										<div class="text-dark h4 no-m font-header"></div>
+										<div class="font-12">Total Business</div>
 										<div class="sparkline m-t-5"></div>
 									</div>
 								</div>
@@ -35,8 +36,8 @@
 							<div class="col-sm-3">
 								<div class="panel">
 									<div class="panel-body p-20">
-										<div class="text-dark h4 no-m font-header">3,189</div>
-										<div class="font-12">Total New Member</div>
+										<div class="text-dark h4 no-m font-header"></div>
+										<div class="font-12">Total Report</div>
 										<div class="sparkbar m-t-5"></div>
 									</div>
 								</div>
@@ -45,8 +46,8 @@
 							<div class="col-sm-3">
 								<div class="panel">
 									<div class="panel-body p-20">
-										<div class="text-dark h4 no-m font-header">1,172</div>
-										<div class="font-12">Total Sales</div>
+										<div class="text-dark h4 no-m font-header"></div>
+										<div class="font-12">Total Review</div>
 										<div class="sparkline m-t-5"></div>
 									</div>
 								</div>
@@ -58,8 +59,8 @@
 							<div class="col-sm-6">
 								<div class="panel">
 									<div class="panel-body p-20 text-center">
-										<div class="text-dark h3 no-m font-header">712</div>
-										<div class="font-12 m-t-5">New Items</div>
+										<div class="text-dark h3 no-m font-header"><?php echo $totalCategory; ?></div>
+										<div class="font-12 m-t-5">Category</div>
 									</div>
 								</div>
 							</div>
@@ -67,7 +68,7 @@
 							<div class="col-sm-6">
 								<div class="panel bg-main">
 									<div class="panel-body p-20 text-center">
-										<div class="h3 no-m font-header">1,199</div>
+										<div class="h3 no-m font-header"></div>
 										<div class="font-12 m-t-5">Comments</div>
 									</div>
 								</div>

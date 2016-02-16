@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use DB;
 
+use Illuminate\Support\Facades\View;
 use Image;
 use Validator;
 use Input;
@@ -153,9 +154,6 @@ class BusinessController extends Controller
                   $updateBusinessData['phone'] = $request->input('phone');
                   $updateBusinessData['web_address'] = $request->input('web_address');
                   $updateBusinessData['status'] = $request->input('status01');
-//                print_r($updateBusinessData);
-//                die;
-
                   $objUpdateBusinessInfo = Business::getInstance();
                   $UpdateDataResult = $objUpdateBusinessInfo->UpdateBusinessdata($updateBusinessData, $BusinessId);
                   if ($UpdateDataResult) {
@@ -282,29 +280,54 @@ class BusinessController extends Controller
 
             case 'AddBusinessById':
 
-                $BusinessDataInfo['user_id'] = $request->input('user_id');
-                $BusinessDataInfo['business_name'] = $request->input('business_name');
-                $BusinessDataInfo['category_id'] = $request->input('category');
-                $BusinessDataInfo['subcategory_id'] = $request->input('add_sub_category');
-                $BusinessDataInfo['description'] = $request->input('description');
-                $BusinessDataInfo['address'] = $request->input('address');
-                $BusinessDataInfo['phone'] = $request->input('phone');
-                $BusinessDataInfo['web_address'] = $request->input('web_address');
-                $BusinessDataInfo['status'] = $request->input('status');
+                $rules = array(
+                    'business_name' => 'required|max:255',
+                    'category' => 'required|max:255',
+                    'add_sub_category' => 'required|max:255',
+                    'description' => 'required|max:255',
+                    'address' => 'required',
+                    'phone' => 'required',
+                    'web_address' => 'required',
+                    'status' => 'required',
+                );
+
+                $validator = Validator::make($request->all(), $rules);
+
+                if ($validator->fails()) {
+                    echo json_encode(['status' => 'error', 'msg' => $validator->messages()], true);
+                } else {
+
+
+                    $BusinessDataInfo['user_id'] = $request->input('user_id');
+                    $BusinessDataInfo['business_name'] = $request->input('business_name');
+                    $BusinessDataInfo['category_id'] = $request->input('category');
+                    $BusinessDataInfo['subcategory_id'] = $request->input('add_sub_category');
+                    $BusinessDataInfo['description'] = $request->input('description');
+                    $BusinessDataInfo['address'] = $request->input('address');
+                    $BusinessDataInfo['phone'] = $request->input('phone');
+                    $BusinessDataInfo['web_address'] = $request->input('web_address');
+                    $BusinessDataInfo['status'] = $request->input('status');
 //                print_r($BusinessDataInfo);
 //                die;
 
-                $objAddBusiness = Business::getInstance();
-                $AddedBusiness = $objAddBusiness->InsertBusinessData($BusinessDataInfo);
-                if($AddedBusiness){
-                     echo 1;
-                    die;
-                }
+                    $objAddBusiness = Business::getInstance();
+                    $AddedBusiness = $objAddBusiness->InsertBusinessData($BusinessDataInfo);
+                    if ($AddedBusiness) {
+                        echo 1;
+                        die;
+                    }
 
 
+//                if($AddedBusiness){
+//                     echo 1;
+//                    die;
+//                }
+
+
+                }}
         }
 
-        }
+
 
             public function AddBusinessData()
             {

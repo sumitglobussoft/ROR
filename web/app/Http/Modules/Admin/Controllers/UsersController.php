@@ -150,13 +150,14 @@ class UsersController extends Controller
                 $updateUserData['password'] = $request->input('password');
                 $updateUserData['email'] = $request->input('emailid');
                 $updateUserData['report_login_active'] = $UserStatus;
-                $updateUserData['business_login_active'] = 0;
+                $updateUserData['business_login_active'] = $UserStatus;
                 $updateUserData['role'] = 0;
                 $updateUserData['updated_at'] = 110123;
-                $userid = $request->input('edituserid');
+                 $userid = $request->input('edituserid');
+
 //                echo '<pre>';
 //                print_r($updateUserData);
-//                die;
+////                die;
 
                 $objUpdateUsersDataModel = User::getInstance();
                 $UpdatedUsersDetails = $objUpdateUsersDataModel->UpdateUserDetails($updateUserData, $userid);
@@ -172,9 +173,14 @@ class UsersController extends Controller
                 $updateMetaUserData['zipcode'] = $request->input('zipcode');
                 $updateMetaUserData['primary_phone'] = $request->input('primary_phone');
                 $updateMetaUserData['alternate_phone'] = $request->input('alternate_phone');
+//                echo '<pre>';
+//                print_r($updateMetaUserData);
+//                die;
 
                 $objInserUsersDataModel = Usersmeta::getInstance();
-                $UpdateusermetadataUserMeta = $objInserUsersDataModel->updateMetaUserData($updateMetaUserData, $userid);
+                $UpdateusermetadataUserMeta = $objInserUsersDataModel->updateUserMetaData($updateMetaUserData, $userid);
+//                print_r($UpdateusermetadataUserMeta);
+//                die;
 
                 if ($UpdateusermetadataUserMeta) {
 
@@ -336,9 +342,7 @@ class UsersController extends Controller
                 $updateBusinessUserMetaInfo['zipcode'] = $request->input('zipcode');
                 $updateBusinessUserMetaInfo['primary_phone'] = $request->input('primary_phone');
                 $updateBusinessUserMetaInfo['alternate_phone'] = $request->input('alternate_phone');
-
-
-                $objInserUsersDataModel = Usersmeta::getInstance();
+               $objInserUsersDataModel = Usersmeta::getInstance();
                 $UpdateusermetadataUserMeta = $objInserUsersDataModel->updateMetaUserData($updateBusinessUserMetaInfo, $userid);
 
                 if ($UpdateusermetadataUserMeta) {
@@ -389,6 +393,7 @@ class UsersController extends Controller
             $objupdateUsersMetaDataModel = User::getInstance();
             $UpdateAdminmetadataUserMeta = $objupdateUsersMetaDataModel->updateAdminMetaUserData($data122, $user_id);
 
+            return redirect('/admin/profile');
 
 
         }

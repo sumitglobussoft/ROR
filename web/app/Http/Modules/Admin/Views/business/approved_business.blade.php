@@ -318,6 +318,8 @@
                                     <th>Web Address</th>
                                     <th>Status</th>
                                     <th>Action</th>
+                                    <th></th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -336,14 +338,14 @@
                                     <td><?php echo $approvedBusines->address;?></td>
                                     <td><?php echo $approvedBusines->phone;?></td>
                                     <td><?php echo $approvedBusines->web_address;?></td>
-                                    <td>
+
                                     <td class="text-center">
                                         @if($approvedBusines->status==1)
                                             <label class="label label-success">Approved</label>
                                         @endif
 
                                     </td>
-                                    </td>
+
 
 
                                     {{--<td class="text-center">--}}
@@ -427,10 +429,6 @@
 
         $('#userjoin').click(function () {
 
-//            $('.category').change(function () {
-//                var categoryid=$(this).attr('data-id');
-//                console.log(categoryid);
-
             $(".error").remove();
             var profileData = $('#joinUserForm').serializeArray();
             profileData.push({name: 'method', value: 'AddBusiness'});
@@ -443,9 +441,9 @@
 
                     if (response == 1) {
 
-                        alert('Business added');
+                        location.reload();
                         $('#userjoin').modal('hide');
-//                        $('#joinUserForm').modal('hide');
+
                     }
 
 
@@ -490,7 +488,7 @@
                 beforeSend: function () {
                 },
                 success: function (response) {
-               window.location.href = 'http://localhost.ripoffreport.com/admin/approved_business';
+                    location.reload();
                 },
 
             });
@@ -632,7 +630,7 @@
 
                     if (response == 1) {
 
-                        window.location.href = 'http://localhost.ripoffreport.com/admin/approved_business';
+                        location.reload();
 
                     }
 
@@ -649,11 +647,25 @@
     });
 
 </script>
-{{--<script type="javascript">--}}
- {{--$(document).ready(function(){--}}
-        {{--$('#datatable').DataTable();--}}
-    {{--});--}}
-{{--</script>--}}
+<script>
+    $(document).ready(function () {
+        $('#datatable').DataTable();
+
+        $('.edit-user').on('click', function () {
+            $('.editUser').show();
+        });
+        $('.edit-toggle').on('click', function () {
+            $('.editUser').hide();
+        });
+        $('.add-user').on('click', function () {
+
+            $('.addUser').show();
+        });
+        $('.add-toggle').on('click', function () {
+            $('.addUser').hide();
+        });
+    });
+</script>
 
 
 

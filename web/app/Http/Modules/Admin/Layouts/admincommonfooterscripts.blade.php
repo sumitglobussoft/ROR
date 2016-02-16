@@ -12,6 +12,7 @@
 	<script src="/assets/js/jquery.dataTables.min.js"></script>
 	<script src="/assets/js/dataTables.bootstrap.min.js"></script>
 	<script src="/assets/js/app.min.js"></script>
+	<script src="/assets/js/location.js"></script>
 
 	<!-- custom JS -->
 	<script src="/assets/js/custom.js"></script>

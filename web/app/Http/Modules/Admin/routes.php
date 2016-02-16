@@ -114,6 +114,9 @@ Route::group(array('module' => 'Admin', 'namespace' => 'Admin\Controllers'), fun
                         Route::post('/admin/updatereview', 'ReviewController@updateReview');
                         Route::post('/admin/deletereview', 'ReviewController@deleteReview');
 
+
+
+
                         Route::get('/admin/access-denied', function () {
                                     return view("Admin/Views/accessdenied");
                                 });

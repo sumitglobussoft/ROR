@@ -314,6 +314,7 @@
                                     <th>Web Address</th>
                                     <th>Status</th>
                                     <th>Action</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -332,13 +333,13 @@
                                     <td><?php echo $PendingBusiness->address;?></td>
                                     <td><?php echo $PendingBusiness->phone;?></td>
                                     <td><?php echo $PendingBusiness->web_address;?></td>
-                                    <td>
+
                                     <td class="text-center">
                                         @if($PendingBusiness->status==0)
                                             <label class="label label-warning">Pending</label>
                                         @endif
 
-                                    </td>
+
                                     </td>
 
 
@@ -421,10 +422,6 @@
 
         $('#userjoin').click(function () {
 
-//            $('.category').change(function () {
-//                var categoryid=$(this).attr('data-id');
-//                console.log(categoryid);
-
             $(".error").remove();
             var profileData = $('#joinUserForm').serializeArray();
             profileData.push({name: 'method', value: 'AddBusiness'});
@@ -437,9 +434,9 @@
 
                     if (response == 1) {
 
-                        alert('Business added');
+                        location.reload();
                         $('#userjoin').modal('hide');
-//                        $('#joinUserForm').modal('hide');
+
                     }
 
 
@@ -488,8 +485,7 @@
                 },
                 success: function (response) {
 
-                    window.location.href = 'http://localhost.ripoffreport.com/admin/pending_business';
-                    //  response = $.parseJSON(response);
+                    location.reload();
                 },
 
             });
@@ -574,7 +570,7 @@
 
                     if (response == 1) {
 
-                        window.location.href = 'http://localhost.ripoffreport.com/admin/pending_business';
+                        location.reload();
 
                     }
 
@@ -646,6 +642,25 @@
 
     });
 
+</script>
+<script>
+    $(document).ready(function () {
+        $('#datatable').DataTable();
+
+        $('.edit-user').on('click', function () {
+            $('.editUser').show();
+        });
+        $('.edit-toggle').on('click', function () {
+            $('.editUser').hide();
+        });
+        $('.add-user').on('click', function () {
+
+            $('.addUser').show();
+        });
+        $('.add-toggle').on('click', function () {
+            $('.addUser').hide();
+        });
+    });
 </script>
 
 

@@ -28,10 +28,9 @@
                                     <div class="col-md-8">
                                         <input type="text" name="user_id" id="user_id" value="<?php echo $user_id;?>"
                                                class="form-control font-14"
-                                               placeholder="User Id"/>
+                                               placeholder="User Id" hidden="true"/>
                                     </div>
                                 </div>
-
 
 
                                 <div class="form-group m-t-10 m-b-5 col-md-6">
@@ -67,7 +66,7 @@
                                     </div>
                                 </div>
 
-                        <div class="form-group m-t-10 m-b-5 col-md-6">
+                                <div class="form-group m-t-10 m-b-5 col-md-6">
                                     <label class="col-md-4 control-label">Sub category</label>
                                     <div class="col-md-8">
                                         <select class="form-control" id="add_sub_category" name="add_sub_category">
@@ -75,7 +74,6 @@
                                         </select>
                                     </div>
                                 </div>
-
 
 
                                 <div class="form-group m-t-10 m-b-5 col-md-6">
@@ -141,9 +139,9 @@
 @endsection
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#userjoin').click(function () {
-        var profileData = $('#joinUserForm').serializeArray();
+            var profileData = $('#joinUserForm').serializeArray();
 
             profileData.push({name: 'method', value: 'AddBusinessById'});
 
@@ -154,19 +152,24 @@
                 data: profileData,
                 success: function (response) {
 
-                    if(response==1){
+                    if (response == 1) {
 
-                       window.location.href ="http://localhost.ripoffreport.com/admin/manage_business";
+//                        location.reload();
+                        document.location="/admin/manage_business";
+
                     }
-                    else{
+                    else if (response.status == 'error') {
 
-                        alert('Error');
+                        $.each(response.msg, function (index, value) {
+
+                            $('#joinUserForm').find("[name='" + index + "']").after('<span class="error">' + value + '</span>');
+                        });
+
                     }
 
-
-        }
+                }
             });
-    });
+        });
 
         $('.category').change(function () {
 
@@ -188,7 +191,7 @@
                 success: function (response) {
 
                     $('#add_sub_category').empty();
-//                    response = $.parseJSON(response);
+
                     console.log(response);
                     if (response != '') {
                         var appendsubcategory = '<option value="">Select subcategory</option>';
@@ -199,7 +202,6 @@
                     } else {
                         $('#add_sub_category').append('<option value="">No subcategory found</option>');
                     }
-
 
 
                     $('#sub_category').empty();
@@ -214,10 +216,6 @@
                     } else {
                         $('#sub_category').append('<option value="">No subcategory found</option>');
                     }
-
-
-
-
                 }
 
             });
@@ -225,10 +223,27 @@
         });
 
 
-
     });
 
 
+</script>
 
+<script>
+    $(document).ready(function () {
+
+        $('.edit-user').on('click', function () {
+            $('.editUser').show();
+        });
+        $('.edit-toggle').on('click', function () {
+            $('.editUser').hide();
+        });
+        $('.add-user').on('click', function () {
+
+            $('.addUser').show();
+        });
+        $('.add-toggle').on('click', function () {
+            $('#joinUserForm').hide();
+        });
+    });
 </script>
 

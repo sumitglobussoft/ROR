@@ -3,6 +3,7 @@
 namespace App\Http\Modules\Admin\Controllers;
 
 
+use App\Http\Modules\Admin\Models\Category;
 use App\Users;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Hash;
 use DB;
 
 use App\Http\Modules\Admin\Models\User;
+use App\Http\Modules\Admin\Models\Review;
+use App\Http\Modules\Admin\Models\Report;
+use App\Http\Modules\Admin\Models\Business;
 use Illuminate\Support\Facades\Session;
 
 
@@ -101,69 +105,36 @@ class AdminController extends Controller
 
     public function dashboard(Request $data)
     {
-//        echo "<pre>";
-//        print_r(Session::all());
-//        die;
-//        $userModel = new User();
-//        $users = User::all();
-//        echo "<pre>";
-//        foreach ($users as $user => $userval) {
-//            echo $userval;
-//        }
-//        die;
-//        echo "<pre>";
-//        print_r($users);
-//        die;
-   if ($data->isMethod('post')) {
-       
-//       echo getcwd();die;
-//            $email = $data->input('email');
-//            $password = $data->input('password');  
-            $allowedExts = array("jpg", "jpeg", "gif", "png", "mp3", "mp4", "wma","wmv");
-$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-//print_r($_FILES['file']);die;
-if ((($_FILES["file"]["type"] == "video/mp4") 
-||  ($_FILES["file"]["type"] == "video/x-ms-wmv")
-|| ($_FILES["file"]["type"] == "audio/mp3")
-|| ($_FILES["file"]["type"] == "audio/wma")
-|| ($_FILES["file"]["type"] == "image/pjpeg")
-|| ($_FILES["file"]["type"] == "image/gif")
-|| ($_FILES["file"]["type"] == "image/jpeg"))
 
-&& ($_FILES["file"]["size"] < 36246026)
-&& in_array($extension, $allowedExts))
+        $objUsersModel = User::getInstance();
+        $where['rawQuery'] = 1;
+        $Allusers = $objUsersModel->getAllUsers($where);
+        $totalUsers = count($Allusers);
 
-  {
-  if ($_FILES["file"]["error"] > 0)
-    {
-    echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
-    }
-  else
-    {
-    echo "Upload: " . $_FILES["file"]["name"] . "<br />";
-    echo "Type: " . $_FILES["file"]["type"] . "<br />";
-    echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
-    echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
 
-    if (file_exists("uploads/" . $_FILES["file"]["name"]))
-      {
-      echo $_FILES["file"]["name"] . " already exists. ";
-      }
-    else
-      {
-      move_uploaded_file($_FILES["file"]["tmp_name"],
-      getcwd()."/uploads/" . $_FILES["file"]["name"]);
-      echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
-      }
-    }
-  }
-else
-  {
-  echo "Invalid file";die;
-  }
-        }
-        return view("Admin/Views/admin/dashboard");
-        
+//        $objReview = new review();
+//        $result1 = $objReview->getReviews();
+//        $totalReview =count($result1);
+
+//        $objBusinesszModel = Business::getInstance();
+//        $where['rawQuery'] = 1;
+//        $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name','user_meta.full_name','user_meta.primary_phone'];
+//        $allBusinessCount = $objBusinesszModel->getAllDetails($selectedColumns);
+//        $totalBusiness =count($allBusinessCount);
+
+//
+//        $objReport = new report();
+//        $Allreport=$objReport->getAllReports();
+//        $totalReport =count($Allreport);
+//        print_r($totalReport);
+//        die;
+
+        $objCategory = new category();
+        $result2=$objCategory->getActiveCategory();
+        $totalCategory =count($result2);
+
+
+    return view("Admin/Views/admin/dashboard", ['totalUsers' => $totalUsers],['totalCategory' =>$totalCategory]);
 
     }
 
@@ -175,7 +146,7 @@ else
             return redirect('/admin/dashboard');
         }
         if ($data->isMethod('post')) {
-            
+
             $email = $data->input('email');
             $password = $data->input('password');
 
@@ -186,8 +157,10 @@ else
                     'password.required' => 'Invalid password']
             );
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
+
+
                 $objModelUsers = Users::getInstance();
-              
+
 //                User::getInstance();
                 $userDetails = $objModelUsers->getUserById(Auth::id()); //THIS IS TO GET THE MODEL OBJECT
 
@@ -195,12 +168,12 @@ else
 //                echo "<pre>"; print_r($userDetails); die;
 
                 if ($userDetails->role == 2) {
-                   
+
                     $sessionName = 'ror_admin';
                     Session::put($sessionName, $userDetails['original']);
                     return redirect('/admin/dashboard');
                 } else {
-                    
+
                     return redirect('/admin/login')->withErrors([
                         'errMsg' => 'Invalid credentials.'
                     ]);
@@ -211,7 +184,7 @@ else
 //                }
 
             } else {
-                
+
                 return redirect('/admin/login')->withErrors([
                     'errMsg' => 'Invalid credentials.'
                 ]);
@@ -227,12 +200,9 @@ else
     {
         Session::forget('ror_admin');
         Session::forget('report');
-        
+
         return redirect('/admin/login');
     }
-
-
-
 
 
 }

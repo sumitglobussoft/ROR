@@ -186,7 +186,7 @@
                 <div class="sidenav-inner">
                     <ul class="side-nav magic-nav">
                         <li class="first-link active">
-                            <a href="index.html" class="animsition-link">
+                            <a href="/admin/dashboard" class="animsition-link">
                                 <i class="icon-stats-dots"></i> <span class="nav-text">Dashboard</span>
                             </a>
                         </li>
@@ -285,9 +285,7 @@
                                     <li><a href="/admin/pending_business" class="animsition-link">Pendings Business</a></li>
                                     <li><a href="/admin/approved_business" class="animsition-link">Approved Business</a></li>
                                     <li><a href="/admin/unapproved_business" class="animsition-link">UnApproved Business</a></li>
-
-
-                                </ul>
+                               </ul>
                             </div>
                         </li>
 
