@@ -6,6 +6,7 @@ return [
         "Home",
         "User",
         "Report",
-        "Business"
+        "Business",
+        "Listing"
     ),
 ];

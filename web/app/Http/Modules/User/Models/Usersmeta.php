@@ -47,6 +47,25 @@ class Usersmeta extends Model
         $result = User::whereId($userId)->first();
         return $result;
     }
+    public function updateUserProfileData()
+    {
+        if (func_num_args() > 0) {
+            $userProfileData = func_get_arg(0);
+            $user_id = func_get_arg(1);
+            try {
+                $updatedResult = DB::table($this->table)
+                    ->where('user_id',$user_id)
+                    ->update($userProfileData);
+
+                return $updatedResult;
+
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
 
 
 

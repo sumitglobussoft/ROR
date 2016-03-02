@@ -3157,6 +3157,7 @@ footer p {
 	text-align: center;
 	margin-right: 1px;
 	border-radius: 3px 3px 0 0;
+	min-height: 96px;
 }
 
 #cssmenu > ul > li.active {
@@ -5052,4 +5053,25 @@ ul.revenue-from li:last-child {
 
 #datatable_filter label {
 	display: flex;
+}
+.width-full {
+	width: 100%;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.text-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.cursor {
+	cursor: pointer;
+}
+.help-block {
+	margin-bottom: 0;
+	margin-top: 0;
 }

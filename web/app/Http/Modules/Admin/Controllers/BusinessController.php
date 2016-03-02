@@ -33,7 +33,7 @@ class BusinessController extends Controller
      *
      */
 
-    public function allbusinessDetails()
+     public function allbusinessDetails()
     {
 
 
@@ -57,7 +57,7 @@ class BusinessController extends Controller
     }
 
 
-    public function businessAjaxhandler(Request $request)
+     public function businessAjaxhandler(Request $request)
     {
         $inputData = $request->input();
         $method = $inputData['method'];
@@ -202,7 +202,7 @@ class BusinessController extends Controller
         }
     }
 
-      public function pendingBusiness()
+     public function pendingBusiness()
      {
 
          $objCategory = new Category();
@@ -219,8 +219,7 @@ class BusinessController extends Controller
    }
 
 
-
-        public function approvedBusiness()
+     public function approvedBusiness()
         {
 
           $objCategory = new Category();
@@ -256,7 +255,7 @@ class BusinessController extends Controller
 
     }
 
-    public function AddBusinessInfoById(Request $request,$user_id){
+     public function AddBusinessInfoById(Request $request,$user_id){
 
         $objCategory = new Category();
         $categoryData = $objCategory->getActiveCategory();

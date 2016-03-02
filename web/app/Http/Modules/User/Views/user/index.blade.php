@@ -1,296 +1,194 @@
-<?php // print_r($totalReport); die('fu');?>
 @extends('User/Layouts/userlayout')
 
-@section('title', 'Home')
+@section('title', 'Users')
 
-@section('usercontent')
-        <!-- Dashboard Wrapper Start -->
-        <div class="dashboard-wrapper-lg">
+@section('content')
 
-            <!-- Row starts -->
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="mini-widget">
-                        <div class="mini-widget-heading clearfix">
-                            <div class="pull-left">Visitors</div>
-                            <div class="pull-right"><i class="fa fa-angle-up"></i> 12.2<sup>%</sup></div>
-                        </div>
-                        <div class="mini-widget-body clearfix">
-                            <div class="pull-left">
-                                <i class="fa fa-globe"></i>
-                            </div>
-                            <div class="pull-right number">8757</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="mini-widget mini-widget-red">
-                        <div class="mini-widget-heading clearfix">
-                            <div class="pull-left">Shares</div>
-                            <div class="pull-right"><i class="fa fa-angle-up"></i> 18.3<sup>%</sup></div>
-                        </div>
-                        <div class="mini-widget-body clearfix">
-                            <div class="pull-left">
-                                <i class="fa fa-twitter"></i>
-                            </div>
-                            <div class="pull-right number">3780</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="mini-widget mini-widget-green">
-                        <div class="mini-widget-heading clearfix">
-                            <div class="pull-left">Downloads</div>
-                            <div class="pull-right"><i class="fa fa-angle-down"></i> 21.9<sup>%</sup></div>
-                        </div>
-                        <div class="mini-widget-body clearfix">
-                            <div class="pull-left">
-                                <i class="fa fa-upload"></i>
-                            </div>
-                            <div class="pull-right number">12658</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="mini-widget mini-widget-grey">
-                        <div class="mini-widget-heading clearfix">
-                            <div class="pull-left">Signups</div>
-                            <div class="pull-right"><i class="fa fa-angle-up"></i> 67.1<sup>%</sup></div>
-                        </div>
-                        <div class="mini-widget-body clearfix">
-                            <div class="pull-left">
-                                <i class="fa fa-coffee"></i>
-                            </div>
-                            <div class="pull-right number">1135</div>
-                        </div>
-                    </div>
+<section id="main">
+    <div id="div1" class="col-md-2 col-md-offset-9 text-center col-xs-12">
+        <h2> Resources <br>for Buisness</h2>
+        <p>Warn other buisnesses about custoners
+            <br> that step over the line, late payments and
+            <br> more.</p>
+        <a href="#">File A Report</a>
+    </div>
+    <div id="div2" class="col-md-2 col-md-offset-9 col-xs-12">
+        <h3>The Customer is <br>Not Always Right</h3>
+        <p><a href="#">BadCustomer.org</a></p>
+    </div>
+</section>
+<!--Main Section Ends Here-->
+
+<section id="search">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="wrap">
+                    <form action="/search_report" method="get">
+                        <input id="search" class="form-control" name="search" type="text"
+                               placeholder="Search Reports by Company, Individual or Report Number"/>
+                        <input id="search_submit" value="search" type="submit"/>
+
+
+                        {{--<button type="submit" >Submit</button>--}}
+                    </form>
                 </div>
             </div>
-            <!-- Row ends -->
-
-            <!-- Row Start -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="widget">
-                        <div class="widget-header">
-                            <div class="title">SERVER NEWS &nbsp;&nbsp; <small>Check the news everyday for promotions and updates
-                                </small></div>
-                        </div>
-                        <div class="widget-body">
-                            <div class="wrapper">
-                                <div id="scrollbar">
-                                    <div class="scrollbar">
-                                        <div class="track">
-                                            <div class="thumb">
-                                                <div class="end">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="viewport">
-                                        <div class="overview">
-                                            <div class="featured-articles-container">
-                                                <h5 class="heading"> Recent Articles </h5>
-                                                <div class="articles">
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Hosting Made For WordPress
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Reinvent cutting-edge
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> partnerships models 24/7
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Eyeballs frictionless
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Empower deliver innovate
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Portals technologies
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Collaborative innovate
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Mashups experiences plug
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Portals technologies
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Collaborative innovate
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Mashups experiences plug
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> B2B plug and play
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Need some interesting
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Hosting Made For WordPress
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Reinvent cutting-edge
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> partnerships models 24/7
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Eyeballs frictionless
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Empower deliver innovate
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Portals technologies
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Collaborative innovate
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Mashups experiences plug
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Portals technologies
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Collaborative innovate
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Mashups experiences plug
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> B2B plug and play
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Need some interesting
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Hosting Made For WordPress
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Reinvent cutting-edge
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> partnerships models 24/7
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Eyeballs frictionless
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Empower deliver innovate
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Portals technologies
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Collaborative innovate
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Mashups experiences plug
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Portals technologies
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Collaborative innovate
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Mashups experiences plug
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> B2B plug and play
-                                                    </a>
-                                                    <a href="#">
-                                                        <span class="label-bullet">&nbsp;</span> Need some interesting
-                                                    </a>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Row End -->
-
-            <!-- Row Start -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="widget">
-                        <div class="widget-header">
-                            <div class="title">INVITE YOUR FRIENDS! &nbsp;&nbsp; <small>Invite your friends to INSTAPANEL</small></div>
-                        </div>
-                        <div class="widget-body">
-                            <div class="wrapper">
-                                <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading">Time to Invite!</h4>
-                                    <p class="list-group-item-text">
-                                        INSTAPANEL is now a private community. We will still open the public registry sometimes but our main concept will be invited based. Each user will have 10-20 Invites to send. Use the form bellow to invite your friend directly with a unique link!
-                                    </p>
-                                </a>
-                                <br/>
-                                <form class="" role="form" style="padding: 1% 2%;">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><span class="fa fa-envelope"></span></div>
-                                            <input type="email" class="form-control" id="" placeholder="yourfriend@domain.com" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-addon">Remaining Invites</div>
-                                            <input type="text" class="form-control" id="" value="53" disabled />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-addon">Invites Accepted</div>
-                                            <input type="text" class="form-control" id="" value="00" disabled />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-primary"> INVITE </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Row End -->
-
         </div>
-        <!-- Dashboard Wrapper End -->
+    </div>
+</section>
+<!--Searchbox Ends Here-->
 
+<section id="browse">
+    <h3>Browse By Category</h3>
+</section>
+<!--Browse Ends Here-->
+
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>About BadCustomer.org</h4>
+                <hr class="hr1">
+                <p>Lorem ipsum dolor sit amet, per modus perpetua instructior ne. Nam agam error pertinacia id, ea
+                    graeco commodo recteque eam. Id eos oportere senserit, ut nec tantas sanctus definitiones. Laoreet
+                    admodum ut duo. Salutatus definitionem cu duo.
+                </p>
+
+                <p>Te delenit perfecto usu, mei esse ferri quidam in. Tantas scripta debitis vim no, ex nam unum magna,
+                    assum minimum cu vis. Vis error interpretaris no. Sit ei maluisset gubergren, ea debitis scripserit
+                    mei. Te cibo liberavisse eum. Luptatum constituam id mei, per eu eius melius principes, tamquam
+                    scribentur eu eos.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4>Guidlines for Reporting</h4>
+                <hr class="hr2">
+                <ul>
+                    <li>Lorem ipsum dolor sit amet,Lorem ipsum dolor sit.</li>
+                    <li>Lorem ipsum dolor sit amet,Lorem ipsum dolor sit.</li>
+                    <li>Lorem ipsum dolor sit amet,Lorem ipsum dolor sit.</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Frequenly Asked</h4>
+                <hr class="hr1">
+                <div id="question">
+                    <button type="button" class="btn" data-toggle="collapse" data-target="#demo">What is a
+                        question?<span><img src="assets/images/arrow.png"></span></button>
+                    <div id="demo" class="collapse">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                    <button type="button" class="btn" data-toggle="collapse" data-target="#demo2">What is a
+                        question?<span><img src="assets/images/arrow.png"></span></button>
+                    <div id="demo2" class="collapse">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                    <button type="button" class="btn" data-toggle="collapse" data-target="#demo3">What is a
+                        question?<span><img src="assets/images/arrow.png"></span></button>
+                    <div id="demo3" class="collapse">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                    <button type="button" class="btn" data-toggle="collapse" data-target="#demo4">What is a question?
+                        <span><img src="assets/images/arrow.png"></span></button>
+                    <div id="demo4" class="collapse">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                    <button type="button" class="btn" data-toggle="collapse" data-target="#demo5">What is a
+                        Questionj?<span><img src="assets/images/arrow.png"></span></button>
+                    <div id="demo5" class="collapse">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<section id="report">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <h2>Latest Reports</h2>
+                </div>
+
+                @if(sizeof($result) > 0)
+                    <?php $index=1; ?>
+                    @foreach($result as $data)
+
+                <div class="columns" style="margin-top:3%;">
+                    <div class="col-md-6">
+                        <div class="panel panel-theme">
+                            <div class="panel-heading">
+                                <h5 class="title text-white">
+                                    <span>{{$data->updated_date}}</span> | <b>{{$data->display_name}}</b> | <span>{{$data->city}}</span>
+                                </h5>
+                            </div>
+                            <div class="panel-body">
+                                <strong>{{$data->report_title}}</strong>
+                                <p>{{$data->descriptive_words}}</p>
+                                <p class="text-center" style="margin-bottom: 0px;"><a href="/details/{{$data->report_id}}"> Read More </a></p>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                            <?php $index++; ?>
+                        @endforeach
+                @else
+                   No Media Here!!
+                @endif
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--Report Ends Here-->
+
+<section id="badge"></section>
+<section id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="list-unstyled">
+                    <li><a href="javascript:;"> home </a></li>
+                    <li><a href="javascript:;"> directory </a></li>
+                    <li><a href="javascript:;"> resources </a></li>
+                    <li><a href="javascript:;"> faq </a></li>
+                    <li><a href="javascript:;"> terms &amp; conditions </a></li>
+                    <li><a href="javascript:;"> privcy policy </a></li>
+                    <li><a href="javascript:;"> contact us </a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 text-center" id="filereport" style="margin-top: 7%;">
+                <a href="#">File A Report</a>
+            </div>
+            <div class="col-md-3" style="margin-top: 6.2%;">
+                <div class="">
+                    <a href="javascript:;" class="social fb">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="javascript:;" class="social twt">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="javascript:;" class=" ">
+                        <img src="assets/images/logo.png" style="width: 55%;" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
 
-@section('pagescript')
-<script>
-    //ScrollUp
-    $(function () {
-        $.scrollUp({
-            scrollName: 'scrollUp', // Element ID
-            topDistance: '300', // Distance from top before showing element (px)
-            topSpeed: 300, // Speed back to top (ms)
-            animation: 'fade', // Fade, slide, none
-            animationInSpeed: 400, // Animation in speed (ms)
-            animationOutSpeed: 400, // Animation out speed (ms)
-            scrollText: 'Top', // Text for element
-            activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
-        });
-    });
-
-    //Tiny Scrollbar
-    $('#scrollbar').tinyscrollbar();
-</script>
-@endsection

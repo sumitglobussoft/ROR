@@ -50,14 +50,136 @@ class User extends Model implements AuthenticatableContract,
     }
 
 
+    public function getUserDetailsById()
+    {
+        if (func_num_args() > 0) {
+            $user_id = func_get_arg(0);
+
+            $result = DB::table('users')
+                ->join('user_meta', 'user_meta.user_id', '=', 'users.id')
+                ->where('users.id',$user_id)
+                ->first();
+
+            return $result;
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
+    public function updateUserProfileData()
+    {
+        if (func_num_args() > 0) {
+            $userdata = func_get_arg(0);
+
+            $user_id = func_get_arg(1);
+
+
+            try {
+                $updatedResult = DB::table($this->table)
+                    ->where('id' ,$user_id)
+                    ->update($userdata);
+                // ->insertGetId($data);
+                return $updatedResult;
+
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
 
 
 
+    public function getUserDetails()
+    {
+        if (func_num_args() > 0) {
+            $userId = func_get_arg(0);
 
+            $result = DB::table('users')
+                ->where('users.id',$userId)
+                ->first();
 
+            return $result;
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
 
+    public function UpdateUserPassword()
+    {
+        if (func_num_args() > 0) {
+            $data = func_get_arg(0);
+            $userId = func_get_arg(1);
+            try {
+                $updatedResult = DB::table($this->table)
+                    ->where('id' ,$userId)
+                    ->update($data);
+                // ->insertGetId($data);
+                return $updatedResult;
 
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
 
+    public function checkMail()
+    {
+        if (func_num_args() > 0) {
+            $email = func_get_arg(0);
+
+            $result = DB::table("users")
+                ->select()
+                ->where('email', $email)
+                ->first();
+            return $result;
+        } else {
+            throw new Exception('Argument not passed');
+        }
+    }
+
+    public function forgotPassword()
+    {
+        if (func_num_args() > 0) {
+            $data = func_get_arg(0);
+            $userId = func_get_arg(1);
+
+            try {
+                $updatedResult = DB::table($this->table)
+                    ->where('id' ,$userId)
+                    ->update($data);
+                // ->insertGetId($data);
+
+                return $updatedResult;
+
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
+
+    public function addNewUser()
+    {
+        if (func_num_args() > 0) {
+            $data = func_get_arg(0);
+//            print_r($data);
+//            die;
+
+            try {
+                $result = DB::table($this->table)
+                    ->insertGetId($data);
+                return $result;
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
+    }
 
 
 

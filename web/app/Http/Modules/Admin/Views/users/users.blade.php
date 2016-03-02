@@ -262,6 +262,7 @@
                                 <input type="text" name="state" value="" id="state2" hidden/>
                             </div>
                                 </div>
+
                             <div id="divCity" style="padding:0;" class="form-group m-t-10 m-b-5 col-md-6">
                                 <label class="col-md-4 control-label">Select Country</label>
                                 <div class="col-md-8">
