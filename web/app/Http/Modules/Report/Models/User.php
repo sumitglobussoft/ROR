@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Modules\User\Models;
+namespace App\Http\Modules\Report\Models;
 
-
+use App\Users;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -14,14 +14,14 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use DB;
 use \Exception;
 
-class Location extends Model implements AuthenticatableContract,
+class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
     private static $_instance = null;
 
-    protected $table = 'location';
+    protected $table = 'users';
 
     protected $fillable = ['name', 'email', 'password', 'username', 'last_name', 'role', 'status'];
     protected $hidden = ['password', 'remember_token'];
@@ -29,41 +29,50 @@ class Location extends Model implements AuthenticatableContract,
     public static function getInstance()
     {
         if (!is_object(self::$_instance))  //or if( is_null(self::$_instance) ) or if( self::$_instance == null )
-            self::$_instance = new Location();
+            self::$_instance = new User();
         return self::$_instance;
     }
 
-    public function getCountry()
+    public function getUserWhere($email, $password)
     {
-        try {
-            $result = DB::table("location")
-                ->where('location_type', 0)
-                ->select()
-                ->get();
-        } catch (QueryException $e) {
-            echo $e;
-            return 0;
-        }
-        if ($result)
-            return $result;
-        else
-            return 0;
-
-
+        $result = Users::where('email', $email)
+            ->where('password', bcrypt($password))
+            ->first();
+//        $result = User::all();
+        return $result;
     }
 
-    public function getStateById()
+    /**
+     * @param $columnName
+     * @param $condition
+     * @param $coulumnValue
+     * @return mixed
+     */
+    /*
+     * TEST FUNCTION
+     */
+    public function getUserByColumnConditionAndValue($columnName, $condition, $coulumnValue)
     {
+        $result = Users::where($columnName, $condition, $coulumnValue)
+            ->first();
+        return $result;
+    }
 
+
+    /**
+     * needed
+     *
+     */
+
+    public function getReportUserInfo()
+    {
         if (func_num_args() > 0) {
-            $CountryId = func_get_arg(0);
+            $userid = func_get_arg(0);
             try {
-                $result = DB::table("location")
-                    ->where('parent_id', $CountryId)
-                    ->where('location_type', 1)
-                    ->select()
-                    ->get();
-
+                $result = DB::table("user_meta")
+                    ->select('display_name', 'state', 'city', 'address', 'country', 'zipcode')
+                    ->where('user_id', $userid)
+                    ->first();
             } catch (QueryException $e) {
                 echo $e;
                 return 0;
@@ -72,8 +81,9 @@ class Location extends Model implements AuthenticatableContract,
                 return $result;
             else
                 return 0;
+        } else {
+            return 0;
         }
-
     }
 
 

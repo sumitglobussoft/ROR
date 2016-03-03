@@ -673,31 +673,28 @@
                 },
                 success: function (response) {
 
-                   if(response == 1){
+                    if (response == 1) {
 
-                       alert('password updated Succesfully check your email for new password');
-                       document.location="/login";
+                        alert('password updated Succesfully check your email for new password');
+                        document.location = "/login";
 
-                   }
-                    else
-                   if(response == 2){
+                    }
+                    else if (response == 2) {
 
-                       alert('something went wrong please try again');
-                       document.location="/login";
+                        alert('something went wrong please try again');
+                        document.location = "/login";
 
-                   }
-                    else
-                           if(response == 3){
+                    }
+                    else if (response == 3) {
 
-                               alert('something went wrong please try again');
-                               document.location="/login";
+                        alert('something went wrong please try again');
+                        document.location = "/login";
 
-                           }
-                    else
-                           if(response == 4){
-                               alert('email does not exist please try again');
-                               document.location="/login";
-                           }
+                    }
+                    else if (response == 4) {
+                        alert('email does not exist please try again');
+                        document.location = "/login";
+                    }
 
 
                 }

@@ -173,5 +173,4 @@ class BusinessController extends Controller
     }
 
 
-
 }

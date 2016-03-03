@@ -62,7 +62,7 @@ class Usersmeta extends Model
 
     }
 
-    public function getUserMetaInfoByUserId($where,$selectedColumns = ['*'])
+    public function getUserMetaInfoByUserId($where, $selectedColumns = ['*'])
     {
 
         try {
@@ -71,7 +71,7 @@ class Usersmeta extends Model
                 ->join('users', function ($join) {
                     $join->on('usersmeta.user_id', '=', 'users.id');
                 })
-                ->join('location','location.location_id', '=', 'usersmeta.country')
+                ->join('location', 'location.location_id', '=', 'usersmeta.country')
                 ->select($selectedColumns)
                 ->get();
             return $result;

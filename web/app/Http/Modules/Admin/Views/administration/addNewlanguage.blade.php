@@ -90,7 +90,7 @@
                         <div class="form-group">
                             <div class="checkbox">
                                 <label for="statact" class="col-md-3 control-label">Active</label>
-                                    <input type="checkbox" name="statact">
+                                <input type="checkbox" name="statact">
                                 <div class="clearfix"></div>
                                 <label for="statact" class="col-md-3 control-label">Inactive</label>
                                 <input type="checkbox" name="statact">
@@ -120,9 +120,9 @@
                 alert(checkactiveflag);
             });
 
-                {{--@if(Session::has('msg') != ''){--}}
+            {{--@if(Session::has('msg') != ''){--}}
 
-                {{--toastr[Session['status']](Session['msg']);--}}
+            {{--toastr[Session['status']](Session['msg']);--}}
             {{--}--}}
             {{--@endif--}}
 

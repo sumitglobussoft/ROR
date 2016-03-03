@@ -35,7 +35,8 @@
                                 Code:</label>
 
                             <div class="col-md-4">
-                                <input type="text" class="form-control" id="lang_code" value="{{$languagedetails->lang_code}}"
+                                <input type="text" class="form-control" id="lang_code"
+                                       value="{{$languagedetails->lang_code}}"
                                        placeholder="Language Code" name="lang_code">
                             </div>
                             {!!  $errors->first('lang_code', '<font color="red">:message</font>') !!}
@@ -67,7 +68,7 @@
                                     <option value=""></option>
                                     <optgroup label="Select">
                                         <?php foreach($countrydetail as $key => $val) { ?>
-                                        <option value="<?php echo $val->location_id ?>" <?php if($val->location_id == $languagedetails->country_code) echo ' selected="selected"' ?>><?php echo $val->name; ?></option>
+                                        <option value="<?php echo $val->location_id ?>" <?php if ($val->location_id == $languagedetails->country_code) echo ' selected="selected"' ?>><?php echo $val->name; ?></option>
                                         <?php } ?>
                                     </optgroup>
                                 </select>

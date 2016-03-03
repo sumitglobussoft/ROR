@@ -6,17 +6,18 @@ use Illuminate\Http\Request;
 use App\Http\Modules\Report\Models\Category;
 use App\Http\Modules\Report\Models\Report;
 use App\Http\Modules\Report\Models\Review;
-use App\Http\Modules\Report\Models\Users;
+//use App\Http\Modules\Report\Models\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use DB;
-use App\Http\Modules\Admin\Models\User;
+use App\Http\Modules\Report\Models\User;
 use Illuminate\Support\Facades\Session;
 use Config;
 
-class ReportController extends Controller {
+class ReportController extends Controller
+{
 
 //    public function __call(){
 //
@@ -26,29 +27,35 @@ class ReportController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct() {
+    public function __construct()
+    {
         $apiurl = Config::get('app.apiurl');
         $this->apiurl = $apiurl;
     }
 
-    public function index() {
+    public function index()
+    {
         //
 //        return view("Admin\admin")
     }
 
-    public function home(Request $data) {
+    public function home(Request $data)
+    {
         return view('/Report/Views/home/home');
     }
 
-    public function reportLogin(Request $data) {
+    public function reportLogin(Request $data)
+    {
         die("hi1");
     }
 
-    public function reportSignup(Request $data) {
+    public function reportSignup(Request $data)
+    {
         die("hi2");
     }
 
-    public function ajaxAction(Request $data) {
+    public function ajaxAction(Request $data)
+    {
         if ($data->isMethod('post')) {
             $method = $data->input('method');
             switch ($method) {
@@ -59,59 +66,14 @@ class ReportController extends Controller {
                     echo json_encode($result);
                     die;
                     break;
-
-                case "editreport":
-                    $reportid = $data->input('reportid');
-                    $objReport = new report();
-                    $result = $objReport->getReportById($reportid);
-                    Session::forget('report');
-                    $reportstepone = array();
-                    $reportstepone['companyname'] = $result->company_or_individual_name;
-                    $reportstepone['aka'] = $result->company_or_individual_aka;
-                    $reportstepone['webaddress'] = $result->web_address;
-                    $reportstepone['locationtype'] = $result->location_type;
-                    $reportstepone['streetaddress'] = $result->street_address;
-                    $reportstepone['city'] = $result->city;
-                    $reportstepone['state'] = $result->state;
-                    $reportstepone['zipcode'] = $result->zip_code;
-                    $reportstepone['country'] = $result->country;
-                    $reportstepone['fax'] = $result->fax;
-                    $reportstepone['phone'] = $result->phone;
-                    $reportstepone['email'] = $result->email_address;
-                    Session::put('report.stepone', $reportstepone);
-                    Session::put('report.id', $reportid);
-                    $reportsteptwo = array();
-                    $reportsteptwo['title'] = $result->report_title;
-                    $reportsteptwo['category'] = $result->category_id;
-                    $reportsteptwo['subcategory'] = $result->subcategory_id;
-                    Session::put('report.steptwo', $reportsteptwo);
-                    redirect('/admin/reportstepfour');
-                    die;
-                    break;
-                case "viewreport":
-                    $reportid = $data->input('reportid');
-                    $objReport = new report();
-                    $report = $objReport->getReportDetailsById($reportid);
-                    $reportarray = (array) $report;
-                    $file = $objReport->getReportFileDetailsById($reportid);
-                    $filearray = (array) $file;
-                    $reportarray['files'] = $filearray;
-                    echo json_encode($reportarray);
-                    die;
-                    break;
-                case "getreviewdetails":
-                    $reviewid = $data->input('reviewid');
-                    $objReview = new review();
-                    $result = $objReview->getReviewDetailsById($reviewid);
-                    echo json_encode($result);
-                    die;
                 default :
                     break;
             }
         }
     }
 
-    public function storeSession($reportid, Request $data) {
+    public function storeSession($reportid, Request $data)
+    {
         $objReport = new report();
         $result = $objReport->getReportById($reportid);
         Session::forget('report');
@@ -141,18 +103,22 @@ class ReportController extends Controller {
         $reportstepthree['card'] = $result->is_credit_card_used;
         $reportstepthree['reporter_displayname'] = $result->display_name;
         Session::put('report.stepthree', $reportstepthree);
-        return redirect('/admin/filereport');
+        return redirect('/filereport');
         die;
     }
 
-    public function removeSession(Request $data) {
+    public function removeSession(Request $data)
+    {
         if (Session::has('report')) {
             Session::forget('report');
         }
-        return redirect('/admin/filereport');
+        return redirect('/filereport');
     }
 
-    public function fileReport(Request $data) {
+    public function fileReport(Request $data)
+    {
+
+
         if (Session::has('report.user_id')) {
             $userid = Session::get('report.user_id');
         } else {
@@ -200,7 +166,7 @@ class ReportController extends Controller {
             $reportstepone['phone'] = $steponephone;
             $reportstepone['email'] = $steponeemail;
             Session::put('report.stepone', $reportstepone);
-            return redirect('/admin/filereport?step=2');
+            return redirect('/filereport?step=2');
         }
         if ($data->isMethod('get')) {
             $step = $data->input('step');
@@ -214,82 +180,83 @@ class ReportController extends Controller {
                     $subcategory = $objCategory->getActiveSubCategory($steptwosession['category']);
                     if (!$subcategory)
                         $subcategory = array();
-                    return view('Admin/Views/report/filereport', ['sessiondata' => $steponesession, 'sessiontwodata' => $steptwosession, 'category' => $category, 'subcategory' => $subcategory]);
-                }
-                else if (Session::has('report.stepone')) {
+                    return view('Report/Views/report/filereport', ['sessiondata' => $steponesession, 'sessiontwodata' => $steptwosession, 'category' => $category, 'subcategory' => $subcategory]);
+                } else if (Session::has('report.stepone')) {
                     $steponesession = Session::get('report.stepone');
-                    return view('Admin/Views/report/filereport', ['sessiondata' => $steponesession, 'category' => $category]);
+                    return view('Report/Views/report/filereport', ['sessiondata' => $steponesession, 'category' => $category]);
                 } else {
-                    return redirect('/admin/filereport');
+                    return redirect('/filereport');
                 }
             } else if ($step == 3) {
                 $objUser = new user();
                 $reportuser = $objUser->getReportUserInfo($userid);
                 if (Session::has('report.stepthree')) {
                     $stepthreesession = Session::get('report.stepthree');
-                    return view('Admin/Views/report/filereport', ['userdata' => $reportuser, 'stepthreesession' => $stepthreesession]);
+                    return view('Report/Views/report/filereport', ['userdata' => $reportuser, 'stepthreesession' => $stepthreesession]);
                 } else if (Session::has('report.stepone') && Session::has('report.steptwo')) {
-                    return view('Admin/Views/report/filereport', ['userdata' => $reportuser]);
+                    return view('Report/Views/report/filereport', ['userdata' => $reportuser]);
                 } else if (Session::has('report.stepone')) {
-                    return redirect('/admin/filereport?step=2');
+                    return redirect('/filereport?step=2');
                 } else {
-                    return redirect('/admin/filereport');
+                    return redirect('/filereport');
                 }
             } else if ($step == 4) {
                 if (Session::has('report.stepone') && Session::has('report.steptwo') && Session::has('report.stepthree')) {
                     if (Session::has('report.id')) {
                         $reportid = Session::get('report.id');
                     } else {
-                        return redirect('/admin/filereport');
+                        return redirect('/filereport');
                     }
                     $objReport = new report();
                     $reportresponse = $objReport->getReportFilesById($reportid);
-                    return view('Admin/Views/report/filereport', ['reportfiledata' => $reportresponse]);
+                    return view('Report/Views/report/filereport', ['reportfiledata' => $reportresponse]);
                 } else if (Session::has('report.stepthree')) {
                     $stepthreesession = Session::get('report.stepthree');
-                    return view('Admin/Views/report/filereport', ['userdata' => $reportuser, 'stepthreesession' => $stepthreesession]);
+                    return view('Report/Views/report/filereport', ['userdata' => $reportuser, 'stepthreesession' => $stepthreesession]);
                 } else if (Session::has('report.stepone') && Session::has('report.steptwo')) {
-                    return view('Admin/Views/report/filereport', ['userdata' => $reportuser]);
+                    return view('Report/Views/report/filereport', ['userdata' => $reportuser]);
                 } else if (Session::has('report.stepone')) {
-                    return redirect('/admin/filereport?step=2');
+                    return redirect('/filereport?step=2');
                 } else {
-                    return redirect('/admin/filereport');
+                    return redirect('/filereport');
                 }
             } else if ($step == 5) {
                 if (Session::has('report.stepone') && Session::has('report.steptwo') && Session::has('report.stepthree')) {
                     if (Session::has('report.id')) {
                         $reportid = Session::get('report.id');
                     } else {
-                        return redirect('/admin/filereport');
+                        return redirect('/filereport');
                     }
-                    return view('Admin/Views/report/filereport');
+                    return view('Report/Views/report/filereport');
                 } else if (Session::has('report.stepthree')) {
                     $stepthreesession = Session::get('report.stepthree');
-                    return view('Admin/Views/report/filereport', ['userdata' => $reportuser, 'stepthreesession' => $stepthreesession]);
+                    return view('Report/Views/report/filereport', ['userdata' => $reportuser, 'stepthreesession' => $stepthreesession]);
                 } else if (Session::has('report.stepone') && Session::has('report.steptwo')) {
-                    return view('Admin/Views/report/filereport', ['userdata' => $reportuser]);
+                    return view('Report/Views/report/filereport', ['userdata' => $reportuser]);
                 } else if (Session::has('report.stepone')) {
-                    return redirect('/admin/filereport?step=2');
+                    return redirect('/filereport?step=2');
                 } else {
-                    return redirect('/admin/filereport');
+                    return redirect('/filereport');
                 }
             } else {
                 // This is for edit report getting from session.
                 if (Session::has('report.stepone') && Session::has('report.id')) {
                     $steponedata = Session::get('report.stepone');
-                    return view('Admin/Views/report/filereport', ['steponedata' => $steponedata]);
+                    return view('Report/Views/report/filereport', ['steponedata' => $steponedata]);
                 } else if (Session::has('report.stepone')) {
                     $steponedata = Session::get('report.stepone');
-                    return view('Admin/Views/report/filereport', ['steponedata' => $steponedata]);
+                    return view('Report/Views/report/filereport', ['steponedata' => $steponedata]);
                 }
-                return view('Admin/Views/report/filereport');
+                return view('Report/Views/report/filereport');
             }
         }
 
-        return view('Admin/Views/report/filereport');
+        return view('Report/Views/report/filereport');
     }
 
-    public function reportStepTwo(Request $data) {
+
+    public function reportStepTwo(Request $data)
+    {
         if (Session::has('report.user_id')) {
             $userid = Session::get('report.user_id');
         } else {
@@ -307,12 +274,11 @@ class ReportController extends Controller {
             $reportsteptwo['title'] = $steptwocompanyname . $steptwodescriptive . $steptwocity . $steptwostate;
             $reportsteptwo['category'] = $steptwocategory;
             $reportsteptwo['subcategory'] = $steptwosubcategory;
-
             Session::put('report.steptwo', $reportsteptwo);
             if (Session::has('report.stepone')) {
                 $steponesession = Session::get('report.stepone');
             } else {
-                return redirect('/admin/filereport');
+                return redirect('/filereport');
             }
             $reportdata = array();
             $reportdata['user_id'] = $userid;
@@ -336,17 +302,18 @@ class ReportController extends Controller {
                 $reportid = Session::get('report.id');
                 $objReport = new report();
                 $reportresponse = $objReport->updateReportStepTwo($reportdata, $reportid);
-                return redirect('/admin/filereport?step=3');
+                return redirect('/filereport?step=3');
             } else {
                 $objReport = new report();
                 $reportresponse = $objReport->createReport($reportdata);
                 Session::put('report.id', $reportresponse);
-                return redirect('/admin/filereport?step=3');
+                return redirect('/filereport?step=3');
             }
         }
     }
 
-    public function reportStepThree(Request $data) {
+    public function reportStepThree(Request $data)
+    {
         if (Session::has('report.user_id')) {
             $userid = Session::get('report.user_id');
         } else {
@@ -374,7 +341,7 @@ class ReportController extends Controller {
             if (Session::has('report.id')) {
                 $reportid = Session::get('report.id');
             } else {
-                return redirect('/admin/filereport');
+                return redirect('/filereport');
             }
 
             $reportdata = array();
@@ -384,20 +351,24 @@ class ReportController extends Controller {
             $reportdata['display_name'] = $stepthreedisplayname;
             $objReport = new report();
             $reportresponse = $objReport->insertReportStepThree($reportdata, $reportid, $userid);
-            return redirect('/admin/filereport?step=4');
+            return redirect('/filereport?step=4');
         }
     }
 
-    public function reportStepFour(Request $data) {
+//
+    public function reportStepFour(Request $data)
+    {
 
         $x = Session::All();
         echo "<pre>";
         print_r($x);
         die;
-        return view('Admin/Views/report/filereport');
+        return view('Report/Views/report/filereport');
     }
 
-    public function reportStepFive(Request $data) {
+//
+    public function reportStepFive(Request $data)
+    {
         if (Session::has('report.user_id')) {
             $userid = Session::get('report.user_id');
         } else {
@@ -407,7 +378,7 @@ class ReportController extends Controller {
             if (Session::has('report.id')) {
                 $reportid = Session::get('report.id');
             } else {
-                return redirect('/admin/filereport');
+                return redirect('/filereport');
             }
             $stepfivetc = $data->input('stepfivetc');
             $stepfivecontact = $data->input('stepfivecontact');
@@ -419,12 +390,14 @@ class ReportController extends Controller {
             if (Session::has('report')) {
                 Session::forget('report');
             }
-            return redirect('/admin/listfilereport');
+            return redirect('/');
         }
-//        return view('Admin/Views/report/filereport');
+        return view('Report/Views/report/filereport');
     }
 
-    public function uploadImage(Request $data) {
+//
+    public function uploadImage(Request $data)
+    {
         if (Session::has('report.user_id')) {
             $userid = Session::get('report.user_id');
         } else {
@@ -433,7 +406,7 @@ class ReportController extends Controller {
         if (Session::has('report.id')) {
             $reportid = Session::get('report.id');
         } else {
-            return redirect('/admin/filereport');
+            return redirect('/filereport');
         }
         if ($data->isMethod('post')) {
             $stepfourcaption = $data->input('stepfourphotocaption');
@@ -450,13 +423,14 @@ class ReportController extends Controller {
             $date = date('Y-m-d H:i:s');
             $currentdate = strtotime($date);
 //            echo $currentdate;die;
-            if (( ($_FILES["photo"]["type"] == "image/pjpeg")
+            if ((($_FILES["photo"]["type"] == "image/pjpeg")
                     || ($_FILES["photo"]["type"] == "image/gif")
                     || ($_FILES["photo"]["type"] == "image/jpeg")
                     || ($_FILES["photo"]["type"] == "image/png")
                     || ($_FILES["photo"]["type"] == "image/tif"))
-                    && ($_FILES["photo"]["size"] < 50000000)
-                    && in_array($extension, $allowedExts)) {
+                && ($_FILES["photo"]["size"] < 50000000)
+                && in_array($extension, $allowedExts)
+            ) {
                 if ($_FILES["photo"]["error"] > 0) {
                     echo "Return Code: " . $_FILES["photo"]["error"] . "<br />";
                     die;
@@ -486,7 +460,7 @@ class ReportController extends Controller {
                             $objReport = new report();
                             $reportresponse = $objReport->insertReportFile($reportdata);
                             echo "Stored in: " . $destinationpath . $destinationpath . $basefilename . '_' . $currentdate . '.' . $extension;
-                            return redirect('/admin/filereport?step=4');
+                            return redirect('/filereport?step=4');
                         } else {
                             echo "error in upload";
                             die;
@@ -500,7 +474,8 @@ class ReportController extends Controller {
         }
     }
 
-    public function uploadVideo(Request $data) {
+    public function uploadVideo(Request $data)
+    {
         if (Session::has('report.user_id')) {
             $userid = Session::get('report.user_id');
         } else {
@@ -509,7 +484,7 @@ class ReportController extends Controller {
         if (Session::has('report.id')) {
             $reportid = Session::get('report.id');
         } else {
-            return redirect('/admin/filereport');
+            return redirect('/filereport');
         }
         if ($data->isMethod('post')) {
             $stepfourcaption = $data->input('stepfourvideocaption');
@@ -546,8 +521,9 @@ class ReportController extends Controller {
 //                    || ($_FILES["video"]["type"] == "audio/wav")
 //                    || ($_FILES["video"]["type"] == "application/vnd.xara")
                     || ($_FILES["video"]["type"] == "video/webm"))
-                    && ($_FILES["video"]["size"] < 50000000)
-                    && in_array($extension, $allowedExts)) {
+                && ($_FILES["video"]["size"] < 50000000)
+                && in_array($extension, $allowedExts)
+            ) {
                 if ($_FILES["video"]["error"] > 0) {
                     echo "Return Code: " . $_FILES["video"]["error"] . "<br />";
                     die;
@@ -576,7 +552,7 @@ class ReportController extends Controller {
                             $objReport = new report();
                             $reportresponse = $objReport->insertReportFile($reportdata);
                             echo "Stored in: " . $destinationpath . $destinationpath . $basefilename . '_' . $currentdate . '.' . $extension;
-                            return redirect('/admin/filereport?step=4');
+                            return redirect('/filereport?step=4');
                         } else {
                             echo "error in upload";
                             die;
@@ -590,7 +566,8 @@ class ReportController extends Controller {
         }
     }
 
-    public function uploadYouTube(Request $data) {
+    public function uploadYouTube(Request $data)
+    {
         if (Session::has('report.user_id')) {
             $userid = Session::get('report.user_id');
         } else {
@@ -599,7 +576,7 @@ class ReportController extends Controller {
         if (Session::has('report.id')) {
             $reportid = Session::get('report.id');
         } else {
-            return redirect('/admin/filereport');
+            return redirect('/filereport');
         }
         if ($data->isMethod('post')) {
 
@@ -611,111 +588,29 @@ class ReportController extends Controller {
             $reportdata['file_path'] = $stepfouryoutube;
             $objReport = new report();
             $reportresponse = $objReport->insertReportFile($reportdata);
-            return redirect('/admin/filereport?step=4');
+            return redirect('/filereport?step=4');
         }
     }
 
-    public function listFileReport(Request $data) {
+    public function listFileReport(Request $data)
+    {
         $objReport = new report();
         if ($data->isMethod('post')) {
             $stepfouryoutube = $data->input('stepfouryoutube');
         }
-        $result = $objReport->getAllReports();
 
-        if ($result)
-            return view('Admin/Views/report/list-file-report', ['report_data' => $result]);
-        else
-            return view('Admin/Views/report/list-file-report')->withErrors([
-                        'errMsg' => 'Error in Add Category.'
-                    ]);
+        return view('/');
+
     }
 
-    public function pendingReport(Request $data) {
-        $objReport = new report();
-        $result = $objReport->getPendingReports();
-        if ($result)
-            return view('Admin/Views/report/pending-report', ['pending_report_data' => $result]);
-        else
-            return view('Admin/Views/report/pending-report')->withErrors([
-                        'errMsg' => 'Error in Add Category.'
-                    ]);
-    }
 
-    public function approvedReport(Request $data) {
-        $objReport = new report();
-
-        $result = $objReport->getApprovedReports();
-
-        if ($result)
-            return view('Admin/Views/report/approved-report', ['approved_report_data' => $result]);
-        else
-            return view('Admin/Views/report/approved-report')->withErrors([
-                        'errMsg' => 'Error in Add Category.'
-                    ]);
-    }
-
-    public function unapprovedReport(Request $data) {
-        $objReport = new report();
-
-        $result = $objReport->getUnapprovedReports();
-
-        if ($result)
-            return view('Admin/Views/report/unapproved-report', ['unapproved_report_data' => $result]);
-        else
-            return view('Admin/Views/report/unapproved-report')->withErrors([
-                        'errMsg' => 'Error in Add Category.'
-                    ]);
-    }
-
-    public function changeReportStatus(Request $data) {
-        if ($data->isMethod('post')) {
-            $changereportid = $data->input('changereportid');
-            $currentstatus = $data->input('currentstatus');
-            $objReport = new report();
-            $data = array("status" => $currentstatus);
-
-            $result = $objReport->changeReportStatus($changereportid, $data);
-            if ($result) {
-                return redirect('/admin/listfilereport');
-            } else {
-                return redirect('/admin/listfilereport')->withErrors([
-                            'errMsg' => 'Error in Add Category.'
-                        ]);
-            }
-        }
-    }
-
-    public function deleteReport(Request $data) {
-
-        if ($data->isMethod('post')) {
-            $reportid = $data->input('deletereportid');
-            $objReport = new report();
-            $result = $objReport->deleteReport($reportid);
-            if ($result)
-                return redirect('/admin/listfilereport');
-            else
-                return redirect('/admin/listfilereport')->withErrors([
-                            'errMsg' => 'Error in Delete'
-                        ]);
-        }
-    }
-
-    public function addReportUser($userid, Request $data) {
+    public function addReportUser($userid, Request $data)
+    {
         Session::forget('report');
         Session::put('report.user_id', $userid);
 
-        return redirect('/admin/filereport');
+        return redirect('/');
     }
 
-    public function viewReport($reportid, Request $data) {
-        $objReport = new report();
-        $report = $objReport->getReportDetailsById($reportid);
-        $reportarray = (array) $report;
-        $file = $objReport->getReportFileDetailsById($reportid);
-        $filearray = (array) $file;
-        $reportarray['files'] = $filearray;
-        // echo "<pre>";print_r($reportarray);die;
-        return view('Admin/Views/report/viewreport', ['report_data' => $reportarray]);
-    }
 
 }

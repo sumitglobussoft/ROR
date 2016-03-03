@@ -155,7 +155,7 @@
                     if (response == 1) {
 
 //                        location.reload();
-                        document.location="/admin/manage_business";
+                        document.location = "/admin/manage_business";
 
                     }
                     else if (response.status == 'error') {

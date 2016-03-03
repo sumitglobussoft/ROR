@@ -38,7 +38,8 @@
                     </div>
                     <div class="form-group">
                         <label for="email">email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{$userdetail['email']}}">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="email"
+                               value="{{$userdetail['email']}}">
                         {!! $errors->first('email' ,'<font color="red">:message</font>') !!}
                     </div>
 

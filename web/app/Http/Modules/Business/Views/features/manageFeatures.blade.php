@@ -44,36 +44,36 @@
                 <div class="panel-body">
 
                     @if($errMsg == NULL)
-                        <div class="col-md-6">
-                            <div id="tree_1" class="tree-demo">
-                                <?php
-                                function createTree($array, $curParent, $currLevel = 0, $prevLevel = -1)
-                                {
-                                    foreach ($array as $key => $category) {
-                                        if ($curParent == $category['parent_id']) {
-                                            if ($category['parent_id'] == 0) $class = "dropdown"; else $class = "sub_menu";
-                                            if ($currLevel > $prevLevel) echo " <ul class='$class'> ";
-                                            if ($currLevel == $prevLevel) echo " </li> ";
-                                            if ($category['group_flag'] == 1) {
-                                                echo "<li  data-jstree='{ \"opened\" : true }'><a href='/admin/edit-feature-group/" . $category['feature_id'] . "'>" . $category['feature_name'] . "</a>";
-                                            } else {
-                                                echo "<li  data-jstree='{ \"opened\" : true }'><a href='/admin/edit-feature/" . $category['feature_id'] . "'>" . $category['feature_name'] . "</a>";
-                                            }
-                                            if ($currLevel > $prevLevel) {
-                                                $prevLevel = $currLevel;
-                                            }
-                                            $currLevel++;
-                                            createTree($array, $category['feature_id'], $currLevel, $prevLevel);
-                                            $currLevel--;
+                    <div class="col-md-6">
+                        <div id="tree_1" class="tree-demo">
+                            <?php
+                            function createTree($array, $curParent, $currLevel = 0, $prevLevel = -1)
+                            {
+                                foreach ($array as $key => $category) {
+                                    if ($curParent == $category['parent_id']) {
+                                        if ($category['parent_id'] == 0) $class = "dropdown"; else $class = "sub_menu";
+                                        if ($currLevel > $prevLevel) echo " <ul class='$class'> ";
+                                        if ($currLevel == $prevLevel) echo " </li> ";
+                                        if ($category['group_flag'] == 1) {
+                                            echo "<li  data-jstree='{ \"opened\" : true }'><a href='/admin/edit-feature-group/" . $category['feature_id'] . "'>" . $category['feature_name'] . "</a>";
+                                        } else {
+                                            echo "<li  data-jstree='{ \"opened\" : true }'><a href='/admin/edit-feature/" . $category['feature_id'] . "'>" . $category['feature_name'] . "</a>";
                                         }
+                                        if ($currLevel > $prevLevel) {
+                                            $prevLevel = $currLevel;
+                                        }
+                                        $currLevel++;
+                                        createTree($array, $category['feature_id'], $currLevel, $prevLevel);
+                                        $currLevel--;
                                     }
-                                    if ($currLevel == $prevLevel) echo " </li> </ul> ";
                                 }
-                                createTree($allFeatures['data'], 0);
-                                ?>
+                                if ($currLevel == $prevLevel) echo " </li> </ul> ";
+                            }
+                            createTree($allFeatures['data'], 0);
+                            ?>
 
-                            </div>
                         </div>
+                    </div>
                     @else
                         {{$errMsg}}
                     @endif

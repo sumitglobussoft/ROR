@@ -20,7 +20,7 @@
         <!-- Dashboard Wrapper Start -->
         <div class="dashboard-wrapper-lg">
 
-                    <!-- Row Start -->
+            <!-- Row Start -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="widget">

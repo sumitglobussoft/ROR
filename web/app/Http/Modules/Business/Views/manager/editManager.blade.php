@@ -64,7 +64,8 @@
                                         value="nestable"><i
                                             class="fa fa-plus"></i> Permission
 
-                                </button> <h4>Click On Icon To Edit Permissions</h4>
+                                </button>
+                                <h4>Click On Icon To Edit Permissions</h4>
                             </div>
                             </br>
                             <div class="dd" id="nestable" style="display:none">
@@ -78,7 +79,7 @@
                                                        @if(in_array($val->permission_id,$info))
                                                        checked="checked "
                                                         @endif
-                                                        >{{$val->permission_details}}</div>
+                                                >{{$val->permission_details}}</div>
                                         </li>
                                     @endforeach
                                 </ol>

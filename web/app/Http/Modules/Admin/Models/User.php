@@ -276,28 +276,28 @@ class User extends Model implements AuthenticatableContract,
         }
 
     }
-    
-        public function getReportUserInfo() {
-             if (func_num_args() > 0) {
+
+    public function getReportUserInfo()
+    {
+        if (func_num_args() > 0) {
             $userid = func_get_arg(0);
-        try {
-            $result = DB::table("user_meta")
-                    ->select('display_name','state','city','address','country','zipcode')
-                    ->where('user_id',$userid)
+            try {
+                $result = DB::table("user_meta")
+                    ->select('display_name', 'state', 'city', 'address', 'country', 'zipcode')
+                    ->where('user_id', $userid)
                     ->first();
-        } catch (QueryException $e) {
-            echo $e;
+            } catch (QueryException $e) {
+                echo $e;
+                return 0;
+            }
+            if ($result)
+                return $result;
+            else
+                return 0;
+        } else {
             return 0;
         }
-        if ($result)
-            return $result;
-        else
-            return 0;
     }
-        else{
-            return 0;
-        }
-        }
 
     public function getAllUsers($where, $selectedColumns = ['*'])
     {
@@ -316,6 +316,7 @@ class User extends Model implements AuthenticatableContract,
             throw new Exception('Argument Not Passed');
         }
     }
+
     public function getAdminDetails($where, $selectedColumns = ['*'])
     {
         if (func_num_args() > 0) {
@@ -325,7 +326,7 @@ class User extends Model implements AuthenticatableContract,
 
             $result = DB::table('users')
                 ->join('user_meta', 'user_meta.user_id', '=', 'users.id')
-                ->where('users.id',$userid)
+                ->where('users.id', $userid)
                 ->first();
 
             return $result;
@@ -353,7 +354,8 @@ class User extends Model implements AuthenticatableContract,
         }
     }
 
-    public function getUserId($where, $selectedColumns = ['*']){
+    public function getUserId($where, $selectedColumns = ['*'])
+    {
 
         $result = DB::table($this->table)
             ->whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
@@ -379,7 +381,8 @@ class User extends Model implements AuthenticatableContract,
         }
     }
 
-    public function getAllUsersDetailsForEdit(){
+    public function getAllUsersDetailsForEdit()
+    {
 
         if (func_num_args() > 0) {
             $where = func_get_arg(0);
@@ -404,7 +407,7 @@ class User extends Model implements AuthenticatableContract,
 
             try {
                 $updatedResult = DB::table($this->table)
-                    ->where('id' ,$userid)
+                    ->where('id', $userid)
                     ->update($data);
                 // ->insertGetId($data);
                 return $updatedResult;
@@ -425,7 +428,7 @@ class User extends Model implements AuthenticatableContract,
             $userid = func_get_arg(0);
             try {
                 $delete = DB::table($this->table)
-                    ->where('id' ,$userid)
+                    ->where('id', $userid)
                     ->delete();
                 return $delete;
 
@@ -449,7 +452,6 @@ class User extends Model implements AuthenticatableContract,
 //    }
 
 
-
     public function updateAdminMetaUserData()
     {
         if (func_num_args() > 0) {
@@ -460,7 +462,7 @@ class User extends Model implements AuthenticatableContract,
 
             try {
                 $updatedResult = DB::table($this->table)
-                    ->where('id' ,$userid)
+                    ->where('id', $userid)
                     ->update($data);
                 // ->insertGetId($data);
                 return $updatedResult;

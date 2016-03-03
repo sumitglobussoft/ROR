@@ -22,8 +22,8 @@ class Usersmeta extends Model
     }
 
 
-
-    public function InsertUserMetaData(){
+    public function InsertUserMetaData()
+    {
 
         if (func_num_args() > 0) {
             $data = func_get_arg(0);
@@ -49,7 +49,7 @@ class Usersmeta extends Model
             $userid = func_get_arg(1);
             try {
                 $updatedResult = DB::table($this->table)
-                    ->where('user_id' ,$userid)
+                    ->where('user_id', $userid)
                     ->update($data);
 
                 return $updatedResult;
@@ -70,7 +70,7 @@ class Usersmeta extends Model
             $userid = func_get_arg(0);
             try {
                 $delete = DB::table($this->table)
-                    ->where('user_id' ,$userid)
+                    ->where('user_id', $userid)
                     ->delete();
                 return $delete;
 
@@ -90,7 +90,7 @@ class Usersmeta extends Model
             $userid = func_get_arg(1);
             try {
                 $updatedResult = DB::table($this->table)
-                    ->where('user_id',$userid)
+                    ->where('user_id', $userid)
                     ->update($data);
 
                 return $updatedResult;

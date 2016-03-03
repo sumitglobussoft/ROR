@@ -1,4 +1,4 @@
-@extends('Admin/Layouts/adminlayout')
+@extends('Report/Layouts/reportlayout')
 
 @section('title', 'Access denied') {{--TITLE GOES HERE--}}
 

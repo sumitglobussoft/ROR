@@ -31,14 +31,16 @@
                     <div class="panel-body">
                         <form action="" role="form" id="edituserform">
                             <div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">
-                                <input type="text" name="username" id="editusername" value="<?php //echo $userDetails->user_id;?>;?>"
+                                <input type="text" name="username" id="editusername"
+                                       value="<?php //echo $userDetails->user_id;?>;?>"
                                        class="form-control input-lg font-14 pull-right" placeholder="Username"/>
                             </div>
                             <div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">
-                                <input type="text" name="userid" id="edituserid" value="<?php //echo $userDetails->user_id;?>;?>"
-                                       class="form-control input-lg font-14 pull-right" style="display: none" placeholder="Username"/>
+                                <input type="text" name="userid" id="edituserid"
+                                       value="<?php //echo $userDetails->user_id;?>;?>"
+                                       class="form-control input-lg font-14 pull-right" style="display: none"
+                                       placeholder="Username"/>
                             </div>
-
 
 
                             <div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">
@@ -56,10 +58,14 @@
                                        class="form-control input-lg font-14 pull-right" placeholder="Password"/>
                             </div>
 
-                            {{--<div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">--}}
-                                {{--<input type="text" name="repassword" id="repassword"--}}
-                                           {{--class="form-control input-lg font-14 pull-left" placeholder="Re-password"/>--}}
-                                {{--</div>--}}
+                            {{--
+                            <div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">--}}
+                                {{--<input type="text" name="repassword" id="repassword" --}}
+                                           {{--class="form-control input-lg font-14 pull-left"
+                                           placeholder="Re-password"/>--}}
+                                {{--
+                            </div>
+                            --}}
 
                             <div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">
                                 <input type="text" name="address" id="editaddress"
@@ -98,8 +104,8 @@
                             </div>
 
                             <div class="form-group form-input-group m-t-10 m-b-5 col-md-6">
-                                <select class="form-control input-lg font-14" id="status01"  >
-                                    <option > Status</option>
+                                <select class="form-control input-lg font-14" id="status01">
+                                    <option> Status</option>
                                     <option value="1"> Active</option>
                                     <option value="0"> Inactive</option>
                                 </select>
@@ -107,7 +113,9 @@
 
                             <div class="form-group col-md-12 m-t-10">
                                 <div class="pull-right">
-                                    <button type="button" class="btn btn-main updateBusinessuserinfo" >Update Business User</button>
+                                    <button type="button" class="btn btn-main updateBusinessuserinfo">Update Business
+                                        User
+                                    </button>
                                     <button type="button" class="btn btn-dark add-toggle">Cancel</button>
                                 </div>
                             </div>
@@ -144,10 +152,14 @@
                                        class="form-control input-lg font-14 pull-right" placeholder="Password"/>
                             </div>
 
-                            {{--<div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">--}}
-                                {{--<input type="text" name="repassword" id="repassword"--}}
-                                           {{--class="form-control input-lg font-14 pull-left" placeholder="Re-password"/>--}}
-                                {{--</div>--}}
+                            {{--
+                            <div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">--}}
+                                {{--<input type="text" name="repassword" id="repassword" --}}
+                                           {{--class="form-control input-lg font-14 pull-left"
+                                           placeholder="Re-password"/>--}}
+                                {{--
+                            </div>
+                            --}}
 
                             <div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">
                                 <input type="text" name="address" id="address"
@@ -245,7 +257,6 @@
                                     </td>
 
 
-
                                     {{--<td class="text-center">--}}
                                     {{--<a href="javascript:;" class="btn btn-info"> <i class="fa fa-pencil"></i> </a>--}}
                                     {{--<a href="javascript:;" class="btn btn-danger"> <i class="fa fa-trash"></i> </a>--}}
@@ -253,11 +264,14 @@
 
 
                                     <td class="text-center">
-                                        <button data-toggle="modal" id="edituser" data-id="<?php echo $userDetails->user_id?>"  class="btn btn-info edituserinfo">
+                                        <button data-toggle="modal" id="edituser"
+                                                data-id="<?php echo $userDetails->user_id?>"
+                                                class="btn btn-info edituserinfo">
                                             <i
-                                                    class="fa fa-pencil"></i> </button>
-                                        <button data-id="<?php echo $userDetails->user_id?>" id="" data-toggle="modal" class="btn btn-danger deleteuser"> <i
-                                                    class="fa fa-trash"></i> </button>
+                                                    class="fa fa-pencil"></i></button>
+                                        <button data-id="<?php echo $userDetails->user_id?>" id="" data-toggle="modal"
+                                                class="btn btn-danger deleteuser"><i
+                                                    class="fa fa-trash"></i></button>
                                     </td>
 
                                 </tr>
@@ -321,7 +335,7 @@
     $(document).ready(function () {
         $('#userjoin').click(function () {
 
-       $(".error").remove();
+            $(".error").remove();
             var profileData = $('#joinUserForm').serializeArray();
             profileData.push({name: 'method', value: 'joinBusinessUser'});
             $.ajax({
@@ -331,14 +345,14 @@
                 data: profileData,
                 success: function (response) {
 
-                    if(response ==2){
+                    if (response == 2) {
 
                         window.location.href = 'http://ror.globusapps.com/http://ror.globusapps.com/admin/businessuser';
                         $('#userjoin').modal('hide');
                     }
 
 
-                    else  if (response.status == 'error') {
+                    else if (response.status == 'error') {
 
                         $.each(response.msg, function (index, value) {
 
@@ -353,8 +367,8 @@
 
 
         });
-        $('.edituserinfo').click(function (){
-            var userid=$(this).attr('data-id');
+        $('.edituserinfo').click(function () {
+            var userid = $(this).attr('data-id');
 
             $.ajax({
                 url: '/admin/business-ajax-handler',
@@ -368,31 +382,31 @@
                 beforeSend: function () {
                 },
                 success: function (response) {
-                    var data=response[0];
+                    var data = response[0];
 //                    jQuery.each(response, function(index, data) {
-                        $("#edituserid").val(data.id);
-                          $("#editusername").val(data.full_name);
-                        $("#editdisplayname").val(data.display_name);
-                        $("#editemailid").val(data.email);
-                        $("#editpassword").val(data.password);
-                        $("#editaddress").val(data.address);
-                        $("#editcity").val(data.city);
-                        $("#editstate").val(data.state);
-                        $("#editcountry").val(data.country);
-                        $("#editzipcode").val(data.zipcode);
-                        $("#editcountry").val(data.country);
-                        $("#editprimary_phone").val(data.primary_phone);
-                        $("#editalternate_phone").val(data.alternate_phone);
-                        $(".editUser").show();
+                    $("#edituserid").val(data.id);
+                    $("#editusername").val(data.full_name);
+                    $("#editdisplayname").val(data.display_name);
+                    $("#editemailid").val(data.email);
+                    $("#editpassword").val(data.password);
+                    $("#editaddress").val(data.address);
+                    $("#editcity").val(data.city);
+                    $("#editstate").val(data.state);
+                    $("#editcountry").val(data.country);
+                    $("#editzipcode").val(data.zipcode);
+                    $("#editcountry").val(data.country);
+                    $("#editprimary_phone").val(data.primary_phone);
+                    $("#editalternate_phone").val(data.alternate_phone);
+                    $(".editUser").show();
 //                    });
-                    var status=data.business_login_active;
+                    var status = data.business_login_active;
 
-                   var x = document.getElementById("status01");
+                    var x = document.getElementById("status01");
                     var txt = "";
                     var i;
                     for (i = 0; i < x.length; i++) {
-                        console.log(x.options[i].value+":"+status);
-                        if(x.options[i].value==status)
+                        console.log(x.options[i].value + ":" + status);
+                        if (x.options[i].value == status)
                             x.options[i].selected = true;
                     }
 
@@ -405,7 +419,6 @@
 //                    });
 
 
-
                 },
 
             });
@@ -413,19 +426,16 @@
         });
 
 
-
-
-        $('.deleteuser').click(function (){
-            var userid=$(this).attr('data-id');
-            $(".deleteuserinfo").attr('data-id',userid);
+        $('.deleteuser').click(function () {
+            var userid = $(this).attr('data-id');
+            $(".deleteuserinfo").attr('data-id', userid);
             $("#deleteModal").modal("show");
 
         });
 
 
-
-        $('.deleteuserinfo').click(function (){
-            var userid=$(this).attr('data-id');
+        $('.deleteuserinfo').click(function () {
+            var userid = $(this).attr('data-id');
 
             $.ajax({
                 url: '/admin/business-ajax-handler',
@@ -448,22 +458,22 @@
         });
 
 
-        $('.updateBusinessuserinfo').click(function (){
+        $('.updateBusinessuserinfo').click(function () {
 
-            var username =$("#editusername").val();
+            var username = $("#editusername").val();
             var displayname = $("#editdisplayname").val();
-            var emailid =$("#editemailid").val();
-            var password= $("#editpassword").val();
-            var address= $("#editaddress").val();
-            var city  =$("#editcity").val();
-            var state =$("#editstate").val();
-            var country =$("#editcountry").val();
-            var zipcode=$("#editzipcode").val();
-            var country =$("#editcountry").val();
-            var primary_phone =$("#editprimary_phone").val();
-            var alternate_phone =$("#editalternate_phone").val();
-            var edituserid    =$('#edituserid').val();
-            var status01 =$('#status01').val();
+            var emailid = $("#editemailid").val();
+            var password = $("#editpassword").val();
+            var address = $("#editaddress").val();
+            var city = $("#editcity").val();
+            var state = $("#editstate").val();
+            var country = $("#editcountry").val();
+            var zipcode = $("#editzipcode").val();
+            var country = $("#editcountry").val();
+            var primary_phone = $("#editprimary_phone").val();
+            var alternate_phone = $("#editalternate_phone").val();
+            var edituserid = $('#edituserid').val();
+            var status01 = $('#status01').val();
 
 
             $.ajax({
@@ -472,20 +482,20 @@
                 dataType: 'json',
                 data: {
                     method: 'UpdateBusinessUserInfo',
-                    username:username,
-                    displayname:displayname,
-                    emailid:emailid,
-                    password:password,
-                    address:address,
-                    city:city,
-                    state:state,
-                    country:country,
-                    zipcode:zipcode,
-                    country:country,
-                    primary_phone:primary_phone,
-                    alternate_phone:alternate_phone,
-                    edituserid:edituserid,
-                    status01:status01,
+                    username: username,
+                    displayname: displayname,
+                    emailid: emailid,
+                    password: password,
+                    address: address,
+                    city: city,
+                    state: state,
+                    country: country,
+                    zipcode: zipcode,
+                    country: country,
+                    primary_phone: primary_phone,
+                    alternate_phone: alternate_phone,
+                    edituserid: edituserid,
+                    status01: status01,
 
 
                 },
@@ -493,7 +503,7 @@
                 },
                 success: function (response) {
 
-                    if(response ==2){
+                    if (response == 2) {
                         window.location.href = 'http://ror.globusapps.com/http://ror.globusapps.com/admin/businessuser';
 
                     }

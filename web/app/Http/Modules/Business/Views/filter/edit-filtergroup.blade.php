@@ -137,7 +137,8 @@
 
                                                     <?php // echo $array[$i]->display_name . $array[$i]->category_name ?>
 
-                                                    {{--<li data-jstree='{"type":"file"}'> --}}
+                                                    {{--
+                                                <li data-jstree='{"type":"file"}'> --}}
                                                     <?php treeView($array, $selectedcategory, $array[$i]->category_id); ?>
                                                 </li>
                                             </ul>

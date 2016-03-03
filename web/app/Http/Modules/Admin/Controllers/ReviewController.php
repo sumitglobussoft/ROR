@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Session;
 use Config;
 use Redirect;
 
-class ReviewController extends Controller {
+class ReviewController extends Controller
+{
 
 //    public function __call(){
 //
@@ -27,12 +28,14 @@ class ReviewController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct() {
+    public function __construct()
+    {
         $apiurl = Config::get('app.apiurl');
         $this->apiurl = $apiurl;
     }
 
-    public function index() {
+    public function index()
+    {
         //
 //        return view("Admin\admin")
     }
@@ -42,7 +45,8 @@ class ReviewController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         //
     }
 
@@ -52,7 +56,8 @@ class ReviewController extends Controller {
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         //
     }
 
@@ -62,7 +67,8 @@ class ReviewController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         //
     }
 
@@ -72,7 +78,8 @@ class ReviewController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         //
     }
 
@@ -83,7 +90,8 @@ class ReviewController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         //
     }
 
@@ -93,18 +101,21 @@ class ReviewController extends Controller {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         //
     }
 
-    public function review($reportid, Request $data) {
+    public function review($reportid, Request $data)
+    {
 
         $objReview = new review();
         $result = $objReview->getReviewById($reportid);
-        return view('Admin/Views/review/review', ['reviewdata' => $result, 'reporttitle' => $result[0]->report_title,'reporttext' => $result[0]->report_text]);
+        return view('Admin/Views/review/review', ['reviewdata' => $result, 'reporttitle' => $result[0]->report_title, 'reporttext' => $result[0]->report_text]);
     }
 
-    public function listReview(Request $data) {
+    public function listReview(Request $data)
+    {
 
         $objReview = new review();
         $result = $objReview->getReviews();
@@ -114,7 +125,8 @@ class ReviewController extends Controller {
         return view('Admin/Views/review/list-review', ['reviewdata' => $result]);
     }
 
-    public function pendingReview(Request $data) {
+    public function pendingReview(Request $data)
+    {
 
         $objReview = new review();
         $result = $objReview->getPendingReviews();
@@ -124,7 +136,8 @@ class ReviewController extends Controller {
         return view('Admin/Views/review/pending-review', ['reviewdata' => $result]);
     }
 
-    public function approvedReview(Request $data) {
+    public function approvedReview(Request $data)
+    {
 
         $objReview = new review();
         $result = $objReview->getApprovedReviews();
@@ -134,7 +147,8 @@ class ReviewController extends Controller {
         return view('Admin/Views/review/approved-review', ['reviewdata' => $result]);
     }
 
-    public function unapprovedReview(Request $data) {
+    public function unapprovedReview(Request $data)
+    {
 
         $objReview = new review();
         $result = $objReview->getUnapprovedReviews();
@@ -144,7 +158,8 @@ class ReviewController extends Controller {
         return view('Admin/Views/review/unapproved-review', ['reviewdata' => $result]);
     }
 
-    public function addReview(Request $data) {
+    public function addReview(Request $data)
+    {
 
         $userid = Auth::user()->id;
         if ($data->isMethod('post')) {
@@ -156,9 +171,9 @@ class ReviewController extends Controller {
             $this->validate($data, [
                 'reviewtitle' => 'required',
                 'reviewtext' => 'required',
-                    ], ['reviewtitle.required' => 'Invalid Title',
-                'reviewtext.required' => 'Invalid Body'
-                    ]
+            ], ['reviewtitle.required' => 'Invalid Title',
+                    'reviewtext.required' => 'Invalid Body'
+                ]
             );
             $reviewData = array();
             $reviewData['report_id'] = $reportid;
@@ -174,12 +189,13 @@ class ReviewController extends Controller {
                 return Redirect::back();
             else
                 return Redirect::back()->withErrors([
-                            'errMsg' => 'Update Not Changed'
-                        ]);
+                    'errMsg' => 'Update Not Changed'
+                ]);
         }
     }
 
-    public function updateReview(Request $data) {
+    public function updateReview(Request $data)
+    {
         $userid = Auth::user()->id;
         if ($data->isMethod('post')) {
             $reviewid = $data->input('editreviewid');
@@ -190,8 +206,8 @@ class ReviewController extends Controller {
             $this->validate($data, [
                 'editreviewtitle' => 'required',
                 'editreviewtext' => 'required',
-                    ], ['editreviewtitle.required' => 'Invalid Title',
-                'editreviewtext.required' => 'Invalid Text']
+            ], ['editreviewtitle.required' => 'Invalid Title',
+                    'editreviewtext.required' => 'Invalid Text']
             );
             $reviewData = array();
             $reviewData['review_title'] = $editreviewtitle;
@@ -203,12 +219,13 @@ class ReviewController extends Controller {
                 return Redirect::back();
             else
                 return Redirect::back()->withErrors([
-                            'errMsg' => 'Update Not Changed'
-                        ]);
+                    'errMsg' => 'Update Not Changed'
+                ]);
         }
     }
 
-    public function deleteReview(Request $data) {
+    public function deleteReview(Request $data)
+    {
         $userid = Auth::user()->id;
 
         if ($data->isMethod('post')) {
@@ -221,8 +238,8 @@ class ReviewController extends Controller {
                 return Redirect::back();
             else
                 return Redirect::back()->withErrors([
-                            'errMsg' => 'Not Deleted'
-                        ]);
+                    'errMsg' => 'Not Deleted'
+                ]);
         }
     }
 

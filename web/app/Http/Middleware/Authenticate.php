@@ -59,7 +59,7 @@ class Authenticate
                 if (!$userRoleFlag) {
                     return redirect('/admin/login');
                 }
-            } 
+            }
 //            else if ($parentmodule == "user") {
 //                if (Session::has('ror_buyer') || Session::has('ror_customer') || Session::has('ror_admin')) { //ALSO USE " || Session::has('fs_supplier')" in if condition if SUPPLIER CAN ACT AS A BUYER/CUSTOMER  //$userRole = 1,2
 //                    $userRoleFlag = true;
@@ -69,24 +69,23 @@ class Authenticate
 //                }
 //            }
             else if ($parentmodule == "user") {
-                if (Session::has('ror_user')  || Session::has('ror_admin')) { //ALSO USE " || Session::has('fs_supplier')" in if condition if SUPPLIER CAN ACT AS A BUYER/CUSTOMER  //$userRole = 1,2
+                if (Session::has('ror_user') || Session::has('ror_admin')) { //ALSO USE " || Session::has('fs_supplier')" in if condition if SUPPLIER CAN ACT AS A BUYER/CUSTOMER  //$userRole = 1,2
                     $userRoleFlag = true;
                 }
                 if (!$userRoleFlag) {
                     return redirect('/');
                 }
-            }
-            else if ($parentmodule == "report") {
-                die("report");
-                if (Session::has('ror_report')  || Session::has('ror_admin')) { //ALSO USE " || Session::has('fs_supplier')" in if condition if SUPPLIER CAN ACT AS A BUYER/CUSTOMER  //$userRole = 1,2
+            } else if ($parentmodule == "report") {
+//                die("report");
+                if (Session::has('ror_report') || Session::has('ror_user')) { //ALSO USE " || Session::has('fs_supplier')" in if condition if SUPPLIER CAN ACT AS A BUYER/CUSTOMER  //$userRole = 1,2
                     $userRoleFlag = true;
+//                    return redirect('/filereport');
                 }
                 if (!$userRoleFlag) {
                     return redirect('/');
                 }
-            }
-            else if ($parentmodule == "business") {
-                if (Session::has('ror_business')  || Session::has('ror_business')) { //ALSO USE " || Session::has('fs_supplier')" in if condition if SUPPLIER CAN ACT AS A BUYER/CUSTOMER  //$userRole = 1,2
+            } else if ($parentmodule == "business") {
+                if (Session::has('ror_business') || Session::has('ror_business')) { //ALSO USE " || Session::has('fs_supplier')" in if condition if SUPPLIER CAN ACT AS A BUYER/CUSTOMER  //$userRole = 1,2
                     $userRoleFlag = true;
                 }
                 if (!$userRoleFlag) {

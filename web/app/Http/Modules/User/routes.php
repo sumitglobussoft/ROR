@@ -12,7 +12,6 @@
  */
 
 
-
 Route::group(['middleware' => ['guest']], function () {
 
     /* // Authentication routes...
@@ -24,8 +23,6 @@ Route::group(['middleware' => ['guest']], function () {
       Route::post('/register', 'Auth\AuthController@postRegister');
      */
 });
-
-
 
 
 Route::group(array('module' => 'User', 'namespace' => 'User\Controllers'), function () {
@@ -43,7 +40,8 @@ Route::group(array('module' => 'User', 'namespace' => 'User\Controllers'), funct
     Route::get('/search_report', 'UserController@searchReport');
     Route::post('/search_report', 'UserController@searchReport');
 //    Route::get('/details/', 'UserController@ReportDetalils');
-    Route::resource('/details/{report_id}', 'UserController@ReportDetalils');
+    Route::get('/details/{report_id}', 'UserController@ReportDetalils');
+    Route::post('/details/{report_id}', 'UserController@ReportDetalils');
 
 //    Route::resource('/forgot_password', 'UserController@forgotPassword');
 

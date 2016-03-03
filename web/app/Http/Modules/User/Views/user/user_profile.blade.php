@@ -75,22 +75,22 @@
                         {{--</div>--}}
 
                         {{--<div class="form-group ">--}}
-                            {{--<label class="control-label">Country :</label>--}}
-                            {{--<select name="country" id="country" class="form-control country">--}}
-                                {{--<option value="">Select a country</option>--}}
-                                {{--@foreach($resultCountry as $etKey => $etVal)--}}
-                                    {{--<option @if($UserData->country==$etVal->name) selected @endif--}}
-                                    {{--value="{{$etVal->location_id}}">{{$etVal->name}}</option>--}}
-                                {{--@endforeach--}}
-                            {{--</select>--}}
+                        {{--<label class="control-label">Country :</label>--}}
+                        {{--<select name="country" id="country" class="form-control country">--}}
+                        {{--<option value="">Select a country</option>--}}
+                        {{--@foreach($resultCountry as $etKey => $etVal)--}}
+                        {{--<option @if($UserData->country==$etVal->name) selected @endif--}}
+                        {{--value="{{$etVal->location_id}}">{{$etVal->name}}</option>--}}
+                        {{--@endforeach--}}
+                        {{--</select>--}}
 
                         {{--</div>--}}
                         {{--<div class="form-group ">--}}
-                            {{--<label class="control-label">Select State :</label>--}}
+                        {{--<label class="control-label">Select State :</label>--}}
 
-                            {{--<select class="form-control state" id="state" name="state">--}}
-                                {{--<option value="">Select State</option>--}}
-                            {{--</select>--}}
+                        {{--<select class="form-control state" id="state" name="state">--}}
+                        {{--<option value="">Select State</option>--}}
+                        {{--</select>--}}
 
                         {{--</div>--}}
 
@@ -323,13 +323,13 @@
 
                     $('#state').empty();
 //                    response = $.parseJSON(response);
-                    var selectedState='{{$UserData->state}}';
+                    var selectedState = '{{$UserData->state}}';
                     console.log(selectedState);
                     console.log(response);
                     if (response != '') {
                         var appendState = '<option value="">Select State</option>';
                         $.each(response, function (index, value) {
-                            appendState += '<option value="' + value['name'] + '" '+((selectedState==value['name'])?'selected':'')+'>' + value['name'] + '</option>';
+                            appendState += '<option value="' + value['name'] + '" ' + ((selectedState == value['name']) ? 'selected' : '') + '>' + value['name'] + '</option>';
                         });
                         $('#state').append(appendState);
                     } else {

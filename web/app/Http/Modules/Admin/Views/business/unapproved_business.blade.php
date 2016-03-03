@@ -38,7 +38,7 @@
 
                             <div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">
                                 <input type="hidden" name="business_id" id="business_id" value=""
-                                       class="form-control input-lg font-14 pull-right" placeholder="Business Id" />
+                                       class="form-control input-lg font-14 pull-right" placeholder="Business Id"/>
                             </div>
 
                             <div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">
@@ -66,9 +66,10 @@
                                         foreach ($categoryData as $etKey => $etVal) {
                                         //echo "<pre>";print_r($etVal);die;
                                         ?>
-                                        <option  data_id="<?php echo $etVal->category_id ?>"
-                                                 <?php if ($etVal->category_id == $etVal->category_id) { ?> selected="" <?php } ?>
-                                                 value="<?php echo $etVal->category_id;?>"><?php echo $etVal->category_name; ?></option>
+                                        <option data_id="<?php echo $etVal->category_id ?>"
+                                                <?php if ($etVal->category_id == $etVal->category_id) { ?> selected=""
+                                                <?php } ?>
+                                                value="<?php echo $etVal->category_id;?>"><?php echo $etVal->category_name; ?></option>
                                         <?php
                                         }
                                         //                                        }
@@ -289,7 +290,6 @@
         </div>
 
 
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
@@ -420,13 +420,7 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
 
-    $(document).ready(function() {
-
-
-
-
-
-
+    $(document).ready(function () {
 
 
         $('#userjoin').click(function () {
@@ -470,14 +464,12 @@
         });
 
 
-
         $('.deleteBusiness').click(function () {
             var Business_id = $(this).attr('data-id');
             $(".deleteBusinessinfo").attr('data-id', Business_id);
             $("#deleteModal").modal("show");
 
         });
-
 
 
         $('.deleteBusinessinfo').click(function () {
@@ -501,7 +493,6 @@
             });
 
         });
-
 
 
         $('.updateuserinfo').click(function () {
@@ -625,7 +616,6 @@
                     }
 
 
-
                     $('#sub_category').empty();
 //                    response = $.parseJSON(response);
                     console.log(response);
@@ -640,8 +630,6 @@
                     }
 
 
-
-
                 }
 
             });
@@ -650,8 +638,6 @@
 
 
     });
-
-
 
 
 </script>

@@ -157,13 +157,12 @@ Route::group(array('module' => 'Business', 'namespace' => 'Business\Controllers'
         Route::resource('/business/deleted-customer', 'CustomerController@deletedCustomer');
 
 
-
         Route::resource('/business/add-new-manager', 'ManagerController@addNewManager');
         Route::resource('/business/available-manager', 'ManagerController@availableManager');
         Route::get('/business/edit-manager/{mid}', 'ManagerController@editManager');
         Route::post('/business/edit-manager/{mid}', 'ManagerController@editManager');
         Route::resource('/business/pending-manager', 'ManagerController@pendingManager');
-     //   Route::resource('/business/manage-manager-permission', 'ManagerController@pendingManager');
+        //   Route::resource('/business/manage-manager-permission', 'ManagerController@pendingManager');
         Route::resource('/business/manager-ajax-handler', 'ManagerController@managerAjaxHandler');
 
 
@@ -173,7 +172,6 @@ Route::group(array('module' => 'Business', 'namespace' => 'Business\Controllers'
         Route::resource('/business/businessistration-ajax-handler', 'AdministrationController@businessistrationAjaxhandler');
         Route::get('/business/edit-language/{lid}', 'AdministrationController@editLanguage');
         Route::post('/business/edit-language/{lid}', 'AdministrationController@editLanguage');
-
 
 
         //-----------------------------ROUTES FOR MANAGER----------------------------------------

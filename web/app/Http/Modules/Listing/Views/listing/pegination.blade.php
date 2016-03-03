@@ -11,7 +11,7 @@
     @if(isset($Resultbusinessbyletter))
 
 
-    <?php echo '<pre>'; print_r($Resultbusinessbyletter);?>
+        <?php echo '<pre>'; print_r($Resultbusinessbyletter);?>
 
     @endif
 

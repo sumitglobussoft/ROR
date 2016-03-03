@@ -36,9 +36,8 @@ class RebuttalController extends Controller
 //      return view('Admin.Views.rebuttal.rebuttal');
 
 
-
         $data = $request->session()->all();
-        $user_id =$data['ror_admin']['id'];
+        $user_id = $data['ror_admin']['id'];
 //        print_r($user_id);
 //        die;
 
@@ -50,11 +49,11 @@ class RebuttalController extends Controller
             $categoryData['user_id'] = $user_id;
             Session::put('relationship_to_company', $categoryData['relationship_to_company']);
 
-            $objInsertCategory =Rebuttal::getInstance();
+            $objInsertCategory = Rebuttal::getInstance();
             $where['rawQuery'] = 1;
-            $review_id =$objInsertCategory->insertcategorydata($categoryData,$user_id);
+            $review_id = $objInsertCategory->insertcategorydata($categoryData, $user_id);
 
-            Session::put('review_id',$review_id);
+            Session::put('review_id', $review_id);
 
 //            print_r($categoryDatas);
 //            die;
@@ -66,17 +65,14 @@ class RebuttalController extends Controller
                 return redirect('/admin/rebuttal?step=2');
 
 
-
 //                 echo'<pre>'; print_r(Session::all());die;
 //                return redirect('/admin/rebuttal?step=2');
 //               return view('Admin.Views.rebuttal.rebuttal');
 
 
-            }
-            else{
+            } else {
 
             }
-
 
 
         }
@@ -90,7 +86,7 @@ class RebuttalController extends Controller
 
         if ($request->isMethod('post')) {
 
-        $rebutalInfoData = array('
+            $rebutalInfoData = array('
                 rebuttal_title' => $request->input('rebuttal_title'),
                 'rebuttal_body' => $request->input('rebuttal_body'),
                 'display_name' => $request->input('displayname'),
@@ -102,15 +98,15 @@ class RebuttalController extends Controller
             Session::put('rebutalInfoData', $rebutalInfoData);
             $data = $request->session()->all();
 
-            $reviews_id =$data['review_id'];
-            $rebutalInfoData['relationship_to_company'] =$data['relationship_to_company'];
+            $reviews_id = $data['review_id'];
+            $rebutalInfoData['relationship_to_company'] = $data['relationship_to_company'];
 //            print_r($rebutalInfoData);
 //            die;
 
 //            echo'<pre>'; print_r($review_id);die;
 
             $insertWriteYourReportData = Rebuttal::getInstance();
-            $reviews_ids =$insertWriteYourReportData->UpdateWriteYourReportData($rebutalInfoData,$reviews_id);
+            $reviews_ids = $insertWriteYourReportData->UpdateWriteYourReportData($rebutalInfoData, $reviews_id);
 //            print_r($reviews_ids);
 //            die;
 
@@ -168,10 +164,10 @@ class RebuttalController extends Controller
 //                die;
                 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 //                print_r($target_file);
-                  $video_path=$_FILES['fileToUpload']['name'];
+                $video_path = $_FILES['fileToUpload']['name'];
 //                print_r($video_path);
 //                die;
-                if(file_exists($target_dir)) {
+                if (file_exists($target_dir)) {
                     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
                         echo "uploaded ";
@@ -179,14 +175,14 @@ class RebuttalController extends Controller
 
                         echo "not uploaded";
                     }
-                }else{
+                } else {
                     echo "folder not created";
                 }
-   }
+            }
 
         }
 
-            }
+    }
 
 
 //            if($request->isMethod('post')){
@@ -250,10 +246,6 @@ class RebuttalController extends Controller
 //
 //                    echo 'failed';
 //                }
-
-
-
-
 
 
 }

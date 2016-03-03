@@ -60,8 +60,8 @@ class Business extends Model implements AuthenticatableContract,
 
             try {
                 $result = DB::table($this->table)
-                ->where('subcategory_id',$subid)
-                ->get();
+                    ->where('subcategory_id', $subid)
+                    ->get();
                 return $result;
             } catch (\Exception $e) {
                 return $e->getMessage();
@@ -72,67 +72,67 @@ class Business extends Model implements AuthenticatableContract,
 
     }
 
-    public function searchBusinessBykeyboard(){
-        if(func_num_args() >0){
-            $keyword= func_get_arg(0);
+    public function searchBusinessBykeyboard()
+    {
+        if (func_num_args() > 0) {
+            $keyword = func_get_arg(0);
 
             try {
                 $result = DB::table($this->table)
-                    ->where('business_name', 'like' ,'%'. $keyword .'%')
+                    ->where('business_name', 'like', '%' . $keyword . '%')
                     ->get();
                 return $result;
             } catch (\Exception $e) {
                 return $e->getMessage();
             }
 
-        }
-        else {
+        } else {
             throw new Exception('Argument Not Passed');
         }
 
     }
 
-    public function GetBusinessByAddres(){
-        if(func_num_args() >0){
-            $where= func_get_arg(0);
+    public function GetBusinessByAddres()
+    {
+        if (func_num_args() > 0) {
+            $where = func_get_arg(0);
 
             try {
                 $result = DB::table($this->table)
-                     ->where('city', 'like', '%' . $where . '%')
-                     ->orWhere('state', 'like', '%' . $where . '%')
-                     ->orWhere('country', 'like', '%' . $where . '%')
-                      ->get();
+                    ->where('city', 'like', '%' . $where . '%')
+                    ->orWhere('state', 'like', '%' . $where . '%')
+                    ->orWhere('country', 'like', '%' . $where . '%')
+                    ->get();
                 return $result;
             } catch (\Exception $e) {
                 return $e->getMessage();
             }
-     }
-        else {
+        } else {
             throw new Exception('Argument Not Passed');
         }
 
     }
-    public function GetBusinessByName(){
-        if(func_num_args() >0){
-            $letter= func_get_arg(0);
+
+    public function GetBusinessByName()
+    {
+        if (func_num_args() > 0) {
+            $letter = func_get_arg(0);
 
 
             try {
                 $result = DB::table($this->table)
-                    ->where('business_name', 'like',$letter . '%')
+                    ->where('business_name', 'like', $letter . '%')
                     ->get();
 
                 return $result;
             } catch (\Exception $e) {
                 return $e->getMessage();
             }
-        }
-        else {
+        } else {
             throw new Exception('Argument Not Passed');
         }
 
     }
-
 
 
 }

@@ -7,6 +7,7 @@
         .error {
             color: red;
         }
+
         .form-control.error {
             color: #000 !important;
         }
@@ -25,13 +26,13 @@
 
                             <div class="form-group">
                                 <label class="control-label">New Password :</label>
-                                <input type="password" class="form-control" name="new_password"  id="new_password" />
+                                <input type="password" class="form-control" name="new_password" id="new_password"/>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label">Confirm Password :</label>
                                 <input type="password" class="form-control" name="confirm_password"
-                                       id="confirm_password" />
+                                       id="confirm_password"/>
                             </div>
 
                             <div class="form-group">
@@ -40,13 +41,13 @@
                                        id="old_password" required/>
                             </div>
 
-                         <div class="form-group">
+                            <div class="form-group">
                                 <button class="btn btn-primary" type="submit">Chane My Password</button>
                             </div>
 
 
                         </div>
-                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -77,10 +78,9 @@
 
     <script>
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             console.log('gfbcvn');
-            jQuery.validator.addMethod("accept", function(value, element, param)
-            {
+            jQuery.validator.addMethod("accept", function (value, element, param) {
                 return value.match(new RegExp("." + param + "$"));
 
             });
@@ -92,19 +92,19 @@
                 rules: {
 
 
-                    new_password :"required",
-                    confirm_password:{
+                    new_password: "required",
+                    confirm_password: {
                         equalTo: "#new_password"
                     },
-                    old_password:'old_password'
+                    old_password: 'old_password'
 
 
                 },
                 messages: {
 
-                    new_password :" Enter Password",
-                    confirm_password :" Enter Confirm Password Same as Password",
-                    old_password:'please provide your old password'
+                    new_password: " Enter Password",
+                    confirm_password: " Enter Confirm Password Same as Password",
+                    old_password: 'please provide your old password'
 
                 }
             });

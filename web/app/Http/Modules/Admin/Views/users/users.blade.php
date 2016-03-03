@@ -191,132 +191,149 @@
                                     <input type="text" name="email" id="emailid"
                                            class="form-control input-lg font-14 pull-left" placeholder="Email"/>
                                 </div>
+                            </div>
+
+
+                            <div class="form-group m-t-10 m-b-5 col-md-6">
+                                <label class="col-md-4 control-label">password</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="password" id="password"
+                                           class="form-control input-lg font-14 pull-right"
+                                           placeholder="Password"/>
                                 </div>
+                            </div>
 
 
-                                    <div class="form-group m-t-10 m-b-5 col-md-6">
-                                        <label class="col-md-4 control-label">password</label>
-                                        <div class="col-md-8">
-                                            <input type="text" name="password" id="password"
-                                                   class="form-control input-lg font-14 pull-right"
-                                                   placeholder="Password"/>
-                                        </div>
-                                    </div>
+                            <div class="form-group m-t-10 m-b-5 col-md-6">
+                                <label class="col-md-4 control-label">Address</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="address" id="address"
+                                           class="form-control input-lg font-14 pull-right"
+                                           placeholder="Address"/>
+                                </div>
+                            </div>
 
+                            {{--
+                            <div class="form-group m-t-10 m-b-5 col-md-6">--}}
+                                {{--<label class="col-md-4 control-label">City</label>--}}
+                                {{--
+                                <div class="col-md-8">--}}
+                                    {{--<input type="text" name="city" id="city" --}}
+                                               {{--class="form-control input-lg font-14 pull-left" placeholder="City"/>--}}
+                                    {{--
+                                </div>
+                                --}}
+                                {{--
+                            </div>
+                            --}}
 
-                                    <div class="form-group m-t-10 m-b-5 col-md-6">
-                                        <label class="col-md-4 control-label">Address</label>
-                                        <div class="col-md-8">
-                                            <input type="text" name="address" id="address"
-                                                   class="form-control input-lg font-14 pull-right"
-                                                   placeholder="Address"/>
-                                        </div>
-                                    </div>
+                            {{--
+                            <div class="form-group m-t-10 m-b-5 col-md-6">--}}
+                                {{--<label class="col-md-4 control-label">State</label>--}}
+                                {{--
+                                <div class="col-md-8">--}}
+                                    {{--<input type="text" name="state" id="state" --}}
+                                               {{--class="form-control input-lg font-14 pull-right" --}}
+                                               {{--placeholder="State"/>--}}
+                                    {{--
+                                </div>
+                                --}}
+                                {{--
+                            </div>
+                            --}}
 
-                                    {{--<div class="form-group m-t-10 m-b-5 col-md-6">--}}
-                                        {{--<label class="col-md-4 control-label">City</label>--}}
-                                        {{--<div class="col-md-8">--}}
-                                            {{--<input type="text" name="city" id="city"--}}
-                                                   {{--class="form-control input-lg font-14 pull-left" placeholder="City"/>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-
-                                    {{--<div class="form-group m-t-10 m-b-5 col-md-6">--}}
-                                        {{--<label class="col-md-4 control-label">State</label>--}}
-                                        {{--<div class="col-md-8">--}}
-                                            {{--<input type="text" name="state" id="state"--}}
-                                                   {{--class="form-control input-lg font-14 pull-right"--}}
-                                                   {{--placeholder="State"/>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-
-                                    {{--<div class="form-group m-t-10 m-b-5 col-md-6">--}}
-                                        {{--<label class="col-md-4 control-label">Country</label>--}}
-                                        {{--<div class="col-md-8">--}}
-                                         {{--<input type="text" name="country" id="country"--}}
-                                                   {{--class="form-control input-lg font-14 pull-left"--}}
-                                                   {{--placeholder="Country"/>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-
+                            {{--
+                            <div class="form-group m-t-10 m-b-5 col-md-6">--}}
+                                {{--<label class="col-md-4 control-label">Country</label>--}}
+                                {{--
+                                <div class="col-md-8">--}}
+                                    {{--<input type="text" name="country" id="country" --}}
+                                               {{--class="form-control input-lg font-14 pull-left" --}}
+                                               {{--placeholder="Country"/>--}}
+                                    {{--
+                                </div>
+                                --}}
+                                {{--
+                            </div>
+                            --}}
 
 
                             <div id="divCountry" style="padding:0;" class="form-group m-t-10 m-b-5 col-md-6">
                                 <label class="col-md-4 control-label">Select Country</label>
                                 <div class="col-md-8">
-                                <select name="country1" class="countries form-control mb-5" id="countryId">
-                                    <option value="">Select Country</option>
-                                </select>
-                                <input type="text" name="country" value="" id="country2" hidden/>
-                            </div>
+                                    <select name="country1" class="countries form-control mb-5" id="countryId">
+                                        <option value="">Select Country</option>
+                                    </select>
+                                    <input type="text" name="country" value="" id="country2" hidden/>
                                 </div>
-
+                            </div>
 
 
                             <div id="divState" style="padding:0;" class="form-group m-t-10 m-b-5 col-md-6">
                                 <label class="col-md-4 control-label">Select Country</label>
                                 <div class="col-md-8">
                                     <select name="state1" class="states form-control mb-5" id="stateId">
-                                    <option value="">Select State</option>
-                                </select>
-                                <input type="text" name="state" value="" id="state2" hidden/>
-                            </div>
+                                        <option value="">Select State</option>
+                                    </select>
+                                    <input type="text" name="state" value="" id="state2" hidden/>
                                 </div>
+                            </div>
 
                             <div id="divCity" style="padding:0;" class="form-group m-t-10 m-b-5 col-md-6">
                                 <label class="col-md-4 control-label">Select Country</label>
                                 <div class="col-md-8">
-                                <select name="city1" class="cities form-control mb-5" id="cityId" onchange="setHiddenFields()">
-                                    <option value="">Select City</option>
-                                </select>
-                                <input type="text" name="city" id="city2" value="" hidden/>
-                            </div>
+                                    <select name="city1" class="cities form-control mb-5" id="cityId"
+                                            onchange="setHiddenFields()">
+                                        <option value="">Select City</option>
+                                    </select>
+                                    <input type="text" name="city" id="city2" value="" hidden/>
                                 </div>
+                            </div>
 
-                                     <div class="form-group m-t-10 m-b-5 col-md-6">
-                                        <label class="col-md-4 control-label">Zipcode</label>
-                                        <div class="col-md-8">
-                                            <input type="text" name="zipcode" id="zipcode"
-                                                   class="form-control input-lg font-14 pull-right"
-                                                   placeholder="Zipcode"/>
-                                        </div>
-                                    </div>
+                            <div class="form-group m-t-10 m-b-5 col-md-6">
+                                <label class="col-md-4 control-label">Zipcode</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="zipcode" id="zipcode"
+                                           class="form-control input-lg font-14 pull-right"
+                                           placeholder="Zipcode"/>
+                                </div>
+                            </div>
 
-                                    <div class="form-group m-t-10 m-b-5 col-md-6">
-                                        <label class="col-md-4 control-label">Primary Phone</label>
-                                        <div class="col-md-8">
-                                        <input type="text" name="primary_phone" id="primary_phone"
-                                               class="form-control input-lg font-14 pull-left"
-                                               placeholder="Primary Phone"/>
-                                    </div>
-                                        </div>
+                            <div class="form-group m-t-10 m-b-5 col-md-6">
+                                <label class="col-md-4 control-label">Primary Phone</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="primary_phone" id="primary_phone"
+                                           class="form-control input-lg font-14 pull-left"
+                                           placeholder="Primary Phone"/>
+                                </div>
+                            </div>
 
-                                    <div class="form-group m-t-10 m-b-5 col-md-6">
-                                        <label class="col-md-4 control-label">Alternate Phone</label>
-                                        <div class="col-md-8">
-                                        <input type="text" name="alternate_phone" id="alternate_phone"
-                                               class="form-control input-lg font-14 pull-right"
-                                               placeholder="Alternate Phone"/>
-                                    </div>
-                                        </div>
+                            <div class="form-group m-t-10 m-b-5 col-md-6">
+                                <label class="col-md-4 control-label">Alternate Phone</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="alternate_phone" id="alternate_phone"
+                                           class="form-control input-lg font-14 pull-right"
+                                           placeholder="Alternate Phone"/>
+                                </div>
+                            </div>
 
-                                    <div class="form-group m-t-10 m-b-5 col-md-6">
-                                        <label class="col-md-4 control-label">Status</label>
-                                        <div class="col-md-8">
-                                        <select class="form-control input-lg font-14" id="status1" name="status">
-                                            <option disabled selected> Status</option>
-                                            <option value="1" name="active"> Active</option>
-                                            <option value="0"> Inactive</option>
-                                        </select>
-                                    </div>
-                                        </div>
+                            <div class="form-group m-t-10 m-b-5 col-md-6">
+                                <label class="col-md-4 control-label">Status</label>
+                                <div class="col-md-8">
+                                    <select class="form-control input-lg font-14" id="status1" name="status">
+                                        <option disabled selected> Status</option>
+                                        <option value="1" name="active"> Active</option>
+                                        <option value="0"> Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                                    <div class="form-group col-md-12 m-t-10">
-                                        <div class="pull-right">
-                                            <button type="button" class="btn btn-main" id="userjoin">Add User</button>
-                                            <button type="button" class="btn btn-dark add-toggle">Cancel</button>
-                                        </div>
-                                    </div>
+                            <div class="form-group col-md-12 m-t-10">
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-main" id="userjoin">Add User</button>
+                                    <button type="button" class="btn btn-dark add-toggle">Cancel</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -653,10 +670,10 @@
 
 <script>
 
-    function setHiddenFields(){
-        var a=document.getElementById("countryId").options[document.getElementById("countryId").selectedIndex ].text;
-        var b=document.getElementById("stateId").options[document.getElementById("stateId").selectedIndex ].text;
-        var c=document.getElementById("cityId").options[document.getElementById("cityId").selectedIndex ].text;
+    function setHiddenFields() {
+        var a = document.getElementById("countryId").options[document.getElementById("countryId").selectedIndex].text;
+        var b = document.getElementById("stateId").options[document.getElementById("stateId").selectedIndex].text;
+        var c = document.getElementById("cityId").options[document.getElementById("cityId").selectedIndex].text;
 
         $('#country2').val(a);
         $('#state2').val(b);

@@ -36,7 +36,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Group Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="feature_name" value="{{old('feature_name')}}">
+                                    <input type="text" class="form-control" name="feature_name"
+                                           value="{{old('feature_name')}}">
                                     <span class="error">{!! $errors->first('feature_name') !!}</span>
                                 </div>
                             </div>
@@ -45,7 +46,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Description</label>
                                 <div class="col-sm-4">
-                                    <textarea type="text" class="form-control" name="full_description" value="{{old('full_description')}}"></textarea>
+                                    <textarea type="text" class="form-control" name="full_description"
+                                              value="{{old('full_description')}}"></textarea>
                                     <span class="error">{!! $errors->first('full_description') !!}</span>
                                 </div>
                             </div>
@@ -76,9 +78,11 @@
                                         <li data-jstree='{"opened":true}'>
                                             <?php echo $array[$keyArray]->category_name;
                                             $catId = $array[$keyArray]->category_id; ?>
-                                            <span class="catinputdivs" data-id="<?php echo $array[$keyArray]->category_id; ?>" data-checked="@if(isset(old('for_categories')[$catId]))
-                                                    checked
-                                                    @endif">
+                                            <span class="catinputdivs"
+                                                  data-id="<?php echo $array[$keyArray]->category_id; ?>"
+                                                  data-checked="@if(isset(old('for_categories')[$catId]))
+                                                          checked
+                                                          @endif">
                                             </span>
                                             <?php treeView($array, $array[$keyArray]->category_id); ?>
                                         </li>
@@ -97,7 +101,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Display on features tab</label>
                                 <div class="col-sm-4">
-                                    <input type="checkbox" class="form-control" name="display_on_product" @if(old('display_on_product') == "on") checked @endif/>
+                                    <input type="checkbox" class="form-control" name="display_on_product"
+                                           @if(old('display_on_product') == "on") checked @endif/>
                                     <span class="error">{!! $errors->first('display_on_product') !!}</span>
                                 </div>
                             </div>
@@ -106,7 +111,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Display on catalog</label>
                                 <div class="col-sm-4">
-                                    <input type="checkbox" class="form-control" name="display_on_catalog" @if(old('display_on_catalog') == "on") checked @endif/>
+                                    <input type="checkbox" class="form-control" name="display_on_catalog"
+                                           @if(old('display_on_catalog') == "on") checked @endif/>
                                     <span class="error">{!! $errors->first('display_on_catalog') !!}</span>
                                 </div>
                             </div>

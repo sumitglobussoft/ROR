@@ -60,16 +60,20 @@
                                         value="nestable"><i
                                             class="fa fa-plus"></i> Permission
 
-                                </button> <h4>Click On Icon To Assign Permissions</h4>
+                                </button>
+                                <h4>Click On Icon To Assign Permissions</h4>
                             </div>
                             </br>
                             <div class="dd" id="nestable" style="display:none">
                                 <ol class="dd-list">
                                     @foreach($permissionlist as $key => $val)
-                                    <li class="dd-item" data-id="{{$val->permission_id}}">
-                                        <div class="dd-handle"><input type="checkbox" name="permitcheck[]" id="permitcheckbox{{$val->permission_id}}" value="{{$val->permission_id}}">{{$val->permission_details}}</div>
-                                    </li>
-                                        @endforeach
+                                        <li class="dd-item" data-id="{{$val->permission_id}}">
+                                            <div class="dd-handle"><input type="checkbox" name="permitcheck[]"
+                                                                          id="permitcheckbox{{$val->permission_id}}"
+                                                                          value="{{$val->permission_id}}">{{$val->permission_details}}
+                                            </div>
+                                        </li>
+                                    @endforeach
                                 </ol>
 
                             </div>
@@ -100,20 +104,20 @@
                 $("#" + divname).toggle();
             });
 
-          //  $(document.body).on("change", 'input:checkbox[name="permitcheck[]"]', function() {
-              //  $('.row-detail').attr('disabled',true);
-              //  var permission = $(this).val();
-              //  alert(permission);
-             //   $(this).parent().toggleClass('checked');
-             //   alert($(this).parent.toggleClass('checked'));
-               // alert($(this).checked);
+            //  $(document.body).on("change", 'input:checkbox[name="permitcheck[]"]', function() {
+            //  $('.row-detail').attr('disabled',true);
+            //  var permission = $(this).val();
+            //  alert(permission);
+            //   $(this).parent().toggleClass('checked');
+            //   alert($(this).parent.toggleClass('checked'));
+            // alert($(this).checked);
 //                vals = $('input:checkbox[name="permitcheck[]"]').filter(':checked').map(function() {
 //                    return this.value;
 //                }).get();
 //          alert(vals);
 
-                //$('.saverow').html('without saving you cant move to other');
-         //   });
+            //$('.saverow').html('without saving you cant move to other');
+            //   });
 
 
         });

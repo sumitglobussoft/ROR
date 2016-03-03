@@ -173,7 +173,8 @@
                                 {{--<li role="presentation"><a href="/admin/control-panel"><i class="fa fa-cogs"></i>Control Panel</a></li>--}}
                                 {{--<li role="presentation"><a href="/admin/cacheClear"><i class="fa fa-trash "></i>Clear cache</a></li>--}}
                                 {{--<li role="presentation"><a href="/lock-screen"><i class="fa fa-lock"></i>Lock screen</a></li>--}}
-                                <li role="presentation"><a href="/admin/add-new-language"><i class="fa fa-cogs"></i>Languages</a></li>
+                                <li role="presentation"><a href="/admin/add-new-language"><i class="fa fa-cogs"></i>Languages</a>
+                                </li>
                                 <li role="presentation"><a href="/admin/logout"><i class="fa fa-sign-out m-r-xs"></i>Log
                                         out</a></li>
                             </ul>
@@ -221,58 +222,58 @@
                     </a>
                 </li>
                 {{--<li class="droplink">--}}
-                    {{--<a class="waves-effect waves-button">--}}
-                        {{--<span class="menu-icon glyphicon glyphicon-user"></span>--}}
+                {{--<a class="waves-effect waves-button">--}}
+                {{--<span class="menu-icon glyphicon glyphicon-user"></span>--}}
 
-                        {{--<p>Suppliers</p> <span class="arrow"></span>--}}
-                    {{--</a>--}}
-                    {{--<ul class="sub-menu">--}}
-                        {{--<li><a href="/admin/pending-supplier">Pending requests</a></li>--}}
-                        {{--<li><a href="/admin/available-supplier">Available suppliers</a></li>--}}
-                        {{--<li><a href="/admin/add-new-supplier">Add New suppliers</a></li>--}}
-                        {{--<li><a href="/admin/rejected-suppliers">Rejected suppliers</a></li>--}}
-                        {{--<li><a href="/admin/deleted-supplier">Deleted suppliers</a></li>--}}
-                    {{--</ul>--}}
+                {{--<p>Suppliers</p> <span class="arrow"></span>--}}
+                {{--</a>--}}
+                {{--<ul class="sub-menu">--}}
+                {{--<li><a href="/admin/pending-supplier">Pending requests</a></li>--}}
+                {{--<li><a href="/admin/available-supplier">Available suppliers</a></li>--}}
+                {{--<li><a href="/admin/add-new-supplier">Add New suppliers</a></li>--}}
+                {{--<li><a href="/admin/rejected-suppliers">Rejected suppliers</a></li>--}}
+                {{--<li><a href="/admin/deleted-supplier">Deleted suppliers</a></li>--}}
+                {{--</ul>--}}
                 {{--</li>--}}
 
                 {{--<li class="droplink">--}}
-                    {{--<a class="waves-effect waves-button">--}}
-                        {{--<span class="menu-icon glyphicon glyphicon-envelope"></span>--}}
+                {{--<a class="waves-effect waves-button">--}}
+                {{--<span class="menu-icon glyphicon glyphicon-envelope"></span>--}}
 
-                        {{--<p>Customers</p> <span class="arrow"></span>--}}
-                    {{--</a>--}}
-                    {{--<ul class="sub-menu">--}}
-                        {{--<li><a href="/admin/pending-customer">Pending Customers</a></li>--}}
-                        {{--<li><a href="/admin/available-customer">Available Customers</a></li>--}}
-                        {{--<li><a href="/admin/deleted-customer">Deleted Customers</a></li>--}}
-                    {{--</ul>--}}
+                {{--<p>Customers</p> <span class="arrow"></span>--}}
+                {{--</a>--}}
+                {{--<ul class="sub-menu">--}}
+                {{--<li><a href="/admin/pending-customer">Pending Customers</a></li>--}}
+                {{--<li><a href="/admin/available-customer">Available Customers</a></li>--}}
+                {{--<li><a href="/admin/deleted-customer">Deleted Customers</a></li>--}}
+                {{--</ul>--}}
                 {{--</li>--}}
 
                 {{--<li class="droplink">--}}
-                    {{--<a class="waves-effect waves-button">--}}
-                        {{--<span class="menu-icon glyphicon glyphicon-envelope"></span>--}}
+                {{--<a class="waves-effect waves-button">--}}
+                {{--<span class="menu-icon glyphicon glyphicon-envelope"></span>--}}
 
-                        {{--<p>Buyers</p> <span class="arrow"></span>--}}
-                    {{--</a>--}}
-                    {{--<ul class="sub-menu">--}}
-                        {{--<li><a href="/admin/pending-users">Pending Buyers</a></li>--}}
-                        {{--<li><a href="/admin/available-users">Available Buyers</a></li>--}}
-                        {{--<li><a href="/admin/deleted-users">Deleted Buyers</a></li>--}}
-                    {{--</ul>--}}
+                {{--<p>Buyers</p> <span class="arrow"></span>--}}
+                {{--</a>--}}
+                {{--<ul class="sub-menu">--}}
+                {{--<li><a href="/admin/pending-users">Pending Buyers</a></li>--}}
+                {{--<li><a href="/admin/available-users">Available Buyers</a></li>--}}
+                {{--<li><a href="/admin/deleted-users">Deleted Buyers</a></li>--}}
+                {{--</ul>--}}
                 {{--</li>--}}
 
                 {{--<li class="droplink">--}}
-                    {{--<a class="waves-effect waves-button">--}}
-                        {{--<span class="menu-icon glyphicon glyphicon-envelope"></span>--}}
+                {{--<a class="waves-effect waves-button">--}}
+                {{--<span class="menu-icon glyphicon glyphicon-envelope"></span>--}}
 
-                        {{--<p>Manager</p> <span class="arrow"></span>--}}
-                    {{--</a>--}}
-                    {{--<ul class="sub-menu">--}}
-                        {{--<li><a href="/admin/add-new-manager">Add New Manager</a></li>--}}
-                        {{--<li><a href="/admin/pending-manager">Pending Manager</a></li>--}}
-                        {{--<li><a href="/admin/available-manager">Available Manager</a></li>--}}
-                        {{--<li><a href="/admin/deleted-manager">Deleted Manager</a></li>--}}
-                    {{--</ul>--}}
+                {{--<p>Manager</p> <span class="arrow"></span>--}}
+                {{--</a>--}}
+                {{--<ul class="sub-menu">--}}
+                {{--<li><a href="/admin/add-new-manager">Add New Manager</a></li>--}}
+                {{--<li><a href="/admin/pending-manager">Pending Manager</a></li>--}}
+                {{--<li><a href="/admin/available-manager">Available Manager</a></li>--}}
+                {{--<li><a href="/admin/deleted-manager">Deleted Manager</a></li>--}}
+                {{--</ul>--}}
                 {{--</li>--}}
 
                 <li class="droplink">
@@ -343,36 +344,36 @@
 <script src="/assets/js/modern.js"></script>
 
 {{--<script>--}}
-    {{--//FOR DESKTOP NOTIFICATION--}}
-    {{--//request permission on page load--}}
-    {{--document.addEventListener('DOMContentLoaded', function () {--}}
-        {{--if (Notification.permission !== "granted")--}}
-            {{--Notification.requestPermission();--}}
-    {{--});--}}
+{{--//FOR DESKTOP NOTIFICATION--}}
+{{--//request permission on page load--}}
+{{--document.addEventListener('DOMContentLoaded', function () {--}}
+{{--if (Notification.permission !== "granted")--}}
+{{--Notification.requestPermission();--}}
+{{--});--}}
 
-    {{--function notifyMe() {--}}
-        {{--if (!Notification) {--}}
-            {{--alert('Desktop notifications not available in your browser. Try Chromium.');--}}
-            {{--return;--}}
-        {{--}--}}
-        {{--if (Notification.permission !== "granted")--}}
-            {{--Notification.requestPermission();--}}
-        {{--else {--}}
-            {{--var notification = new Notification('Execution time in sec', {--}}
+{{--function notifyMe() {--}}
+{{--if (!Notification) {--}}
+{{--alert('Desktop notifications not available in your browser. Try Chromium.');--}}
+{{--return;--}}
+{{--}--}}
+{{--if (Notification.permission !== "granted")--}}
+{{--Notification.requestPermission();--}}
+{{--else {--}}
+{{--var notification = new Notification('Execution time in sec', {--}}
 {{--//                icon: 'path/to/icon',--}}
-                {{--body: "Your notification",--}}
-                {{--body: "{{number_format((microtime(true) - \Illuminate\Support\Facades\Session::get('startTime')),5)}}",--}}
+{{--body: "Your notification",--}}
+{{--body: "{{number_format((microtime(true) - \Illuminate\Support\Facades\Session::get('startTime')),5)}}",--}}
 
-            {{--});--}}
-            {{--setTimeout(notification.close.bind(notification), 2000);//Close notification--}}
-            {{--notification.onclick = function () {--}}
-                {{--return false;--}}
+{{--});--}}
+{{--setTimeout(notification.close.bind(notification), 2000);//Close notification--}}
+{{--notification.onclick = function () {--}}
+{{--return false;--}}
 {{--//                window.open(window.location.host);--}}
-            {{--};--}}
-        {{--}--}}
-    {{--}--}}
-    {{--window.onload = notifyMe;--}}
-    {{--<?php \Illuminate\Support\Facades\Session::forget('startTime'); ?>--}}
+{{--};--}}
+{{--}--}}
+{{--}--}}
+{{--window.onload = notifyMe;--}}
+{{--<?php \Illuminate\Support\Facades\Session::forget('startTime'); ?>--}}
 {{--</script>--}}
 </body>
 </html>

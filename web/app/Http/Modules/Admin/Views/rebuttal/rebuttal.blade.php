@@ -53,9 +53,9 @@
                                         <form role="form" method="post" enctype="multipart/form-data">
                                             <p>If you have a complaint about the company or person mentioned, you may
                                                 want to file your own report. To file a new Ripoff Report please <a
-                                                        >CLICK HERE</a>. Please note that all
+                                                >CLICK HERE</a>. Please note that all
                                                 reports, updates and rebuttals must comply with RoR Report's <a
-                                                        >Terms of Service</a>.</p>
+                                                >Terms of Service</a>.</p>
 
                                             <p>If you want to file a rebuttal / update as a comment to an existing
                                                 report, please continue with this form.</p>
@@ -205,7 +205,7 @@
                                                 <label class="col-xs-3 control-label">City :</label>
                                                 <div class="col-xs-5">
                                                     <input type="text" class="form-control" name="city" id="city"
-                                                           />
+                                                    />
                                                 </div>
                                                 <div class="col-xs-4">
                                                     &nbsp;
@@ -215,7 +215,7 @@
                                                 <label class="col-xs-3 control-label">Country :</label>
                                                 <div class="col-xs-5">
                                                     <input type="text" class="form-control" name="country" id="country"
-                                                           value="" />
+                                                           value=""/>
                                                 </div>
                                                 <div class="col-xs-4">
                                                     &nbsp;
@@ -252,7 +252,8 @@
                             <div class="tab-pane fade" id="3">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form class="" role="form" action="/admin/rebuttal/step3" method="post"  enctype="multipart/form-data">
+                                        <form class="" role="form" action="/admin/rebuttal/step3" method="post"
+                                              enctype="multipart/form-data">
                                             <h3 class="text-danger">(Optional) Add documents to your RoR Report</h3>
                                             <legend class="heading-report">Please ensure that any photos or videos that
                                                 you are uploading do not contain any of the generally prohibited items
@@ -303,13 +304,13 @@
                                                     <label class="col-xs-3 control-label">Photo File :</label>
                                                     <div class="col-xs-5">
                                                         <input type="file" class="form-control" name="picture"
-                                                               style="height:inherit;" />
+                                                               style="height:inherit;"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-xs-3 control-label">Caption :</label>
                                                     <div class="col-xs-5">
-                                                        <textarea class="form-control" name="desp" ></textarea>
+                                                        <textarea class="form-control" name="desp"></textarea>
                                                         <br/>
                                                         <button type="submit" class="btn btn-primary">Upload your
                                                             Image
@@ -337,26 +338,30 @@
                                             </div>
 
 
-
                                             <div>
                                                 <table border="1" style="padding:10px">
 
                                                     <tr>
 
-                                                        <Td>Upload  Video</td></tr>
+                                                        <Td>Upload Video</td>
+                                                    </tr>
 
-                                                    <Tr><td><input type="file" name="fileToUpload" id="name"/></td></tr>
+                                                    <Tr>
+                                                        <td><input type="file" name="fileToUpload" id="name"/></td>
+                                                    </tr>
 
-                                                    <tr><td>
+                                                    <tr>
+                                                        <td>
 
                                                             <input type="submit" value="Uplaod Video" name="upd"/>
 
                                                             {{--<input type="submit" value="Display Video" name="disp"/>--}}
 
-                                                        </td></tr>
+                                                        </td>
+                                                    </tr>
 
                                                 </table>
-                                                </div>
+                                            </div>
 
 
                                             <div id="video_tab" class="upload_tab">
@@ -367,20 +372,23 @@
                                                     <div class="form-group m-top-lg row">
                                                         <label class="col-xs-3 control-label">images File :</label>
                                                         <div class="col-xs-5">
-                                                            <input type="file" id="image" class="form-control" name="manage_image"
-                                                                   style="height:inherit;" >
+                                                            <input type="file" id="image" class="form-control"
+                                                                   name="manage_image"
+                                                                   style="height:inherit;">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-xs-3 control-label">Caption :</label>
                                                         <div class="col-xs-5">
-                                                            <textarea class="form-control" name="caption_name" ></textarea>
+                                                            <textarea class="form-control"
+                                                                      name="caption_name"></textarea>
                                                             <br/>
                                                             <button type="submit" class="btn btn-primary">Upload your
                                                                 images
                                                             </button>
                                                             <br/>
-                                                            <small><i>Supported files include: png, jpg, jpeg, gif, tif </i>
+                                                            <small><i>Supported files include: png, jpg, jpeg, gif,
+                                                                    tif </i>
                                                             </small>
                                                             <small><i>If you dont see your file format please email <a
                                                                             href="javascript:;"> support@rorreport
@@ -393,10 +401,10 @@
                                                 </div>
 
 
-                                        <div>
-                                            <strong class="text-danger">Just click continue if you don't have
-                                                anything to upload </strong>
-                                            </div>
+                                                <div>
+                                                    <strong class="text-danger">Just click continue if you don't have
+                                                        anything to upload </strong>
+                                                </div>
                                             </div>
 
 

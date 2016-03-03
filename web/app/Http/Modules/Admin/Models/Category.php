@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Mockery\CountValidator\Exception;
 
-class Category extends Model {
+class Category extends Model
+{
 
     private static $_instance = null;
     protected $table = 'category';
@@ -15,18 +16,20 @@ class Category extends Model {
 
 //    protected $hidden = ['password', 'remember_token'];
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (!is_object(self::$_instance))  //or if( is_null(self::$_instance) ) or if( self::$_instance == null )
             self::$_instance = new Category();
         return self::$_instance;
     }
 
-    public function createCategory() {
+    public function createCategory()
+    {
         if (func_num_args() > 0) {
             $data = func_get_arg(0);
             try {
                 $result = DB::table("category")
-                        ->insert($data);
+                    ->insert($data);
             } catch (QueryException $e) {
                 echo $e;
             }
@@ -36,28 +39,13 @@ class Category extends Model {
         }
     }
 
-    public function getCategory() {
-        try {
-            $result = DB::table("category")                    
-                    ->leftjoin('user_meta', 'user_meta.user_id', '=', 'category.user_id')
-                    ->select('user_meta.display_name', 'category.*')
-                    ->get();
-        } catch (QueryException $e) {
-            echo $e;
-            return 0;
-        }
-        if ($result)
-            return $result;
-        else
-            return 0;
-    }
-    
-     public function getActiveCategory() {
+    public function getCategory()
+    {
         try {
             $result = DB::table("category")
-                    ->where('status', 1)
-                    ->select()
-                    ->get();
+                ->leftjoin('user_meta', 'user_meta.user_id', '=', 'category.user_id')
+                ->select('user_meta.display_name', 'category.*')
+                ->get();
         } catch (QueryException $e) {
             echo $e;
             return 0;
@@ -67,43 +55,62 @@ class Category extends Model {
         else
             return 0;
     }
-    public function getActiveSubCategory() {
+
+    public function getActiveCategory()
+    {
+        try {
+            $result = DB::table("category")
+                ->where('status', 1)
+                ->select()
+                ->get();
+        } catch (QueryException $e) {
+            echo $e;
+            return 0;
+        }
+        if ($result)
+            return $result;
+        else
+            return 0;
+    }
+
+    public function getActiveSubCategory()
+    {
         if (func_num_args() > 0) {
             $categoryid = func_get_arg(0);
-        try {
-            $result = DB::table("subcategory")
+            try {
+                $result = DB::table("subcategory")
                     ->where('status', 1)
                     ->where('category_id', $categoryid)
                     ->select()
                     ->get();
-        } catch (QueryException $e) {
-            echo $e;
+            } catch (QueryException $e) {
+                echo $e;
+                return 0;
+            }
+            if ($result)
+                return $result;
+            else
+                return 0;
+        } else {
             return 0;
         }
-        if ($result)
-            return $result;
-        else
-            return 0;
     }
-    else{
-        return 0;
-    }
-    }
-    
-        public function updateCategory() {
+
+    public function updateCategory()
+    {
         if (func_num_args() > 0) {
             $categoryid = func_get_arg(0);
             $data = func_get_arg(1);
             try {
                 $result = DB::table("category")
-                         ->where('category_id', $categoryid)
-                          ->update($data);
+                    ->where('category_id', $categoryid)
+                    ->update($data);
             } catch (QueryException $e) {
                 echo $e;
             }
 //            print_r($result);die;
-            if($result)
-            return $result;
+            if ($result)
+                return $result;
             else
                 return 0;
         } else {
@@ -111,33 +118,36 @@ class Category extends Model {
         }
     }
 
-           public function deleteCategory() {
+    public function deleteCategory()
+    {
         if (func_num_args() > 0) {
             $categoryid = func_get_arg(0);
             try {
-               $result = DB::delete("DELETE a.*, b.* FROM category a LEFT JOIN subcategory b ON b.category_id = a.category_id WHERE a.category_id = ".$categoryid);
+                $result = DB::delete("DELETE a.*, b.* FROM category a LEFT JOIN subcategory b ON b.category_id = a.category_id WHERE a.category_id = " . $categoryid);
 //                $result = DB::table("category")
 //                          ->leftjoin('subcategory', 'category.category_id', '=', 'subcategory.category_id')
 //                         ->where('category.category_id', $categoryid)
 //                          ->delete();
-                     
+
             } catch (QueryException $e) {
                 echo $e;
             }
-            if($result)
-            return $result;
+            if ($result)
+                return $result;
             else
                 return 0;
         } else {
             return 0;
         }
     }
-     public function createSubCategory() {
+
+    public function createSubCategory()
+    {
         if (func_num_args() > 0) {
             $data = func_get_arg(0);
             try {
                 $result = DB::table("subcategory")
-                        ->insert($data);
+                    ->insert($data);
             } catch (QueryException $e) {
                 echo $e;
             }
@@ -146,95 +156,101 @@ class Category extends Model {
             return 0;
         }
     }
-    
-      public function getSubCategory() {
-          if (func_num_args() > 0) {
+
+    public function getSubCategory()
+    {
+        if (func_num_args() > 0) {
             $categoryid = func_get_arg(0);
-        try {
-            $result = DB::table("subcategory")                    
+            try {
+                $result = DB::table("subcategory")
                     ->leftjoin('user_meta', 'user_meta.user_id', '=', 'subcategory.user_id')
                     ->leftjoin('category', 'category.category_id', '=', 'subcategory.category_id')
                     ->where('subcategory.category_id', $categoryid)
-                    ->select('user_meta.display_name','category.category_name', 'subcategory.*')
+                    ->select('user_meta.display_name', 'category.category_name', 'subcategory.*')
                     ->get();
-        } catch (QueryException $e) {
-            echo $e;
+            } catch (QueryException $e) {
+                echo $e;
+                return 0;
+            }
+            if ($result)
+                return $result;
+            else
+                return 0;
+        } else {
             return 0;
         }
-        if ($result)
-            return $result;
-        else
-            return 0;
-          }
-          else{
-             return 0; 
-          }
     }
-    
-    public function getCategoryById() {
-          if (func_num_args() > 0) {
+
+    public function getCategoryById()
+    {
+        if (func_num_args() > 0) {
             $categoryid = func_get_arg(0);
-        try {
-            $result = DB::table("category")                    
+            try {
+                $result = DB::table("category")
                     ->where('category.category_id', $categoryid)
                     ->select('category.category_name')
                     ->first();
-        } catch (QueryException $e) {
-            echo $e;
+            } catch (QueryException $e) {
+                echo $e;
+                return 0;
+            }
+            if ($result)
+                return $result;
+            else
+                return 0;
+        } else {
             return 0;
         }
-        if ($result)
-            return $result;
-        else
-            return 0;
-          }
-          else{
-             return 0; 
-          }
     }
-        public function updateSubCategory() {
+
+    public function updateSubCategory()
+    {
         if (func_num_args() > 0) {
             $subcategoryid = func_get_arg(0);
             $data = func_get_arg(1);
             try {
                 $result = DB::table("subcategory")
-                         ->where('subcategory_id', $subcategoryid)
-                          ->update($data);
+                    ->where('subcategory_id', $subcategoryid)
+                    ->update($data);
             } catch (QueryException $e) {
                 echo $e;
             }
 //            print_r($result);die;
-            if($result)
-            return $result;
+            if ($result)
+                return $result;
             else
                 return 0;
         } else {
             return 0;
         }
     }
-    public function deleteSubCategory() {
+
+    public function deleteSubCategory()
+    {
         if (func_num_args() > 0) {
             $categoryid = func_get_arg(0);
             try {
                 $result = DB::table("subcategory")
-                         ->where('subcategory_id', $categoryid)
-                          ->delete();
+                    ->where('subcategory_id', $categoryid)
+                    ->delete();
             } catch (QueryException $e) {
                 echo $e;
             }
 //            print_r($result);die;
-            if($result)
-            return $result;
+            if ($result)
+                return $result;
             else
                 return 0;
         } else {
             return 0;
         }
     }
-    public function getUserWhere($email, $password) {
+
+    public function getUserWhere($email, $password)
+    {
         $result = Users::where('email', $email)
-                ->where('password', bcrypt($password))
-                ->first();
+            ->where('password', bcrypt($password))
+            ->first();
 //        $result = User::all();
         return $result;
     }
@@ -248,9 +264,10 @@ class Category extends Model {
     /*
      * TEST FUNCTION
      */
-    public function getUserByColumnConditionAndValue($columnName, $condition, $coulumnValue) {
+    public function getUserByColumnConditionAndValue($columnName, $condition, $coulumnValue)
+    {
         $result = Users::where($columnName, $condition, $coulumnValue)
-                ->first();
+            ->first();
         return $result;
     }
 
@@ -259,21 +276,24 @@ class Category extends Model {
      * @return mixed
      * @author Akash M. Pai <akashpai@globussoft.com>
      */
-    public function getUserById($userId) {
+    public function getUserById($userId)
+    {
         $result = Users::whereId($userId)->first();
         return $result;
     }
 
-    public function temp() {
-        
+    public function temp()
+    {
+
     }
 
-    public function getAvailableUserDetails() {
+    public function getAvailableUserDetails()
+    {
 
         try {
             $result = Users::where('role', 1)
-                    ->select(['id', 'username', 'email', 'created_at', 'updated_at', 'status'])
-                    ->get();
+                ->select(['id', 'username', 'email', 'created_at', 'updated_at', 'status'])
+                ->get();
 
             return $result;
         } catch (\Exception $e) {
@@ -281,7 +301,8 @@ class Category extends Model {
         }
     }
 
-    public function getAvailableSupplierDetails($where, $selectedColumns = ['*']) {
+    public function getAvailableSupplierDetails($where, $selectedColumns = ['*'])
+    {
         try {
             $result = Users::whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
 //                ->join('location','location.location_type', '=', 'usersmeta.state')
@@ -292,9 +313,9 @@ class Category extends Model {
 //                    $join->on('location.location_id', '=', 'usersmeta.country');
 //                })
 //                ->whereRaw($status['rawQuery'], isset($status['bindParams']) ? $status['bindParams'] : array())
-                    ->select(['users.id', 'users.username', 'users.email', 'users.created_at', 'users.updated_at', 'users.status'])
+                ->select(['users.id', 'users.username', 'users.email', 'users.created_at', 'users.updated_at', 'users.status'])
 //                ->select(['usersmeta.*','location.*'])
-                    ->get();
+                ->get();
 
             return $result;
         } catch (\Exception $e) {
@@ -310,14 +331,15 @@ class Category extends Model {
      * @author Vini
      * @uses Authentication
      */
-    public function updateUserWhere() {
+    public function updateUserWhere()
+    {
 
         if (func_num_args() > 0) {
             $data = func_get_arg(0);
             $where = func_get_arg(1);
             try {
                 $result = Users::whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
-                        ->update($data);
+                    ->update($data);
                 return $result;
             } catch (\Exception $e) {
                 return $e->getMessage();
@@ -340,9 +362,10 @@ class Category extends Model {
      * @author Vini
      * @uses Delete User
      */
-    public function deleteUserDetails($where) {
+    public function deleteUserDetails($where)
+    {
         $sql = Users::whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
-                ->delete();
+            ->delete();
         if ($sql) {
             return $sql;
         } else {
@@ -350,7 +373,8 @@ class Category extends Model {
         }
     }
 
-    public function updateUserInfo() {
+    public function updateUserInfo()
+    {
 
         if (func_num_args() > 0) {
             $data = func_get_arg(0);
@@ -358,7 +382,7 @@ class Category extends Model {
             try {
 
                 $result = Users::where('id', $where)
-                        ->update($data);
+                    ->update($data);
             } catch (\Exception $e) {
                 return $e->getMessage();
             }
@@ -372,12 +396,13 @@ class Category extends Model {
         }
     }
 
-    public function getPendingUserDetails($where) {//, $status)
+    public function getPendingUserDetails($where)
+    {//, $status)
         try {
             $result = Users::whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
 //                ->whereRaw($status['rawQuery'], isset($status['bindParams']) ? $status['bindParams'] : array())
-                    ->select(['id', 'username', 'email', 'created_at', 'updated_at', 'status'])
-                    ->get();
+                ->select(['id', 'username', 'email', 'created_at', 'updated_at', 'status'])
+                ->get();
 
             return $result;
         } catch (\Exception $e) {
@@ -385,13 +410,14 @@ class Category extends Model {
         }
     }
 
-    public function getDeletedUserDetails($where, $status) {
+    public function getDeletedUserDetails($where, $status)
+    {
 
         try {
             $result = Users::whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
-                    ->whereRaw($status['rawQuery'], isset($status['bindParams']) ? $status['bindParams'] : array())
-                    ->select(['id', 'username', 'email', 'created_at', 'updated_at', 'status'])
-                    ->get();
+                ->whereRaw($status['rawQuery'], isset($status['bindParams']) ? $status['bindParams'] : array())
+                ->select(['id', 'username', 'email', 'created_at', 'updated_at', 'status'])
+                ->get();
 
             return $result;
         } catch (\Exception $e) {
@@ -399,26 +425,28 @@ class Category extends Model {
         }
     }
 
-    public function getUserInfo($where) {
+    public function getUserInfo($where)
+    {
 
         try {
             $result = Users::whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
-                    ->select()
-                    ->get();
+                ->select()
+                ->get();
             return $result;
         } catch (QueryException $e) {
             echo $e;
         }
     }
 
-    public function getAvailableManagerDetails($where) {
+    public function getAvailableManagerDetails($where)
+    {
 
         try {
             $result = Users::whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
-                    ->join('permission_user_relation', 'users.id', '=', 'permission_user_relation.user_id')
-                    //   ->join('permissions', 'permission_user_relation.permission_ids','=','permissions.permission_id')
-                    ->select(['id', 'username', 'email', 'created_at', 'updated_at', 'status'])
-                    ->get();
+                ->join('permission_user_relation', 'users.id', '=', 'permission_user_relation.user_id')
+                //   ->join('permissions', 'permission_user_relation.permission_ids','=','permissions.permission_id')
+                ->select(['id', 'username', 'email', 'created_at', 'updated_at', 'status'])
+                ->get();
 
             return $result;
         } catch (\Exception $e) {
@@ -426,23 +454,20 @@ class Category extends Model {
         }
     }
 
-    public function getUserInfoById($where, $selectedColumns = ['*']) {
+    public function getUserInfoById($where, $selectedColumns = ['*'])
+    {
 
         try {
             $result = DB::table($this->table)
-                    ->whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
-                    ->join('permission_user_relation', 'permission_user_relation.user_id', '=', 'users.id')
-                    ->select($selectedColumns)
-                    ->first();
+                ->whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
+                ->join('permission_user_relation', 'permission_user_relation.user_id', '=', 'users.id')
+                ->select($selectedColumns)
+                ->first();
             return $result;
         } catch (\Exception $e) {
             return $e->getMessage();
         }
     }
-
-
-
-
 
 
     public function getActiveSubCategoryById()
@@ -463,11 +488,9 @@ class Category extends Model {
                 return $result;
             else
                 return 0;
-        }
-        else{
+        } else {
             return 0;
         }
-
 
 
     }

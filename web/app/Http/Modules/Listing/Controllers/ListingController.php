@@ -59,8 +59,7 @@ class ListingController extends Controller
                     echo '<pre>';
                     print_r($resultByKey);
                     die;
-                 }
-                else{
+                } else {
                     return redirect()->back()->with('succmsg', 'No Listing Found.');
                 }
             } elseif ($where) {
@@ -78,9 +77,10 @@ class ListingController extends Controller
         }
         return view('Listing.Views.listing.listing');
     }
+
     public function demo()
     {
-          return 1;
+        return 1;
     }
 
     public function listingAjaxHandler(Request $request)
@@ -157,7 +157,9 @@ class ListingController extends Controller
             return redirect()->back()->with('succmsg', 'No Listing Found.');
         }
     }
-    public function captcha(){
+
+    public function captcha()
+    {
         return view('Listing.Views.listing.captcha');
 
     }
@@ -165,18 +167,16 @@ class ListingController extends Controller
     public function pegination(Request $request)
     {
         $letter = $request['letter'];
-        if($letter){
+        if ($letter) {
             $objgetListing = new Business();
-            $Resultbusinessbyletter =$objgetListing->GetBusinessByName($letter);
+            $Resultbusinessbyletter = $objgetListing->GetBusinessByName($letter);
 //            print_r($Resultbusinessbyletter);
 //            die;
-            if($Resultbusinessbyletter){
+            if ($Resultbusinessbyletter) {
                 return view('Listing.Views.listing.pegination', ['Resultbusinessbyletter' => $Resultbusinessbyletter]);
-            }
-            else{
+            } else {
                 echo 'error';
             }
-
 
 
         }

@@ -60,6 +60,4 @@ class Users extends Model implements AuthenticatableContract,
     }
 
 
-
-
 }

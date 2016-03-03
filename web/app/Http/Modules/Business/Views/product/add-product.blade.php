@@ -24,12 +24,13 @@
                        class="col-sm-6 control-label dark_greyrad pull-left labeleft">Information </label>
                 <div class="panel panel-default">
                     <div class="panel-body form-horizontal payment-form">
-                            <div class="control-group">
-                                <label class="control-label cm-required" for="product_description_product">Name</label>
-                                <div class="controls">
-                                    <input id="product_description_product" class="input-large" type="text" value="" size="55" name="" form="form">
-                                </div>
+                        <div class="control-group">
+                            <label class="control-label cm-required" for="product_description_product">Name</label>
+                            <div class="controls">
+                                <input id="product_description_product" class="input-large" type="text" value=""
+                                       size="55" name="" form="form">
                             </div>
+                        </div>
 
                     </div>
                     <div class="col-md-6">
@@ -37,7 +38,8 @@
                             </br>
                             <label class="col-md-12">Choose Vendor</label>
                             <div class="col-md-12">
-                                <select class="form-control select2_store" data-placeholder="Select a store..." name="selectstore" id="selectstore">
+                                <select class="form-control select2_store" data-placeholder="Select a store..."
+                                        name="selectstore" id="selectstore">
                                     <option value=""></option>
 
                                 </select>

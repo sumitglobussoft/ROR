@@ -5,8 +5,7 @@
 @section('listingcontent')
 
 
-
-<!-- Main Container start -->
+        <!-- Main Container start -->
 <div class="dashboard-container">
 
     <div class="container">
@@ -78,8 +77,10 @@
 
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group">
-                                                        <select size="5" multiple="" class="form-control display_category" name="feed">
-                                                            <option id="cat_hide" value="106">Miscellaneous Businesses Services
+                                                        <select size="5" multiple=""
+                                                                class="form-control display_category" name="feed">
+                                                            <option id="cat_hide" value="106">Miscellaneous Businesses
+                                                                Services
                                                             </option>
                                                         </select>
                                                     </div>
@@ -357,7 +358,7 @@
     });
 
     function myFunction(id) {
-        var subCategory_id=id;
+        var subCategory_id = id;
         $.ajax({
             url: '/listing-ajax-handler',
             type: 'post',
@@ -385,21 +386,21 @@
     }
 </script>
 <script>
-    $(document).ready(function(){
-        $('#hello').click(function(){
+    $(document).ready(function () {
+        $('#hello').click(function () {
 //           console.log($(this).val());
-        console.log($('.hidesubcategory').value());
+            console.log($('.hidesubcategory').value());
         });
     });
 
 </script>
 {{--<script>--}}
-    {{--$(document).ready(function(){--}}
-        {{--$("p").click(function(){--}}
-            {{--console.log($(this));--}}
-            {{--$(this).hide();--}}
-        {{--});--}}
-    {{--});--}}
+{{--$(document).ready(function(){--}}
+{{--$("p").click(function(){--}}
+{{--console.log($(this));--}}
+{{--$(this).hide();--}}
+{{--});--}}
+{{--});--}}
 {{--</script>--}}
 
 {{--<script>--}}

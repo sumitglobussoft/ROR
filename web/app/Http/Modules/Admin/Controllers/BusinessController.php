@@ -33,18 +33,17 @@ class BusinessController extends Controller
      *
      */
 
-     public function allbusinessDetails()
+    public function allbusinessDetails()
     {
 
 
         $objBusinessModel = Business::getInstance();
         $where['rawQuery'] = 1;
-        $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name','user_meta.full_name','user_meta.primary_phone'];
+        $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name', 'user_meta.full_name', 'user_meta.primary_phone'];
         $allBusiness = $objBusinessModel->getAllDetails($selectedColumns);
 //        echo '<pre>';
 //        print_r($allBusiness);
 //        die;
-
 
 
         $objCategory = new Category();
@@ -57,7 +56,7 @@ class BusinessController extends Controller
     }
 
 
-     public function businessAjaxhandler(Request $request)
+    public function businessAjaxhandler(Request $request)
     {
         $inputData = $request->input();
         $method = $inputData['method'];
@@ -144,22 +143,22 @@ class BusinessController extends Controller
 //                }
 //              else {
 
-                  $BusinessId = $request->input('business_id');
+                $BusinessId = $request->input('business_id');
 
-                  $updateBusinessData['business_name'] = $request->input('business_name');
-                  $updateBusinessData['category_id'] = $request->input('category_id');
-                  $updateBusinessData['subcategory_id'] = $request->input('subcategory_id');
-                  $updateBusinessData['description'] = $request->input('description');
-                  $updateBusinessData['address'] = $request->input('address');
-                  $updateBusinessData['phone'] = $request->input('phone');
-                  $updateBusinessData['web_address'] = $request->input('web_address');
-                  $updateBusinessData['status'] = $request->input('status01');
-                  $objUpdateBusinessInfo = Business::getInstance();
-                  $UpdateDataResult = $objUpdateBusinessInfo->UpdateBusinessdata($updateBusinessData, $BusinessId);
-                  if ($UpdateDataResult) {
-                      echo 1;
-                      die;
-                  }
+                $updateBusinessData['business_name'] = $request->input('business_name');
+                $updateBusinessData['category_id'] = $request->input('category_id');
+                $updateBusinessData['subcategory_id'] = $request->input('subcategory_id');
+                $updateBusinessData['description'] = $request->input('description');
+                $updateBusinessData['address'] = $request->input('address');
+                $updateBusinessData['phone'] = $request->input('phone');
+                $updateBusinessData['web_address'] = $request->input('web_address');
+                $updateBusinessData['status'] = $request->input('status01');
+                $objUpdateBusinessInfo = Business::getInstance();
+                $UpdateDataResult = $objUpdateBusinessInfo->UpdateBusinessdata($updateBusinessData, $BusinessId);
+                if ($UpdateDataResult) {
+                    echo 1;
+                    die;
+                }
 //              }
 
 
@@ -202,73 +201,71 @@ class BusinessController extends Controller
         }
     }
 
-     public function pendingBusiness()
-     {
-
-         $objCategory = new Category();
-         $categoryData = $objCategory->getActiveCategory();
-
-
-         $objPendingBusinessModel = Business::getInstance();
-         $where['rawQuery'] = 1;
-         $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name','user_meta.full_name','user_meta.primary_phone'];
-         $allpendingBusiness = $objPendingBusinessModel->getPendingBusiness($selectedColumns);
-
-
-         return view('Admin.Views.business.pending_business',['allpendingBusiness' =>$allpendingBusiness],['categoryData' =>$categoryData]);
-   }
-
-
-     public function approvedBusiness()
-        {
-
-          $objCategory = new Category();
-            $categoryData = $objCategory->getActiveCategory();
-
-
-        $objApprovedBusinessModel = Business::getInstance();
-        $where['rawQuery'] = 1;
-        $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name','user_meta.full_name','user_meta.primary_phone'];
-        $allApprovedBusiness = $objApprovedBusinessModel->getApprovedBusiness($selectedColumns);
-
-
-        return view('Admin.Views.business.approved_business',['allApprovedBusiness' =>$allApprovedBusiness],['categoryData' =>$categoryData]);
-
-   }
-
-
-
-     public function unapprovedBusiness()
-     {
-         $objCategory = new Category();
-         $categoryData = $objCategory->getActiveCategory();
-
-
-        $objUnapprovedBusiness = Business::getInstance();
-        $where['rawQuery'] = 1;
-        $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name','user_meta.full_name','user_meta.primary_phone'];
-        $allunapprovedBusiness = $objUnapprovedBusiness->getUnapprovedBusiness($selectedColumns);
-
-
-        return view('Admin.Views.business.unapproved_business',['allunapprovedBusiness' =>$allunapprovedBusiness],['categoryData'=>$categoryData]);
-
-
-    }
-
-     public function AddBusinessInfoById(Request $request,$user_id){
+    public function pendingBusiness()
+    {
 
         $objCategory = new Category();
         $categoryData = $objCategory->getActiveCategory();
 
 
+        $objPendingBusinessModel = Business::getInstance();
+        $where['rawQuery'] = 1;
+        $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name', 'user_meta.full_name', 'user_meta.primary_phone'];
+        $allpendingBusiness = $objPendingBusinessModel->getPendingBusiness($selectedColumns);
 
 
-     return view('Admin.Views.business.add_business',['user_id' => $user_id],['categoryData'=>$categoryData]);
+        return view('Admin.Views.business.pending_business', ['allpendingBusiness' => $allpendingBusiness], ['categoryData' => $categoryData]);
+    }
 
-     }
+
+    public function approvedBusiness()
+    {
+
+        $objCategory = new Category();
+        $categoryData = $objCategory->getActiveCategory();
 
 
-     public function businessbyidAjaxhandler(Request $request)
+        $objApprovedBusinessModel = Business::getInstance();
+        $where['rawQuery'] = 1;
+        $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name', 'user_meta.full_name', 'user_meta.primary_phone'];
+        $allApprovedBusiness = $objApprovedBusinessModel->getApprovedBusiness($selectedColumns);
+
+
+        return view('Admin.Views.business.approved_business', ['allApprovedBusiness' => $allApprovedBusiness], ['categoryData' => $categoryData]);
+
+    }
+
+
+    public function unapprovedBusiness()
+    {
+        $objCategory = new Category();
+        $categoryData = $objCategory->getActiveCategory();
+
+
+        $objUnapprovedBusiness = Business::getInstance();
+        $where['rawQuery'] = 1;
+        $selectedColumns = ['business.*', 'category.category_name', 'subcategory.subcategory_name', 'user_meta.full_name', 'user_meta.primary_phone'];
+        $allunapprovedBusiness = $objUnapprovedBusiness->getUnapprovedBusiness($selectedColumns);
+
+
+        return view('Admin.Views.business.unapproved_business', ['allunapprovedBusiness' => $allunapprovedBusiness], ['categoryData' => $categoryData]);
+
+
+    }
+
+    public function AddBusinessInfoById(Request $request, $user_id)
+    {
+
+        $objCategory = new Category();
+        $categoryData = $objCategory->getActiveCategory();
+
+
+        return view('Admin.Views.business.add_business', ['user_id' => $user_id], ['categoryData' => $categoryData]);
+
+    }
+
+
+    public function businessbyidAjaxhandler(Request $request)
     {
 
 
@@ -323,19 +320,16 @@ class BusinessController extends Controller
 //                }
 
 
-                }}
+                }
         }
+    }
 
 
-
-            public function AddBusinessData()
-            {
-
+    public function AddBusinessData()
+    {
 
 
-
-
-            }
+    }
 
 }
 

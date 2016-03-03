@@ -70,6 +70,8 @@ class Review extends Model
         }
     }
 
+
+
     public function getReviews()
     {
 
@@ -122,25 +124,19 @@ class Review extends Model
         }
     }
 
+
     public function getReviewCount()
     {
         if (func_num_args() > 0) {
             $report_id = func_get_arg(0);
-            try {
-                $result = DB::table("review")
-                    ->where("report_id", $report_id)
-                    ->get();
-            } catch (QueryException $e) {
-                echo $e;
-                return 0;
-            }
-            if ($result)
-                return $result;
-            else
-                return 0;
-        } else {
-            return 0;
-        }
+            $result = DB::table('review')
+//                ->join('report', 'report.report_id', '=', 'review.review_id')
+                ->where('review.report_id', $report_id)
+                ->get();
 
+            return $result;
+        } else {
+            throw new Exception('Argument Not Passed');
+        }
     }
 }

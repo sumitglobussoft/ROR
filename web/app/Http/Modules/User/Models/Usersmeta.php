@@ -23,8 +23,8 @@ class Usersmeta extends Model
     }
 
 
-
-    public function InsertUserMeta(){
+    public function InsertUserMeta()
+    {
 
         if (func_num_args() > 0) {
             $data = func_get_arg(0);
@@ -47,6 +47,7 @@ class Usersmeta extends Model
         $result = User::whereId($userId)->first();
         return $result;
     }
+
     public function updateUserProfileData()
     {
         if (func_num_args() > 0) {
@@ -54,7 +55,7 @@ class Usersmeta extends Model
             $user_id = func_get_arg(1);
             try {
                 $updatedResult = DB::table($this->table)
-                    ->where('user_id',$user_id)
+                    ->where('user_id', $user_id)
                     ->update($userProfileData);
 
                 return $updatedResult;
@@ -66,13 +67,6 @@ class Usersmeta extends Model
             throw new Exception('Argument Not Passed');
         }
     }
-
-
-
-
-
-
-
 
 
 }

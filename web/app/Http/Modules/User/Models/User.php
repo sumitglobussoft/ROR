@@ -3,9 +3,6 @@
 namespace App\Http\Modules\User\Models;
 
 
-
-
-
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -37,7 +34,6 @@ class User extends Model implements AuthenticatableContract,
     }
 
 
-
     /**
      * @param $userId
      * @return mixed
@@ -57,7 +53,7 @@ class User extends Model implements AuthenticatableContract,
 
             $result = DB::table('users')
                 ->join('user_meta', 'user_meta.user_id', '=', 'users.id')
-                ->where('users.id',$user_id)
+                ->where('users.id', $user_id)
                 ->first();
 
             return $result;
@@ -65,6 +61,7 @@ class User extends Model implements AuthenticatableContract,
             throw new Exception('Argument Not Passed');
         }
     }
+
     public function updateUserProfileData()
     {
         if (func_num_args() > 0) {
@@ -75,7 +72,7 @@ class User extends Model implements AuthenticatableContract,
 
             try {
                 $updatedResult = DB::table($this->table)
-                    ->where('id' ,$user_id)
+                    ->where('id', $user_id)
                     ->update($userdata);
                 // ->insertGetId($data);
                 return $updatedResult;
@@ -89,14 +86,13 @@ class User extends Model implements AuthenticatableContract,
     }
 
 
-
     public function getUserDetails()
     {
         if (func_num_args() > 0) {
             $userId = func_get_arg(0);
 
             $result = DB::table('users')
-                ->where('users.id',$userId)
+                ->where('users.id', $userId)
                 ->first();
 
             return $result;
@@ -112,7 +108,7 @@ class User extends Model implements AuthenticatableContract,
             $userId = func_get_arg(1);
             try {
                 $updatedResult = DB::table($this->table)
-                    ->where('id' ,$userId)
+                    ->where('id', $userId)
                     ->update($data);
                 // ->insertGetId($data);
                 return $updatedResult;
@@ -148,7 +144,7 @@ class User extends Model implements AuthenticatableContract,
 
             try {
                 $updatedResult = DB::table($this->table)
-                    ->where('id' ,$userId)
+                    ->where('id', $userId)
                     ->update($data);
                 // ->insertGetId($data);
 
@@ -180,7 +176,6 @@ class User extends Model implements AuthenticatableContract,
             throw new Exception('Argument Not Passed');
         }
     }
-
 
 
 }

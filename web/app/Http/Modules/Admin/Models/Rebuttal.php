@@ -43,7 +43,7 @@ class Rebuttal extends Model implements AuthenticatableContract,
                 $updatedResult = DB::table($this->table)
                     ->where('user_id', $userid)
 //                    ->insert($data)
-                   ->insertGetId($data);
+                    ->insertGetId($data);
 
                 return $updatedResult;
 
@@ -57,7 +57,8 @@ class Rebuttal extends Model implements AuthenticatableContract,
 
     }
 
-    public function getReviewId($where, $selectedColumns = ['*']){
+    public function getReviewId($where, $selectedColumns = ['*'])
+    {
         $result = DB::table($this->table)
             ->whereRaw($where['rawQuery'], isset($where['bindParams']) ? $where['bindParams'] : array())
             ->select($selectedColumns)
@@ -76,7 +77,7 @@ class Rebuttal extends Model implements AuthenticatableContract,
 
             try {
                 $updatedResult = DB::table($this->table)
-                    ->where('reviews_id' ,$reviews_id)
+                    ->where('reviews_id', $reviews_id)
                     ->update($data);
                 // ->insertGetId($data);
                 print_r($updatedResult);
@@ -91,8 +92,6 @@ class Rebuttal extends Model implements AuthenticatableContract,
             throw new Exception('Argument Not Passed');
         }
     }
-
-
 
 
 }

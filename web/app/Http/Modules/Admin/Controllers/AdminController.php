@@ -130,11 +130,11 @@ class AdminController extends Controller
 //        die;
 
         $objCategory = new category();
-        $result2=$objCategory->getActiveCategory();
-        $totalCategory =count($result2);
+        $result2 = $objCategory->getActiveCategory();
+        $totalCategory = count($result2);
 
 
-    return view("Admin/Views/admin/dashboard", ['totalUsers' => $totalUsers],['totalCategory' =>$totalCategory]);
+        return view("Admin/Views/admin/dashboard", ['totalUsers' => $totalUsers], ['totalCategory' => $totalCategory]);
 
     }
 
@@ -167,7 +167,7 @@ class AdminController extends Controller
 //                $userDetails = DB::table('users')->select()->where('id', 1)->first(); //USED TO GET ROW OBJECT
 //                echo "<pre>"; print_r($userDetails); die;
 
-                if ($userDetails->role == 2) {
+                if ($userDetails->role == 1) {
 
                     $sessionName = 'ror_admin';
                     Session::put($sessionName, $userDetails['original']);

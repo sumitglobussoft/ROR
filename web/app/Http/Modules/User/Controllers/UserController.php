@@ -51,7 +51,7 @@ class UserController extends Controller
 
             return redirect('/');
         }
-     if ($request->isMethod('post')) {
+        if ($request->isMethod('post')) {
             $email = $request->input('email');
             $password = $request->input('password');
 
@@ -62,8 +62,8 @@ class UserController extends Controller
 
                 $objModelUsers = User::getInstance();
                 $userDetails = $objModelUsers->getUserById(Auth::id());
-                   if ($userDetails->role == 0) {
-                  $sessionName = 'ror_user';
+                if ($userDetails->role == 0) {
+                    $sessionName = 'ror_user';
                     Session::put($sessionName, $userDetails['original']);
 
                     return redirect()->intended('/');
@@ -129,9 +129,9 @@ class UserController extends Controller
     {
 
         $objReport = new Report();
-        $result=$objReport->getAllLatestReports();
+        $result = $objReport->getAllLatestReports();
 
-         return view("User/Views/user/index",['result' => $result]);
+        return view("User/Views/user/index", ['result' => $result]);
     }
 
     public function logout()
@@ -265,7 +265,7 @@ class UserController extends Controller
 //                    return redirect()->back()->with(['status' => 'error', 'email not exist.']);
                 }
 
-               break;
+                break;
 
             case 'appendComment';
 
@@ -274,11 +274,11 @@ class UserController extends Controller
                 $limit = $request->input('limit');
 
                 $nextfivereview = new Review();
-                $resultreviewData =$nextfivereview->getfivenextreview($report_id,$limit,$offset);
+                $resultreviewData = $nextfivereview->getfivenextreview($report_id, $limit, $offset);
                 echo json_encode($resultreviewData);
                 break;
 
-               default:
+            default:
                 break;
         }
     }
@@ -322,7 +322,8 @@ class UserController extends Controller
 
     }
 
-    public function searchReport(Request $request){
+    public function searchReport(Request $request)
+    {
 
 
         if ($request->isMethod('get')) {
@@ -330,63 +331,63 @@ class UserController extends Controller
             $search = $request->input('search');
 
             $objReportdata = new Report();
-            $Reportresult =$objReportdata->GetReportBysearch($search);
+            $Reportresult = $objReportdata->GetReportBysearch($search);
 
-            $totalcount =count($Reportresult);
+            $totalcount = count($Reportresult);
 
-            if($Reportresult){
+            if ($Reportresult) {
 
-                return view('User.Views.user.search_report',['Reportresult' => $Reportresult,'totalcount' =>$totalcount,'search'=>$search]);
+                return view('User.Views.user.search_report', ['Reportresult' => $Reportresult, 'totalcount' => $totalcount, 'search' => $search]);
 //                 return view('User.Views.user.report_details',['TotalReportresult' =>$TotalReportresult,'result' =>$result,'resultreviewData' =>$resultreviewData,'totalresultreviewcount' =>$totalresultreviewcount]);
             }
-  }
-        else{
+        } else {
             return view('User.Views.user.search');
         }
 
- }
+    }
 
-    public function ReportDetalils(Request $request, $report_id){
+    public function ReportDetalils(Request $request, $report_id)
+    {
 
         if ($request->isMethod('post')) {
             $reviewData['review_title'] = $request->input('title');
             $reviewData['review_text'] = $request->input('comment');
-            $reviewData['report_id'] =$report_id;
+            $reviewData['report_id'] = $report_id;
             $data = $request->session()->all();
             $userId = $data['ror_user']['id'];
-            $reviewData['user_id'] =$userId;
-            $reviewData['status'] =1;
+            $reviewData['user_id'] = $userId;
+            $reviewData['status'] = 1;
 
             $objuser = new User();
-            $resultuser =$objuser->getUserDetailsById($userId);
+            $resultuser = $objuser->getUserDetailsById($userId);
 
-            $reviewData['full_name']=$resultuser->full_name;
+            $reviewData['full_name'] = $resultuser->full_name;
 
 
             $objreview = new Review();
-            $objresult =$objreview->createReview($reviewData);
+            $objresult = $objreview->createReview($reviewData);
 
 
         }
 
-
         $objgetreviewData = new Review();
-        $resultreviewData =$objgetreviewData->getReviewById($report_id);
+        $resultreviewData = $objgetreviewData->getReviewById($report_id);
 
         $getreviewCount = new Review();
         $resultreviewcount =$getreviewCount->getReviewCount($report_id);
+
         $totalresultreviewcount =count($resultreviewcount);
 
 
-         $objReportdataByName = new Report();
-         $TotalReportresult =$objReportdataByName->GetReportDetails($report_id);
-         $report_id =    $TotalReportresult[0]->report_id;
 
+        $objReportdataByName = new Report();
+        $TotalReportresult = $objReportdataByName->GetReportDetails($report_id);
+        $report_id = $TotalReportresult[0]->report_id;
 
         $objReportFile = new Report();
-        $result =$objReportFile->getMediaFiles($report_id);
+        $result = $objReportFile->getMediaFiles($report_id);
 
-     return view('User.Views.user.report_details',['TotalReportresult' =>$TotalReportresult,'result' =>$result,'resultreviewData' =>$resultreviewData,'totalresultreviewcount' =>$totalresultreviewcount]);
+        return view('User.Views.user.report_details', ['TotalReportresult' => $TotalReportresult, 'result' => $result, 'resultreviewData' => $resultreviewData ,'totalresultreviewcount' =>$totalresultreviewcount]);
     }
 
 

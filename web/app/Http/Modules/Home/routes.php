@@ -62,8 +62,6 @@ Route::group(['middleware' => ['guest']], function () {
 //});
 
 
-
-
 Route::group(array('module' => 'Home', 'namespace' => 'Home\Controllers'), function () {
 
 //    Route::resource('/', 'HomeController@home');

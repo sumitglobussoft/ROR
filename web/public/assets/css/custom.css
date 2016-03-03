@@ -1,6 +1,5 @@
-/* --- mY stYle --- */
 body {
-	font-family: 'Proxima Nova Light' !important;
+	font-family: 'Proxima Nova Light';
 	src: url('../fonts/proximanova-light-webfont.eot?v=4.5.0');
 	src: url('../fonts/proximanova-light-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'), url('../fonts/proximanova-light-webfont.woff2?v=4.5.0') format('woff2'), url('../fonts/proximanova-light-webfont.woff?v=4.5.0') format('woff'), url('../fonts/proximanova-light-webfont.ttf?v=4.5.0') format('truetype'), url('../fonts/proximanova-light-webfont.svg?v=4.5.0#proximanovalight') format('svg');
 	font-weight: normal;
@@ -33,6 +32,7 @@ a:hover {
 nav.navbar {
 	min-height: 70px;
 	margin-bottom: 0px;
+	box-shadow: 0 3px 5px #dfdfdf;
 }
 
 ul.nav.navbar-nav {
@@ -87,8 +87,9 @@ ul.nav.navbar-nav li a {
 	margin-bottom: 30px;
 }
 
-#main a {
-	color: #fff;
+#main a,
+#filereport a {
+	color: #fff !important;
 	background-color: #e94545;
 	text-align: center;
 	font-size: 18px;
@@ -128,11 +129,48 @@ section#search {
 	box-shadow: 0px 6px 9px #dfdfdf;
 }
 
+section#title {
+	background: #2b4bbd none repeat scroll 0 0;
+	color: #fff;
+	min-height: 55px;
+}
+
+section#title h3 {
+	font-weight: bold;
+	margin-top: 13px;
+}
+
+section#details {
+	padding-top: 3%;
+}
+
+section#details h1 {
+	color: #e94545;
+}
+
+section#details h3 small {
+	font-size: 13px;
+	margin-left: 2%;
+	border-bottom: 1px dotted;
+}
+
+section#details .comment-section {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 2%;
+	padding-top: 2%;
+}
+
 .btn-default {
 	border-color: none;
 }
 
-#browse {
+.btn-theme {
+	background-color: #2c4bbd;
+	border-color: #2c4bbd;
+	color: #FFF;
+}
+
+section#browse {
 	height: 500px;
 	background-image: url(../images/bg-img2.png);
 	background-repeat: no-repeat;
@@ -140,7 +178,7 @@ section#search {
 	margin-top: -18px;
 }
 
-#browse h3 {
+section#browse h3 {
 	color: #424242;
 	text-align: center;
 	padding-top: 20px;
@@ -149,7 +187,7 @@ section#search {
 	font-weight: 400;
 }
 
-#about {
+section#about {
 	min-height: 500px;
 	padding-top: 110px;
 }
@@ -159,17 +197,20 @@ section#search {
 }
 
 #about .hr1,
+#details .hr1,
 .hr2 {
 	border: 0;
 	width: 80px;
 	margin: 0px
 }
 
-#about .hr1 {
+#about .hr1,
+#details .hr1 {
 	border-top: 6px solid #2c4bbd;
 }
 
-#about .hr2 {
+#about .hr2,
+#details .hr2 {
 	border-top: 6px solid #e94545;
 }
 
@@ -209,6 +250,10 @@ div#question .btn {
 div#question span {
 	position: absolute;
 	right: 35px;
+}
+
+#question p {
+	text-align: justify;
 }
 
 .navbar-fixed-top .navbar-toggle {
@@ -303,49 +348,6 @@ div#question span {
 
 /* ----------- */
 
-footer {
-	color: #444444;
-	background-color: #f3f3f3;
-	text-align: center;
-	min-height: 300px;
-}
-
-footer:after {
-	content: " ";
-	display: block;
-	position: relative;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 36px;
-	background: linear-gradient(#FFF 0%, transparent 0%), linear-gradient(135deg, #f3f3f3 33.33%, transparent 33.33%) 0 0%, #f3f3f3 linear-gradient(45deg, #f3f3f3 33.33%, #FFF 33.33%) 0 0%;
-	background: -webkit-linear-gradient(#FFF 0%, transparent 0%), -webkit-linear-gradient(135deg, #f3f3f3 33.33%, transparent 33.33%) 0 0%, #f3f3f3 -webkit-linear-gradient(45deg, #f3f3f3 33.33%, #2B3A48 33.33%) 0 0%;
-	background: -o-linear-gradient(#FFF 0%, transparent 0%), -o-linear-gradient(135deg, #f3f3f3 33.33%, transparent 33.33%) 0 0%, #f3f3f3 -o-linear-gradient(45deg, #f3f3f3 33.33%, #FFF 33.33%) 0 0%;
-	background: -moz-linear-gradient(#FFF 0%, transparent 0%), -moz-linear-gradient(135deg, #f3f3f3 33.33%, transparent 33.33%) 0 0%, #f3f3f3 -moz-linear-gradient(45deg, #f3f3f3 33.33%, #FFF 33.33%) 0 0%;
-	background-repeat: repeat-x;
-	background-size: 0px 100%, 9px 27px, 9px 27px;
-}
-
-@media (max-width:767px) {
-	#myNavbar {
-		border-bottom: 2px solid #2c4bbd;
-	}
-	.find {
-		margin-top: -2.5%;
-	}
-	#main #div1 {
-		margin-top: 10%;
-	}
-}
-
-*::-moz-placeholder {
-	color: #999;
-}
-
-*::-moz-selection {
-	background-color: #2C4BBD;
-	color: #fff;
-}
 section#badge {
 	background-image: url('../images/badge.png');
 	background-repeat: repeat-x;
@@ -469,7 +471,22 @@ ul.pagination li a {
 }
 
 .img-report {
-	width: 200px;
+	width: 175px;
+	height: 175px;
+}
+
+.text-report{
+	min-height: 82px;
+	max-height: 82px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+p.report-content {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: bold;
 }
 
 @media (max-width:767px) {

@@ -35,8 +35,8 @@ class Report extends Model
                     ->where('company_or_individual_name', 'like', '%' . $search . '%')
                     ->orWhere('report_id', 'like', '%' . $search . '%')
                     ->orWhere('company_or_individual_aka', 'like', '%' . $search . '%')
-//                    ->orWhere('country', 'like', '%' . $where . '%')
-                    ->get();
+                    ->paginate(4);
+
                 return $result;
             } catch (\Exception $e) {
                 return $e->getMessage();
@@ -72,7 +72,9 @@ class Report extends Model
         try {
             $result = DB::table("report")
                 ->select()
-                ->get();
+                ->orderBy('report.created_at', 'desc')
+                ->paginate(4);
+
         } catch (QueryException $e) {
             echo $e;
             return 0;
@@ -87,12 +89,11 @@ class Report extends Model
     {
         if (func_num_args() > 0) {
             $report_id = func_get_arg(0);
-                $result = DB::table('report')
+            $result = DB::table('report')
                 ->join('report_file', 'report.report_id', '=', 'report_file.report_id')
-                ->where('report.report_id',$report_id)
+                ->where('report.report_id', $report_id)
                 ->get();
-//            echo '<pre>';
-//            print_r($result);die;
+
             return $result;
         } else {
             throw new Exception('Argument Not Passed');

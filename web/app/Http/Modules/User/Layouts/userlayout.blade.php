@@ -22,7 +22,7 @@
 
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="javascript:;">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="javascript:;">Directory</a></li>
                         <li><a href="javascript:;">Resources</a></li>
                         <li><a href="javascript:;">FAQ</a></li>

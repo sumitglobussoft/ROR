@@ -38,7 +38,7 @@
 
                             <div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">
                                 <input type="hidden" name="business_id" id="business_id" value=""
-                                       class="form-control input-lg font-14 pull-right" placeholder="Business Id" />
+                                       class="form-control input-lg font-14 pull-right" placeholder="Business Id"/>
                             </div>
 
                             <div class="form-group form-input-group m-t-10 m-b-5 pull-left col-md-6">
@@ -61,17 +61,18 @@
                                     <select name="category" id="editcategory" class="form-control category">
                                         <option selected="selected">Select a category</option>
                                         <?php
-//                                                 if (isset($this->$categoryData)) {
+                                        //                                                 if (isset($this->$categoryData)) {
                                         // echo "<pre>";print_r($this->eventtypes);die;
                                         foreach ($categoryData as $etKey => $etVal) {
                                         //echo "<pre>";print_r($etVal);die;
                                         ?>
-                                        <option  data_id="<?php echo $etVal->category_id ?>"
-                                                 <?php if ($etVal->category_id == $etVal->category_id) { ?> selected="" <?php } ?>
+                                        <option data_id="<?php echo $etVal->category_id ?>"
+                                                <?php if ($etVal->category_id == $etVal->category_id) { ?> selected=""
+                                                <?php } ?>
                                                 value="<?php echo $etVal->category_id;?>"><?php echo $etVal->category_name; ?></option>
                                         <?php
                                         }
-//                                        }
+                                        //                                        }
 
                                         ?>
                                     </select>
@@ -343,7 +344,7 @@
                                         @if($BusinessDetails->status==2)
                                             <label class="label label-danger">UnApproved</label>
                                         @endif
-                                   </td>
+                                    </td>
 
 
                                     {{--<td class="text-center">--}}
@@ -624,7 +625,6 @@
                     }
 
 
-
                     $('#sub_category').empty();
 //                    response = $.parseJSON(response);
                     console.log(response);
@@ -637,8 +637,6 @@
                     } else {
                         $('#sub_category').append('<option value="">No subcategory found</option>');
                     }
-
-
 
 
                 }

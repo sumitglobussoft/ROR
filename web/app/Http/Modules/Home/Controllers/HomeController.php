@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Curl\CurlRequestHandler;
 
 
-
 class HomeController extends Controller
 {
 //    public function __call(){

@@ -1,7 +1,6 @@
 <?php
 
-
-namespace App\Http\Modules\Listing\Models;
+namespace App\Http\Modules\Report\Models;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +24,10 @@ class Category extends Model
     }
 
 
+    /*
+     * needed
+     */
+
     public function getActiveCategory()
     {
         try {
@@ -42,15 +45,66 @@ class Category extends Model
             return 0;
     }
 
-    public function getsubcategory()
+    /*
+     * need
+     */
+    public function getActiveSubCategory()
     {
         if (func_num_args() > 0) {
-            $category_id = func_get_arg(0);
+            $categoryid = func_get_arg(0);
+            try {
+                $result = DB::table("subcategory")
+                    ->where('status', 1)
+                    ->where('category_id', $categoryid)
+                    ->select()
+                    ->get();
+            } catch (QueryException $e) {
+                echo $e;
+                return 0;
+            }
+            if ($result)
+                return $result;
+            else
+                return 0;
+        } else {
+            return 0;
+        }
+    }
+
+
+    public function getSubCategory()
+    {
+        if (func_num_args() > 0) {
+            $categoryid = func_get_arg(0);
+            try {
+                $result = DB::table("subcategory")
+                    ->leftjoin('user_meta', 'user_meta.user_id', '=', 'subcategory.user_id')
+                    ->leftjoin('category', 'category.category_id', '=', 'subcategory.category_id')
+                    ->where('subcategory.category_id', $categoryid)
+                    ->select('user_meta.display_name', 'category.category_name', 'subcategory.*')
+                    ->get();
+            } catch (QueryException $e) {
+                echo $e;
+                return 0;
+            }
+            if ($result)
+                return $result;
+            else
+                return 0;
+        } else {
+            return 0;
+        }
+    }
+
+
+    public function getActiveSubCategoryById()
+    {
+        if (func_num_args() > 0) {
+            $categoryid = func_get_arg(0);
             try {
                 $result = DB::table("category")
-                    ->leftjoin('subcategory', 'subcategory.category_id', '=', 'category.category_id')
-                    ->where('subcategory.category_id', $category_id)
-//                    ->where('status', 1)
+                    ->join('subcategory', 'subcategory.category_id', '=', 'category.category_id')
+                    ->where('subcategory.category_id', $categoryid)
                     ->select()
                     ->get();
             } catch (QueryException $e) {
@@ -61,54 +115,12 @@ class Category extends Model
                 return $result;
             else
                 return 0;
-
-
+        } else {
+            return 0;
         }
+
 
     }
 
-    public function getsubcategoryByname()
-    {
 
-        if (func_num_args() > 0) {
-            $subcategory_id = func_get_arg(0);
-            try {
-                $result = DB::table("subcategory")
-                    ->where('subcategory_id', $subcategory_id)
-//                    ->where('status', 1)
-                    ->select()
-                    ->get();
-            } catch (QueryException $e) {
-                echo $e;
-                return 0;
-            }
-            if ($result)
-                return $result;
-            else
-                return 0;
-
-        }
-
-    }
-
-    public function getCategoryByname()
-    {
-        if (func_num_args() > 0) {
-            $subcategory_name = func_get_arg(0);
-            try {
-                $result = DB::table("subcategory")
-                    ->where('subcategory_name', $subcategory_name)
-//                    ->where('status', 1)
-                    ->select()
-                    ->get();
-            } catch (QueryException $e) {
-                echo $e;
-                return 0;
-            }
-            if ($result)
-                return $result;
-            else
-                return 0;
-        }
-    }
 }

@@ -20,7 +20,8 @@ class MailTemplate extends Model implements AuthenticatableContract,
     protected $table = 'mail_templates';
 
 
-    public function getTemplateByName($temp_name){
+    public function getTemplateByName($temp_name)
+    {
         $result = DB::table('mail_templates')
             ->select()
             ->where('temp_name', $temp_name)

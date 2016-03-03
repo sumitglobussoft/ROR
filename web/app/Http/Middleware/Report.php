@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class Report
 {
     /**
      * The Guard implementation.
@@ -45,13 +45,14 @@ class Admin
 //        var_dump($this->auth->guest());
 //        die;
 
-        if ($request->user()->role != 1) {
+        if ($request->user()->report_login_active != 1) {
+//            die('dvxcdvxcdvxcv ');
 //            if ($this->auth->check()) {
 //                return redirect('/admin/dashboard');
 //            }
 //        } else {
             Auth::logout();
-            return redirect()->guest('/admin/login');
+            return redirect()->guest('/login');
         }
 //        if ($this->auth->user()) {
 //            if ($request->ajax()) {

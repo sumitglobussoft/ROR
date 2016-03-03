@@ -190,14 +190,14 @@
                         var res = response;
 //                        var fold = res.split("");
 //                        $.each(res, function (index, val) {
-                            // permission_details =  val['permission_details'];
+                        // permission_details =  val['permission_details'];
 //                            $.each(val, function (pindex, pval) {
 //                                permission_detail =  pval;
 //                            });
-                           // var permit = JSON.stringify(permission_detail);
+                        // var permit = JSON.stringify(permission_detail);
 //                            var permit =  permission_detail.split(",");
 //                            console.log(permit);
-                            $('#permitid').html(res);
+                        $('#permitid').html(res);
 //                            console.log(permission_detail);
 //                        });
 

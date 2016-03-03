@@ -48,7 +48,8 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Name</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="feature_name" value="{{old('feature_name')}}">
+                                            <input type="text" class="form-control" name="feature_name"
+                                                   value="{{old('feature_name')}}">
                                             <span class="error">{!! $errors->first('feature_name') !!}</span>
                                         </div>
                                     </div>
@@ -57,7 +58,8 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Description</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="full_description" value="{{old('full_description')}}">
+                                            <input type="text" class="form-control" name="full_description"
+                                                   value="{{old('full_description')}}">
                                             <span class="error">{!! $errors->first('full_description') !!}</span>
                                         </div>
                                     </div>
@@ -69,7 +71,8 @@
                                             <select class="form-control" name="parent_id" value="{{old('parent_id')}}">
                                                 <option value="">--None--</option>
                                                 @foreach($featureGroups['data'] as $keyFG => $valueFG)
-                                                    <option value="{{$valueFG['feature_id']}}" @if(old('parent_id') == $valueFG['feature_id']) selected @endif>{{$valueFG['feature_name']}}</option>
+                                                    <option value="{{$valueFG['feature_id']}}"
+                                                            @if(old('parent_id') == $valueFG['feature_id']) selected @endif>{{$valueFG['feature_name']}}</option>
                                                 @endforeach
                                             </select>
                                             <span class="error">{!! $errors->first('parent_id') !!}</span>
@@ -80,10 +83,12 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Feature type</label>
                                         <div class="col-sm-4">
-                                            <select class="form-control" name="feature_type" value="{{old('feature_type')}}" id="featuretype">
+                                            <select class="form-control" name="feature_type"
+                                                    value="{{old('feature_type')}}" id="featuretype">
                                                 <option value="">--Select--</option>
                                                 <optgroup label="Checkbox">
-                                                    <option value="0" @if(old('feature_type') != null && (int)old('feature_type') === 0) selected @endif>
+                                                    <option value="0"
+                                                            @if(old('feature_type') != null && (int)old('feature_type') === 0) selected @endif>
                                                         Single
                                                     </option>
                                                     <option value="1" @if(old('feature_type') == 1) selected @endif>
@@ -131,9 +136,11 @@
                                                 <li data-jstree='{"opened":true}'>
                                                     <?php echo $array[$keyArray]->category_name;
                                                     $catId = $array[$keyArray]->category_id; ?>
-                                                    <span class="catinputdivs" data-id="<?php echo $array[$keyArray]->category_id; ?>" data-checked="@if(isset(old('for_categories')[$catId]))
-                                                            checked
-                                                            @endif">
+                                                    <span class="catinputdivs"
+                                                          data-id="<?php echo $array[$keyArray]->category_id; ?>"
+                                                          data-checked="@if(isset(old('for_categories')[$catId]))
+                                                                  checked
+                                                                  @endif">
                                             </span>
                                                     <?php treeView($array, $array[$keyArray]->category_id); ?>
                                                 </li>
@@ -152,7 +159,8 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Display on features tab</label>
                                         <div class="col-sm-4">
-                                            <input type="checkbox" class="form-control" name="display_on_product" @if(old('display_on_product') == "on") checked @endif/>
+                                            <input type="checkbox" class="form-control" name="display_on_product"
+                                                   @if(old('display_on_product') == "on") checked @endif/>
                                             <span class="error">{!! $errors->first('display_on_product') !!}</span>
                                         </div>
                                     </div>
@@ -161,7 +169,8 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Display on catalog</label>
                                         <div class="col-sm-4">
-                                            <input type="checkbox" class="form-control" name="display_on_catalog" @if(old('display_on_catalog') == "on") checked @endif/>
+                                            <input type="checkbox" class="form-control" name="display_on_catalog"
+                                                   @if(old('display_on_catalog') == "on") checked @endif/>
                                             <span class="error">{!! $errors->first('display_on_catalog') !!}</span>
                                         </div>
                                     </div>
@@ -188,19 +197,25 @@
                                                         <tr>
                                                             <td>
                                                                 <div class="col-sm-12">
-                                                                    <input type="text" class="form-control" name="feature_variant[name][{{$keyFV}}]" value="{{$valueFV}}">
+                                                                    <input type="text" class="form-control"
+                                                                           name="feature_variant[name][{{$keyFV}}]"
+                                                                           value="{{$valueFV}}">
                                                                     <span class="error">{!! $errors->first('feature_variant.name.'.$keyFV) !!}</span>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="col-sm-12">
-                                                                    <input type="text" class="form-control" name="feature_variant[description][{{$keyFV}}]" value="{{old('feature_variant')['description'][$keyFV]}}">
+                                                                    <input type="text" class="form-control"
+                                                                           name="feature_variant[description][{{$keyFV}}]"
+                                                                           value="{{old('feature_variant')['description'][$keyFV]}}">
                                                                     <span class="error">{!! $errors->first('feature_variant.description.'.$keyFV) !!}</span>
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <a class="col-sm-1 addvarianttr"><i class="fa fa-plus"></i></a>
-                                                                <a class="col-sm-1 removevarianttr"><i class="fa fa-remove"></i></a>
+                                                                <a class="col-sm-1 addvarianttr"><i
+                                                                            class="fa fa-plus"></i></a>
+                                                                <a class="col-sm-1 removevarianttr"><i
+                                                                            class="fa fa-remove"></i></a>
                                                             </td>
                                                         </tr>
                                                     @endif
@@ -210,12 +225,14 @@
                                             <tr>
                                                 <td>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" name="feature_variant[name][]">
+                                                        <input type="text" class="form-control"
+                                                               name="feature_variant[name][]">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" name="feature_variant[description][]">
+                                                        <input type="text" class="form-control"
+                                                               name="feature_variant[description][]">
                                                     </div>
                                                 </td>
                                                 <td>

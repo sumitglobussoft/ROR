@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php //print_r($resultreviewData); die; ?>
+
 <html>
 <head xmlns="http://www.w3.org/1999/html">
 
@@ -71,7 +71,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div id="wrap">
-                    <form action="" autocomplete="on">
+                    <form action="/search_report" autocomplete="on">
                         <input id="search" class="form-control" name="search" type="text"
                                placeholder="Search Reports by Company, Individual or Report Number"/>
                         <input id="search_submit" value="search" type="submit"/>
@@ -149,7 +149,7 @@
 
                 <div class="row" style="margin-top: 3%;">
                     <div class="col-md-12">
-                        <h3>Comments(<span>@if(isset($totalresultreviewcount)){{$totalresultreviewcount}} @else <p>not found</p> @endif</span>)
+                        <h3>Comments(<span>{{$totalresultreviewcount}}</span>)
 
                             <small><a data-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">Post
                                     Comment</a></small>
@@ -173,11 +173,12 @@
 
                                 @endif
 
-                                @if(isset($resultreviewData))
+                                @if(sizeof($resultreviewData) >0)
+
                                     <?php $index = 1; ?>
                                         <div class="comment-section">
                                     @foreach($resultreviewData as $reviewData)
-                                                <div class="row"><strong>{{$reviewData->full_name}}</strong><strong>{{$reviewData->created_date}}</strong>
+ <div class="row"><strong>{{$reviewData->full_name}}</strong><strong>{{$reviewData->created_date}}</strong>
                                                     <p>{{$reviewData->review_text}}</p>
                                                 </div>
                                         <?php $index++; ?>

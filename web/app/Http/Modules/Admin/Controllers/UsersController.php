@@ -153,7 +153,7 @@ class UsersController extends Controller
                 $updateUserData['business_login_active'] = $UserStatus;
                 $updateUserData['role'] = 0;
                 $updateUserData['updated_at'] = 110123;
-                 $userid = $request->input('edituserid');
+                $userid = $request->input('edituserid');
 
 //                echo '<pre>';
 //                print_r($updateUserData);
@@ -342,7 +342,7 @@ class UsersController extends Controller
                 $updateBusinessUserMetaInfo['zipcode'] = $request->input('zipcode');
                 $updateBusinessUserMetaInfo['primary_phone'] = $request->input('primary_phone');
                 $updateBusinessUserMetaInfo['alternate_phone'] = $request->input('alternate_phone');
-               $objInserUsersDataModel = Usersmeta::getInstance();
+                $objInserUsersDataModel = Usersmeta::getInstance();
                 $UpdateusermetadataUserMeta = $objInserUsersDataModel->updateMetaUserData($updateBusinessUserMetaInfo, $userid);
 
                 if ($UpdateusermetadataUserMeta) {
@@ -370,11 +370,11 @@ class UsersController extends Controller
         $objAdminUsersModel = User::getInstance();
         $AdminData = $objAdminUsersModel->getAdminDetails($user_id);
 
-        if($request->isMethod('post')){
+        if ($request->isMethod('post')) {
 
 
-           $user_id = $data['ror_admin']['id'];
-           // $data12['user_id'] = $AdminData->user_id;
+            $user_id = $data['ror_admin']['id'];
+            // $data12['user_id'] = $AdminData->user_id;
             $data12['display_name'] = $request->input('display_name');
             $data12['full_name'] = $request->input('full_name');
             $data12['address'] = $request->input('address');

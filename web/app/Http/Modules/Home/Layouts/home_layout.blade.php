@@ -27,7 +27,7 @@
                                 </a>
                                 <ul class="dropdown-menu current right text-uppercase">
                                     <li><a href="#"> AUD $</a></li>
-                                    <li><a href="#"> EUR €</a></li>
+                                    <li><a href="#"> EUR ï¿½</a></li>
                                     <li><a href="#"> BOB Bs.</a></li>
                                     <li><a href="#"> COP $</a></li>
                                 </ul>
@@ -47,7 +47,7 @@
                             {{--<li><a href="#"><img src="/assets/home/img/language/portugues.png" alt=""> Portuguese</a></li>--}}
                             {{--</ul>--}}
                             {{--</li>--}}
-                            <!--Language-->
+                                    <!--Language-->
                         </ul>
                     </div>
                 </div>
@@ -71,7 +71,8 @@
                     <div class="col-lg-5 search col-md-4 col-sm-4 col-xs-6">
                         <form class="search" action="#" method="Post">
                             <div class="input-group">
-                                <input class="form-control" placeholder="" name="email" type="email" required="required">
+                                <input class="form-control" placeholder="" name="email" type="email"
+                                       required="required">
                                         <span class="input-group-btn">
                                             <button class="btn btn-primary" type="submit" name="subscribe"><i
                                                         class="fa fa-search"></i></button>
@@ -85,23 +86,35 @@
                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                         <ul class="login list-inline text-uppercase">
                             <?php if (Session::has('fs_user')){
-                             $value = Session::get('fs_user')['profilepic'];
+                            $value = Session::get('fs_user')['profilepic'];
                             ?>
                             <li>
-                                <a href="javascript:void(0)" id="showdetails"><img src="<?php if($value != ''){  echo $value; } else { echo "http://placehold.it/350x150"; }?>" style="height:30px; width:30px;" class="img-circle" id="user_profile_pic_id"/> Username <span id="triangle_down">&#9660;</span>
+                                <a href="javascript:void(0)" id="showdetails"><img src="<?php if ($value != '') {
+                                        echo $value;
+                                    } else {
+                                        echo "http://placehold.it/350x150";
+                                    }?>" style="height:30px; width:30px;" class="img-circle" id="user_profile_pic_id"/>
+                                    Username <span id="triangle_down">&#9660;</span>
                                     <span id="triangle_up" style="display:none;">&#9650;</span></a>
                                 <div id="userpanel" class="left-panel">
                                     <!--body panel-->
                                     <div class="body-user">
                                         <div class="content-body-user text-overflow">
                                             <ul class="list-unstyled">
-                                                <li><a href="/profile-setting"><i class="fa fa-user"></i>&nbsp;&nbsp;My Account</a></li>
-                                                <li><a href="#"><i class="fa fa-heart"></i>&nbsp;&nbsp;My Wishlist</a></li>
-                                                <li><a href="#"><i class="fa fa-truck"></i>&nbsp;&nbsp;My Orders</a></li>
-                                                <li><a href="#"><i class="fa fa-outdent"></i>&nbsp;&nbsp;My Tickets</a></li>
-                                                <li><a href="#"><i class="fa fa-bullhorn"></i>&nbsp;&nbsp;Add New Ticket</a></li>
-                                                <li><a href="#"><i class="fa fa-envelope"></i>&nbsp;&nbsp;Newsletter</a></li>
-                                                <li><a href="/logout"><i class="fa fa-key"></i>&nbsp;&nbsp;Log Out</a></li>
+                                                <li><a href="/profile-setting"><i class="fa fa-user"></i>&nbsp;&nbsp;My
+                                                        Account</a></li>
+                                                <li><a href="#"><i class="fa fa-heart"></i>&nbsp;&nbsp;My Wishlist</a>
+                                                </li>
+                                                <li><a href="#"><i class="fa fa-truck"></i>&nbsp;&nbsp;My Orders</a>
+                                                </li>
+                                                <li><a href="#"><i class="fa fa-outdent"></i>&nbsp;&nbsp;My Tickets</a>
+                                                </li>
+                                                <li><a href="#"><i class="fa fa-bullhorn"></i>&nbsp;&nbsp;Add New Ticket</a>
+                                                </li>
+                                                <li><a href="#"><i class="fa fa-envelope"></i>&nbsp;&nbsp;Newsletter</a>
+                                                </li>
+                                                <li><a href="/logout"><i class="fa fa-key"></i>&nbsp;&nbsp;Log Out</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -385,7 +398,7 @@
                             15 Dec
                         </div>
                         <div class="info-date">
-                            <h5><a href="#">What’s trending for 2015? </a></h5>
+                            <h5><a href="#">Whatï¿½s trending for 2015? </a></h5>
                             <!--                                <p>&nbsp;&nbsp;&nbsp;</p>-->
                         </div>
                     </div>
@@ -409,7 +422,7 @@
                             15 Dec
                         </div>
                         <div class="info-date">
-                            <h5><a href="#">NYC The world’s fashion capital</a></h5>
+                            <h5><a href="#">NYC The worldï¿½s fashion capital</a></h5>
 
                         </div>
                     </div>
@@ -799,8 +812,8 @@
 
     $(document).ready(function () {
 
-        $('#showdetails').click(function() {
-            $('#userpanel').slideToggle('slow', function() {
+        $('#showdetails').click(function () {
+            $('#userpanel').slideToggle('slow', function () {
                 $("#triangle_down").toggle();
                 $("#triangle_up").toggle();
             });
